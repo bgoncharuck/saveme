@@ -24,13 +24,13 @@ class GreenRedMaterial implements FromTheme {
   @override
   Color get accent => Colors.redAccent;
   @override
-  Color get primaryText => Colors.white;
+  Color get primaryText => Colors.black;
   @override
-  Color get secondaryText => Colors.white70;
+  Color get secondaryText => Colors.black54;
   @override
   Color get divider => Colors.grey;
   @override
-  Color get background => Colors.black87;
+  Color get background => Colors.white;
 }
 
 FromTheme ColorTheme = GreenRedMaterial();

@@ -11,7 +11,6 @@ class _SaveMeSettingsState extends State<SaveMeSettings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorTheme.background,
       body: SafeArea(
         child: Column(
           children: <Widget>[
@@ -28,7 +27,7 @@ class _SaveMeSettingsState extends State<SaveMeSettings> {
                 ),
               ],
             ),
-            Text("Home"),
+            Text("Settings"),
           ],
         ),
       ),

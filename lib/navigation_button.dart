@@ -37,8 +37,8 @@ class _NavigationButtonState extends State<NavigationButton> {
         padding: widget.margin,
         child: FlatButton(
           shape: RoundedRectangleBorder(
-              borderRadius: new BorderRadius.circular(18.0),
-              side: BorderSide()),
+            borderRadius: new BorderRadius.circular(18.0),
+          ),
           padding: widget.padding,
           color: widget.backgroundColor,
           textColor: widget.color,
