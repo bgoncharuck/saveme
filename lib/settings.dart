@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:saveme/timer.dart';
 import 'colors.dart';
 import 'navigation_button.dart';
 
@@ -21,7 +22,7 @@ class _SaveMeSettingsState extends State<SaveMeSettings> {
                     navigate: "/",
                     name: "Home",
                     icon: Icons.arrow_back,
-                    backgroundColor: ColorTheme.darkPrimary,
+                    backgroundColor: ColorTheme.defaultPrimary,
                     color: ColorTheme.textPrimary),
                 Expanded(
                   child: SizedBox(),
@@ -35,7 +36,7 @@ class _SaveMeSettingsState extends State<SaveMeSettings> {
                   borderRadius: new BorderRadius.circular(18.0),
                 ),
                 padding: EdgeInsets.all(1.0),
-                color: ColorTheme.primaryText,
+                color: ColorTheme.background,
                 onPressed: () {
                   setState(() {
                     Navigator.of(context).pushNamed("/settings/numbers/add");
@@ -52,36 +53,29 @@ class _SaveMeSettingsState extends State<SaveMeSettings> {
                       ),
                       child: Icon(
                         Icons.smartphone,
-                        color: ColorTheme.textPrimary,
+                        color: ColorTheme.primaryText,
                         size: 32.0,
                       ),
                     ),
                     Expanded(
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(12.0),
-                        ),
-                        color: ColorTheme.background,
-                        child: Row(
-                          children: <Widget>[
-                            Expanded(
-                              child: Text(
-                                " +380960123456 ",
-                                style: TextStyle(
-                                    fontSize: 32,
-                                    color: ColorTheme.primaryText),
-                              ),
+                      child: Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: Text(
+                              " +380960123456 ",
+                              style: TextStyle(
+                                  fontSize: 32, color: ColorTheme.primaryText),
                             ),
-                            Padding(
-                              padding: EdgeInsets.all(4.0),
-                              child: Icon(
-                                Icons.file_download,
-                                color: ColorTheme.primaryText,
-                                size: 28.0,
-                              ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.all(4.0),
+                            child: Icon(
+                              Icons.file_download,
+                              color: ColorTheme.primaryText,
+                              size: 28.0,
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
@@ -89,11 +83,33 @@ class _SaveMeSettingsState extends State<SaveMeSettings> {
               ),
             ),
             Expanded(
-              child: Text("Timer set"),
+              child: TimerConfig(),
             ),
-            Expanded(
-              child: Text("Other numbers"),
+            RaisedButton(
+              onPressed: () {
+                setState(() {
+                  Navigator.of(context).pushNamed("/settings/numbers");
+                });
+              },
+              shape: RoundedRectangleBorder(
+                borderRadius: new BorderRadius.circular(64.0),
+              ),
+              color: ColorTheme.darkPrimary,
+              child: Column(
+                children: <Widget>[
+                  SizedBox(height: 30),
+                  Text(
+                    " Additional Numbers List ",
+                    style: TextStyle(
+                      fontSize: 28,
+                      color: ColorTheme.textPrimary,
+                    ),
+                  ),
+                  SizedBox(height: 30),
+                ],
+              ),
             ),
+            SizedBox(height: 30),
           ],
         ),
       ),

@@ -1,19 +1,20 @@
+import 'package:flutter/material.dart';
+import 'colors.dart';
+
 abstract class ISaveMeTimer {
-  num minutes;
-  num seconds;
-  num minute;
-  num second;
+  double minutes;
+  double seconds;
+  double minute;
+  double second;
   void stop();
 }
 
 class DefaultTimer implements ISaveMeTimer {
-  num minutes;
-  num seconds;
-  num minute;
-  num second;
-  DefaultTimer(this.minutes, this.seconds) {
-    stop();
-  }
+  double minutes = 3.0;
+  double seconds = 30.0;
+  double minute = 3.0;
+  double second = 30.0;
+
   @override
   void stop() {
     minute = minutes;
@@ -21,4 +22,83 @@ class DefaultTimer implements ISaveMeTimer {
   }
 }
 
-ISaveMeTimer CallTimer = DefaultTimer(3, 30);
+class TimerConfig extends StatefulWidget {
+  @override
+  _TimerConfigState createState() => _TimerConfigState();
+}
+
+class _TimerConfigState extends State<TimerConfig> {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        Expanded(
+          child: SizedBox(),
+        ),
+        Expanded(
+          child: Text(
+            "${CallTimer.minutes.toInt()} minutes",
+            style: TextStyle(
+              fontSize: 24,
+            ),
+          ),
+        ),
+        Expanded(
+          child: Slider(
+            activeColor: ColorTheme.defaultPrimary,
+            inactiveColor: ColorTheme.primaryText,
+            value: CallTimer.minutes,
+            min: 0.0,
+            max: 60.0,
+            divisions: 60,
+            onChanged: (double changed) {
+              setState(() {
+                CallTimer.minutes = changed;
+              });
+            },
+            onChangeEnd: (double changed) {
+              setState(() {
+                CallTimer.minutes = changed;
+                CallTimer.stop();
+              });
+            },
+          ),
+        ),
+        Expanded(
+          child: Text(
+            "${CallTimer.seconds.toInt()} seconds",
+            style: TextStyle(
+              fontSize: 24,
+            ),
+          ),
+        ),
+        Expanded(
+          child: Slider(
+            activeColor: ColorTheme.defaultPrimary,
+            inactiveColor: ColorTheme.primaryText,
+            value: CallTimer.seconds,
+            min: 0.0,
+            max: 60.0,
+            divisions: 60,
+            onChanged: (double changed) {
+              setState(() {
+                CallTimer.seconds = changed;
+              });
+            },
+            onChangeEnd: (double changed) {
+              setState(() {
+                CallTimer.seconds = changed;
+                CallTimer.stop();
+              });
+            },
+          ),
+        ),
+        Expanded(
+          child: SizedBox(),
+        ),
+      ],
+    );
+  }
+}
+
+ISaveMeTimer CallTimer = DefaultTimer();

@@ -41,6 +41,7 @@ class _SaveMeMainButtonState extends State<SaveMeMainButton> {
                 buttomState = run;
               } else {
                 buttomState = stop;
+                CallTimer.stop();
               }
             });
           },

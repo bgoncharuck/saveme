@@ -23,7 +23,7 @@ class _SaveMeHomeState extends State<SaveMeHome> {
                     navigate: "/settings",
                     name: "Settings",
                     icon: Icons.settings,
-                    backgroundColor: ColorTheme.darkPrimary,
+                    backgroundColor: ColorTheme.defaultPrimary,
                     color: ColorTheme.textPrimary),
                 Expanded(
                   child: SizedBox(),
@@ -38,8 +38,8 @@ class _SaveMeHomeState extends State<SaveMeHome> {
                 Column(
                   children: <Widget>[
                     Text(
-                      "${CallTimer.minute}",
-                      style: TextStyle(fontSize: 128),
+                      "${CallTimer.minute.toInt()}",
+                      style: TextStyle(fontSize: 96),
                     ),
                     Text(
                       "min",
@@ -55,8 +55,8 @@ class _SaveMeHomeState extends State<SaveMeHome> {
                 Column(
                   children: <Widget>[
                     Text(
-                      "${CallTimer.second}",
-                      style: TextStyle(fontSize: 128),
+                      "${CallTimer.second.toInt()}",
+                      style: TextStyle(fontSize: 96),
                     ),
                     Text(
                       "sec",

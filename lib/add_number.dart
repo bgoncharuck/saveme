@@ -18,8 +18,8 @@ class _SaveMeAddNumberState extends State<SaveMeAddNumber> {
             Row(
               children: <Widget>[
                 NavigationButton(
-                    navigate: "/settings",
-                    name: "Settings",
+                    navigate: "/settings/numbers",
+                    name: "Numbers List",
                     icon: Icons.arrow_back,
                     backgroundColor: ColorTheme.darkPrimary,
                     color: ColorTheme.textPrimary),
