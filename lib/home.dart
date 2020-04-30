@@ -13,6 +13,7 @@ class _SaveMeHomeState extends State<SaveMeHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorTheme.background,
       body: SafeArea(
         child: Column(
           children: <Widget>[

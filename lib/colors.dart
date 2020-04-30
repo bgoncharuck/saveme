@@ -10,6 +10,7 @@ abstract class FromTheme {
   Color get secondaryText;
   Color get divider;
   Color get background;
+  Color get phone;
 }
 
 class GreenRedMaterial implements FromTheme {
@@ -31,6 +32,8 @@ class GreenRedMaterial implements FromTheme {
   Color get divider => Colors.grey;
   @override
   Color get background => Colors.white;
+  @override
+  Color get phone => Colors.blueAccent;
 }
 
 FromTheme ColorTheme = GreenRedMaterial();
