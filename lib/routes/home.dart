@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'main_button.dart';
-import 'colors.dart';
-import 'navigation_button.dart';
-import 'timer.dart';
+import 'package:saveme/style/themes.dart';
+import 'package:saveme/widgets/main_button.dart';
+import 'package:saveme/widgets/navigation_button.dart';
+import 'package:saveme/modules/timer.dart';
 
 class SaveMeHome extends StatefulWidget {
   @override
@@ -13,18 +13,16 @@ class _SaveMeHomeState extends State<SaveMeHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorTheme.background,
       body: SafeArea(
         child: Column(
           children: <Widget>[
             Row(
               children: <Widget>[
                 NavigationButton(
-                    navigate: "/settings",
-                    name: "Settings",
-                    icon: Icons.settings,
-                    backgroundColor: ColorTheme.defaultPrimary,
-                    color: ColorTheme.textPrimary),
+                  navigate: "/settings",
+                  name: "Settings",
+                  icon: Icons.settings,
+                ),
                 Expanded(
                   child: SizedBox(),
                 ),
@@ -44,7 +42,7 @@ class _SaveMeHomeState extends State<SaveMeHome> {
                     Text(
                       "min",
                       style: TextStyle(
-                          fontSize: 32, color: ColorTheme.defaultPrimary),
+                          fontSize: 32, color: DefaultTheme.buttonColor),
                     ),
                   ],
                 ),
@@ -61,7 +59,7 @@ class _SaveMeHomeState extends State<SaveMeHome> {
                     Text(
                       "sec",
                       style: TextStyle(
-                          fontSize: 32, color: ColorTheme.defaultPrimary),
+                          fontSize: 32, color: DefaultTheme.buttonColor),
                     ),
                   ],
                 ),

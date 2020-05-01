@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'colors.dart';
 
 abstract class ISaveMeTimer {
   double minutes;
@@ -45,8 +44,6 @@ class _TimerConfigState extends State<TimerConfig> {
         ),
         Expanded(
           child: Slider(
-            activeColor: ColorTheme.defaultPrimary,
-            inactiveColor: ColorTheme.primaryText,
             value: CallTimer.minutes,
             min: 0.0,
             max: 60.0,
@@ -74,8 +71,6 @@ class _TimerConfigState extends State<TimerConfig> {
         ),
         Expanded(
           child: Slider(
-            activeColor: ColorTheme.defaultPrimary,
-            inactiveColor: ColorTheme.primaryText,
             value: CallTimer.seconds,
             min: 0.0,
             max: 60.0,

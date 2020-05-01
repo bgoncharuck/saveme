@@ -1,28 +1,25 @@
 import 'package:flutter/material.dart';
-import 'colors.dart';
-import 'navigation_button.dart';
+import 'package:saveme/widgets/navigation_button.dart';
 
-class SaveMeAddNumber extends StatefulWidget {
+class SaveMeNumbersAdd extends StatefulWidget {
   @override
-  _SaveMeAddNumberState createState() => _SaveMeAddNumberState();
+  _SaveMeNumbersAddState createState() => _SaveMeNumbersAddState();
 }
 
-class _SaveMeAddNumberState extends State<SaveMeAddNumber> {
+class _SaveMeNumbersAddState extends State<SaveMeNumbersAdd> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorTheme.background,
       body: SafeArea(
         child: Column(
           children: <Widget>[
             Row(
               children: <Widget>[
                 NavigationButton(
-                    navigate: "/settings/numbers",
-                    name: "Numbers List",
-                    icon: Icons.arrow_back,
-                    backgroundColor: ColorTheme.darkPrimary,
-                    color: ColorTheme.textPrimary),
+                  navigate: "/numbers",
+                  name: "Numbers List",
+                  icon: Icons.arrow_back,
+                ),
                 Expanded(
                   child: SizedBox(),
                 ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:saveme/timer.dart';
-import 'colors.dart';
-import 'navigation_button.dart';
+import 'package:saveme/widgets/navigation_button.dart';
+import 'package:saveme/modules/timer.dart';
 
 class SaveMeSettings extends StatefulWidget {
   @override
@@ -12,18 +11,16 @@ class _SaveMeSettingsState extends State<SaveMeSettings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorTheme.background,
       body: SafeArea(
         child: Column(
           children: <Widget>[
             Row(
               children: <Widget>[
                 NavigationButton(
-                    navigate: "/",
-                    name: "Home",
-                    icon: Icons.arrow_back,
-                    backgroundColor: ColorTheme.defaultPrimary,
-                    color: ColorTheme.textPrimary),
+                  navigate: "/",
+                  name: "Home",
+                  icon: Icons.arrow_back,
+                ),
                 Expanded(
                   child: SizedBox(),
                 ),
@@ -36,10 +33,9 @@ class _SaveMeSettingsState extends State<SaveMeSettings> {
                   borderRadius: new BorderRadius.circular(18.0),
                 ),
                 padding: EdgeInsets.all(1.0),
-                color: ColorTheme.background,
                 onPressed: () {
                   setState(() {
-                    Navigator.of(context).pushNamed("/settings/numbers/add");
+                    Navigator.of(context).pushNamed("/numbers/add");
                   });
                 },
                 child: Row(
@@ -53,7 +49,7 @@ class _SaveMeSettingsState extends State<SaveMeSettings> {
                       ),
                       child: Icon(
                         Icons.smartphone,
-                        color: ColorTheme.primaryText,
+                        color: Colors.black,
                         size: 32.0,
                       ),
                     ),
@@ -63,15 +59,15 @@ class _SaveMeSettingsState extends State<SaveMeSettings> {
                           Expanded(
                             child: Text(
                               " +380960123456 ",
-                              style: TextStyle(
-                                  fontSize: 32, color: ColorTheme.primaryText),
+                              style:
+                                  TextStyle(fontSize: 32, color: Colors.black),
                             ),
                           ),
                           Padding(
                             padding: EdgeInsets.all(4.0),
                             child: Icon(
                               Icons.file_download,
-                              color: ColorTheme.primaryText,
+                              color: Colors.black,
                               size: 28.0,
                             ),
                           ),
@@ -88,13 +84,12 @@ class _SaveMeSettingsState extends State<SaveMeSettings> {
             RaisedButton(
               onPressed: () {
                 setState(() {
-                  Navigator.of(context).pushNamed("/settings/numbers");
+                  Navigator.of(context).pushNamed("/numbers");
                 });
               },
               shape: RoundedRectangleBorder(
                 borderRadius: new BorderRadius.circular(64.0),
               ),
-              color: ColorTheme.darkPrimary,
               child: Column(
                 children: <Widget>[
                   SizedBox(height: 30),
@@ -102,7 +97,6 @@ class _SaveMeSettingsState extends State<SaveMeSettings> {
                     " Additional Numbers List ",
                     style: TextStyle(
                       fontSize: 28,
-                      color: ColorTheme.textPrimary,
                     ),
                   ),
                   SizedBox(height: 30),

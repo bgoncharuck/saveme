@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'colors.dart';
-import 'timer.dart';
+import 'package:saveme/modules/timer.dart';
 
 abstract class _ButtomState {
   String text;
@@ -10,13 +9,13 @@ abstract class _ButtomState {
 
 class _Running implements _ButtomState {
   String text = "Stop";
-  Color color = ColorTheme.accent;
+  Color color = Colors.red;
   bool stopped = false;
 }
 
 class _Stopped implements _ButtomState {
   String text = "Start";
-  Color color = ColorTheme.darkPrimary;
+  Color color = Colors.green;
   bool stopped = true;
 }
 
@@ -34,7 +33,6 @@ class _SaveMeMainButtonState extends State<SaveMeMainButton> {
     return Expanded(
       child: FlatButton(
           color: buttomState.color,
-          textColor: ColorTheme.defaultPrimary,
           onPressed: () {
             setState(() {
               if (buttomState.stopped) {
@@ -51,8 +49,7 @@ class _SaveMeMainButtonState extends State<SaveMeMainButton> {
                 child: Center(
                   child: Text(
                     buttomState.text,
-                    style:
-                        TextStyle(fontSize: 96, color: ColorTheme.textPrimary),
+                    style: TextStyle(fontSize: 96, color: Colors.white),
                   ),
                 ),
               ),
