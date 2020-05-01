@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:saveme/style/themes.dart';
 import 'package:saveme/widgets/main_button.dart';
 import 'package:saveme/widgets/navigation_button.dart';
 import 'package:saveme/modules/timer.dart';
@@ -28,46 +27,7 @@ class _SaveMeHomeState extends State<SaveMeHome> {
                 ),
               ],
             ),
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: SizedBox(),
-                ),
-                Column(
-                  children: <Widget>[
-                    Text(
-                      "${CallTimer.minute.toInt()}",
-                      style: TextStyle(fontSize: 96),
-                    ),
-                    Text(
-                      "min",
-                      style: TextStyle(
-                          fontSize: 32, color: DefaultTheme.buttonColor),
-                    ),
-                  ],
-                ),
-                Text(
-                  "|",
-                  style: TextStyle(fontSize: 256),
-                ),
-                Column(
-                  children: <Widget>[
-                    Text(
-                      "${CallTimer.second.toInt()}",
-                      style: TextStyle(fontSize: 96),
-                    ),
-                    Text(
-                      "sec",
-                      style: TextStyle(
-                          fontSize: 32, color: DefaultTheme.buttonColor),
-                    ),
-                  ],
-                ),
-                Expanded(
-                  child: SizedBox(),
-                ),
-              ],
-            ),
+            TimerView(),
             SaveMeMainButton(),
           ],
         ),

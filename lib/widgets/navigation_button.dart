@@ -32,7 +32,7 @@ class _NavigationButtonState extends State<NavigationButton> {
         padding: widget.margin,
         child: FlatButton(
           shape: RoundedRectangleBorder(
-            borderRadius: new BorderRadius.circular(18.0),
+            borderRadius: new BorderRadius.circular(32.0),
           ),
           color: DefaultTheme.buttonColor,
           padding: widget.padding,
@@ -46,7 +46,12 @@ class _NavigationButtonState extends State<NavigationButton> {
               Icon(
                 widget.icon,
               ),
-              Text(" ${widget.name} "),
+              Text(
+                " ${widget.name} ",
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+              ),
             ],
           ),
         ));

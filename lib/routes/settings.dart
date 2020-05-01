@@ -21,11 +21,17 @@ class _SaveMeSettingsState extends State<SaveMeSettings> {
                   name: "Home",
                   icon: Icons.arrow_back,
                 ),
+                NavigationButton(
+                  navigate: "/numbers",
+                  name: "Additional Numbers",
+                  icon: Icons.list,
+                ),
                 Expanded(
                   child: SizedBox(),
                 ),
               ],
             ),
+            SizedBox(height: 24),
             Padding(
               padding: EdgeInsets.all(8.0),
               child: FlatButton(
@@ -81,29 +87,6 @@ class _SaveMeSettingsState extends State<SaveMeSettings> {
             Expanded(
               child: TimerConfig(),
             ),
-            RaisedButton(
-              onPressed: () {
-                setState(() {
-                  Navigator.of(context).pushNamed("/numbers");
-                });
-              },
-              shape: RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(64.0),
-              ),
-              child: Column(
-                children: <Widget>[
-                  SizedBox(height: 30),
-                  Text(
-                    " Additional Numbers List ",
-                    style: TextStyle(
-                      fontSize: 28,
-                    ),
-                  ),
-                  SizedBox(height: 30),
-                ],
-              ),
-            ),
-            SizedBox(height: 30),
           ],
         ),
       ),

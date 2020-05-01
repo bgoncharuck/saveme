@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:saveme/style/themes.dart';
 
 abstract class ISaveMeTimer {
   double minutes;
@@ -21,6 +22,55 @@ class DefaultTimer implements ISaveMeTimer {
   }
 }
 
+class TimerView extends StatefulWidget {
+  @override
+  _TimerViewState createState() => _TimerViewState();
+}
+
+class _TimerViewState extends State<TimerView> {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: <Widget>[
+        Expanded(
+          child: SizedBox(),
+        ),
+        Column(
+          children: <Widget>[
+            Text(
+              "${CallTimer.minute.toInt()}",
+              style: TextStyle(fontSize: 96),
+            ),
+            Text(
+              "min",
+              style: TextStyle(fontSize: 32, color: DefaultTheme.buttonColor),
+            ),
+          ],
+        ),
+        Text(
+          "|",
+          style: TextStyle(fontSize: 256),
+        ),
+        Column(
+          children: <Widget>[
+            Text(
+              "${CallTimer.second.toInt()}",
+              style: TextStyle(fontSize: 96),
+            ),
+            Text(
+              "sec",
+              style: TextStyle(fontSize: 32, color: DefaultTheme.buttonColor),
+            ),
+          ],
+        ),
+        Expanded(
+          child: SizedBox(),
+        ),
+      ],
+    );
+  }
+}
+
 class TimerConfig extends StatefulWidget {
   @override
   _TimerConfigState createState() => _TimerConfigState();
@@ -37,9 +87,7 @@ class _TimerConfigState extends State<TimerConfig> {
         Expanded(
           child: Text(
             "${CallTimer.minutes.toInt()} minutes",
-            style: TextStyle(
-              fontSize: 24,
-            ),
+            style: TextStyle(fontSize: 48),
           ),
         ),
         Expanded(
@@ -64,9 +112,7 @@ class _TimerConfigState extends State<TimerConfig> {
         Expanded(
           child: Text(
             "${CallTimer.seconds.toInt()} seconds",
-            style: TextStyle(
-              fontSize: 24,
-            ),
+            style: TextStyle(fontSize: 48),
           ),
         ),
         Expanded(

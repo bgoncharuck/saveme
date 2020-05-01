@@ -4,7 +4,7 @@ ThemeData DefaultTheme = GreenGreyTheme;
 
 ThemeData GreenGreyTheme = ThemeData(
   colorScheme: ColorScheme(
-    background: Colors.grey[300],
+    background: Colors.grey[100],
     onBackground: Colors.black,
     brightness: Brightness.light,
     primary: Colors.green,
@@ -13,7 +13,7 @@ ThemeData GreenGreyTheme = ThemeData(
     secondary: Colors.green,
     secondaryVariant: Colors.green,
     onSecondary: Colors.white,
-    surface: Colors.grey[200],
+    surface: Colors.grey[100],
     onSurface: Colors.black,
     error: Colors.red,
     onError: Colors.yellow,
@@ -28,10 +28,12 @@ ThemeData GreenGreyTheme = ThemeData(
   buttonTheme: ButtonThemeData(
     textTheme: ButtonTextTheme.primary,
   ),
-  scaffoldBackgroundColor: Colors.grey[200],
-  textTheme: TextTheme(
-    button: TextStyle(
-      fontFamily: "Georgia",
+  scaffoldBackgroundColor: Colors.grey[100],
+  sliderTheme: SliderThemeData(
+    thumbShape: RoundSliderThumbShape(
+      disabledThumbRadius: 12.0,
+      enabledThumbRadius: 12.0,
     ),
+    trackHeight: 12.0,
   ),
 );
