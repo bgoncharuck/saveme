@@ -32,8 +32,15 @@ class _SaveMeSettingsState extends State<SaveMeSettings> {
                 ),
               ],
             ),
-            Expanded(child: TimerConfig()),
-            MainNumber(),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  TimerConfig(),
+                  MainNumber(),
+                ],
+              ),
+            ),
           ],
         ),
       ),
