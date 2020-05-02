@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:saveme/style/themes.dart';
 import 'package:saveme/widgets/navigation_button.dart';
 import 'package:saveme/models/numbers_list.dart';
 import 'package:saveme/models/number.dart';
@@ -28,7 +29,12 @@ class _SaveMeNumbersState extends State<SaveMeNumbers> {
               ],
             ),
             Expanded(
-              child: NumbersList,
+              child: ListView(
+                children: <Widget>[
+                  Divider(color: DefaultTheme.colorScheme.onSurface),
+                  NumbersList,
+                ],
+              ),
             ),
           ],
         ),
@@ -36,7 +42,7 @@ class _SaveMeNumbersState extends State<SaveMeNumbers> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           setState(() {
-//            NumbersList.add(Number("DebugNumber"));
+            NumbersList.add(Number("DebugNumber"));
             Navigator.of(context).pushNamed("/numbers/add");
           });
         },

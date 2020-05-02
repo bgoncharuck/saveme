@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:saveme/style/themes.dart';
 
-class Number extends StatelessWidget {
-  final String text;
-  Number(this.text);
+abstract class INumber {
+  String _text;
+  String get text;
+}
+
+class Number implements INumber {
+  String _text;
+  Number(this._text);
   @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Text(text, style: TextStyle(fontSize: 32.0)),
-        Divider(color: DefaultTheme.colorScheme.onSurface),
-      ],
-    );
-  }
+  String get text => _text;
 }

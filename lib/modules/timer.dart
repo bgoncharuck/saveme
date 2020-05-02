@@ -88,7 +88,7 @@ class _TimerConfigState extends State<TimerConfig> {
           crossAxisAlignment: CrossAxisAlignment.baseline,
           textBaseline: TextBaseline.alphabetic,
           children: <Widget>[
-            Text("${CallTimer.minutes.toInt()}",
+            Text("${CallTimer.minutes.toInt()} ",
                 style: TextStyle(fontSize: 48)),
             Text("minutes", style: TextStyle(fontSize: 24)),
           ],
@@ -115,7 +115,7 @@ class _TimerConfigState extends State<TimerConfig> {
           crossAxisAlignment: CrossAxisAlignment.baseline,
           textBaseline: TextBaseline.alphabetic,
           children: <Widget>[
-            Text("${CallTimer.seconds.toInt()}",
+            Text("${CallTimer.seconds.toInt()} ",
                 style: TextStyle(fontSize: 48)),
             Text("seconds", style: TextStyle(fontSize: 24)),
           ],
