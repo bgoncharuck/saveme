@@ -34,7 +34,7 @@ class _NavigationButtonState extends State<NavigationButton> {
           shape: RoundedRectangleBorder(
             borderRadius: new BorderRadius.circular(32.0),
           ),
-          color: DefaultTheme.buttonColor,
+          color: DefaultTheme.scaffoldBackgroundColor,
           padding: widget.padding,
           onPressed: () {
             setState(() {
@@ -45,11 +45,13 @@ class _NavigationButtonState extends State<NavigationButton> {
             children: <Widget>[
               Icon(
                 widget.icon,
+                color: DefaultTheme.buttonColor,
               ),
               Text(
                 " ${widget.name} ",
                 style: TextStyle(
                   fontSize: 20,
+                  color: DefaultTheme.buttonColor,
                 ),
               ),
             ],

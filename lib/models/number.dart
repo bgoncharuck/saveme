@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:saveme/style/themes.dart';
 
 class Number extends StatelessWidget {
-  String text;
+  final String text;
   Number(this.text);
   @override
   Widget build(BuildContext context) {

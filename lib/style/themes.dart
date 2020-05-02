@@ -31,9 +31,9 @@ ThemeData GreenGreyTheme = ThemeData(
   scaffoldBackgroundColor: Colors.grey[100],
   sliderTheme: SliderThemeData(
     thumbShape: RoundSliderThumbShape(
-      disabledThumbRadius: 12.0,
-      enabledThumbRadius: 12.0,
+      disabledThumbRadius: 8.0,
+      enabledThumbRadius: 8.0,
     ),
-    trackHeight: 12.0,
+    trackHeight: 8.0,
   ),
 );

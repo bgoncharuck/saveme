@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:saveme/style/themes.dart';
 
@@ -80,62 +81,61 @@ class _TimerConfigState extends State<TimerConfig> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Expanded(
-          child: SizedBox(),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.baseline,
+          textBaseline: TextBaseline.alphabetic,
+          children: <Widget>[
+            Text("${CallTimer.minutes.toInt()}",
+                style: TextStyle(fontSize: 48)),
+            Text("minutes", style: TextStyle(fontSize: 24)),
+          ],
         ),
-        Expanded(
-          child: Text(
-            "${CallTimer.minutes.toInt()} minutes",
-            style: TextStyle(fontSize: 48),
-          ),
+        Slider(
+          value: CallTimer.minutes,
+          min: 0.0,
+          max: 60.0,
+          divisions: 60,
+          onChanged: (double changed) {
+            setState(() {
+              CallTimer.minutes = changed;
+            });
+          },
+          onChangeEnd: (double changed) {
+            setState(() {
+              CallTimer.minutes = changed;
+              CallTimer.stop();
+            });
+          },
         ),
-        Expanded(
-          child: Slider(
-            value: CallTimer.minutes,
-            min: 0.0,
-            max: 60.0,
-            divisions: 60,
-            onChanged: (double changed) {
-              setState(() {
-                CallTimer.minutes = changed;
-              });
-            },
-            onChangeEnd: (double changed) {
-              setState(() {
-                CallTimer.minutes = changed;
-                CallTimer.stop();
-              });
-            },
-          ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.baseline,
+          textBaseline: TextBaseline.alphabetic,
+          children: <Widget>[
+            Text("${CallTimer.seconds.toInt()}",
+                style: TextStyle(fontSize: 48)),
+            Text("seconds", style: TextStyle(fontSize: 24)),
+          ],
         ),
-        Expanded(
-          child: Text(
-            "${CallTimer.seconds.toInt()} seconds",
-            style: TextStyle(fontSize: 48),
-          ),
-        ),
-        Expanded(
-          child: Slider(
-            value: CallTimer.seconds,
-            min: 0.0,
-            max: 60.0,
-            divisions: 60,
-            onChanged: (double changed) {
-              setState(() {
-                CallTimer.seconds = changed;
-              });
-            },
-            onChangeEnd: (double changed) {
-              setState(() {
-                CallTimer.seconds = changed;
-                CallTimer.stop();
-              });
-            },
-          ),
-        ),
-        Expanded(
-          child: SizedBox(),
+        Slider(
+          value: CallTimer.seconds,
+          min: 0.0,
+          max: 60.0,
+          divisions: 60,
+          onChanged: (double changed) {
+            setState(() {
+              CallTimer.seconds = changed;
+            });
+          },
+          onChangeEnd: (double changed) {
+            setState(() {
+              CallTimer.seconds = changed;
+              CallTimer.stop();
+            });
+          },
         ),
       ],
     );
