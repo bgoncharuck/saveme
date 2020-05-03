@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:saveme/widgets/number_decoration.dart';
+import 'package:saveme/modules/number_decoration.dart';
 import 'package:saveme/models/number.dart';
 
 abstract class INumbersList extends StatefulWidget {
