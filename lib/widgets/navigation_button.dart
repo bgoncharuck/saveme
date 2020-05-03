@@ -7,6 +7,7 @@ class NavigationButton extends StatefulWidget {
   IconData icon;
   EdgeInsets margin;
   EdgeInsets padding;
+  Function optionalAction;
 
   NavigationButton({
     @required String navigate,
@@ -14,12 +15,14 @@ class NavigationButton extends StatefulWidget {
     @required IconData icon,
     EdgeInsets margin = const EdgeInsets.all(8.0),
     EdgeInsets padding = const EdgeInsets.all(8.0),
+    optionalAction,
   }) {
     this.navigate = navigate;
     this.name = name;
     this.icon = icon;
     this.margin = margin;
     this.padding = padding;
+    this.optionalAction = optionalAction;
   }
   @override
   _NavigationButtonState createState() => _NavigationButtonState();
@@ -39,6 +42,7 @@ class _NavigationButtonState extends State<NavigationButton> {
           onPressed: () {
             setState(() {
               Navigator.of(context).pushNamed(widget.navigate);
+              if (widget.optionalAction != null) widget.optionalAction();
             });
           },
           child: Row(

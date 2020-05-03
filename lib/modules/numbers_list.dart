@@ -81,4 +81,4 @@ class _INumbersListState extends State<INumbersList> {
   }
 }
 
-INumbersList NumbersList = DefaultNumbersList();
+final INumbersList NumbersList = DefaultNumbersList();

@@ -11,5 +11,5 @@ class Number implements INumber {
   Number(this.text);
 }
 
-INumber NoNumber = Number("No Number");
-INumber DebugNumber = Number("DebugNumber");
+final INumber NoNumber = Number("No Number");
+final INumber DebugNumber = Number("DebugNumber");

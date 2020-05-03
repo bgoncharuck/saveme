@@ -1,23 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:saveme/modules/timer.dart';
-
-abstract class _ButtomState {
-  String text;
-  Color color;
-  bool stopped;
-}
-
-class _Running implements _ButtomState {
-  String text = "Stop";
-  Color color = Colors.red;
-  bool stopped = false;
-}
-
-class _Stopped implements _ButtomState {
-  String text = "Start";
-  Color color = Colors.green;
-  bool stopped = true;
-}
+import 'package:flutter/services.dart';
 
 class SaveMeMainButton extends StatefulWidget {
   @override
@@ -25,36 +7,59 @@ class SaveMeMainButton extends StatefulWidget {
 }
 
 class _SaveMeMainButtonState extends State<SaveMeMainButton> {
-  static final _ButtomState run = _Running();
-  static final _ButtomState stop = _Stopped();
-  _ButtomState buttomState = run;
+  bool showConfirmDialog = false;
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: FlatButton(
-          color: buttomState.color,
-          onPressed: () {
-            setState(() {
-              if (buttomState.stopped) {
-                buttomState = run;
-              } else {
-                buttomState = stop;
-                CallTimer.stop();
-              }
-            });
-          },
-          child: Row(
-            children: <Widget>[
-              Expanded(
-                child: Center(
+      child: showConfirmDialog
+          ? AlertDialog(
+              title: Text("Stop The Timer?"),
+              content: Text("Are you okay?"),
+              actions: <Widget>[
+                FlatButton(
+                  onPressed: () {
+                    setState(() {
+                      showConfirmDialog = false;
+                    });
+                  },
                   child: Text(
-                    buttomState.text,
-                    style: TextStyle(fontSize: 96, color: Colors.white),
+                    "No",
+                    style: TextStyle(color: Colors.green),
                   ),
                 ),
-              ),
-            ],
-          )),
+                FlatButton(
+                  onPressed: () {
+                    setState(() {
+                      SystemChannels.platform
+                          .invokeMethod('SystemNavigator.pop');
+                    });
+                  },
+                  child: Text(
+                    "Yes",
+                    style: TextStyle(color: Colors.red),
+                  ),
+                ),
+              ],
+            )
+          : FlatButton(
+              color: Colors.red,
+              onPressed: () {
+                setState(() {
+                  showConfirmDialog = true;
+                });
+              },
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Center(
+                      child: Text(
+                        "Stop",
+                        style: TextStyle(fontSize: 96, color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ],
+              )),
     );
   }
 }

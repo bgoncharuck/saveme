@@ -142,4 +142,4 @@ class _TimerConfigState extends State<TimerConfig> {
   }
 }
 
-ISaveMeTimer CallTimer = DefaultTimer();
+final ISaveMeTimer CallTimer = DefaultTimer();

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-ThemeData DefaultTheme = GreenGreyTheme;
+final ThemeData DefaultTheme = GreenGreyTheme;
 
 ThemeData GreenGreyTheme = ThemeData(
   colorScheme: ColorScheme(

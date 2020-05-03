@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:saveme/style/themes.dart';
 import 'package:saveme/widgets/navigation_button.dart';
 import 'package:saveme/widgets/main_number.dart';
 import 'package:saveme/modules/timer.dart';
@@ -18,11 +19,6 @@ class _SaveMeSettingsState extends State<SaveMeSettings> {
             Row(
               children: <Widget>[
                 NavigationButton(
-                  navigate: "/",
-                  name: "Home",
-                  icon: Icons.arrow_back,
-                ),
-                NavigationButton(
                   navigate: "/numbers",
                   name: "Additional Numbers",
                   icon: Icons.list,
@@ -40,6 +36,37 @@ class _SaveMeSettingsState extends State<SaveMeSettings> {
                   MainNumber(),
                 ],
               ),
+            ),
+            Row(
+              children: <Widget>[
+                Expanded(
+                    child: Container(
+                  color: Colors.grey[800],
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(Icons.alarm_off, color: Colors.white),
+                      Text(
+                        "Timer Was Stopped",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      FlatButton(
+                        onPressed: () {
+                          Navigator.of(context).pushNamed("/");
+                        },
+                        child: Text(
+                          "Start Again",
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: DefaultTheme.buttonColor,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ],
+                  ),
+                )),
+              ],
             ),
           ],
         ),
