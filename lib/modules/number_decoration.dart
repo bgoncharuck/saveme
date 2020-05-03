@@ -27,7 +27,12 @@ class __NumbersListDecorationState extends State<_NumbersListDecoration> {
       children: <Widget>[
         Row(
           children: <Widget>[
-            Text(widget.number.text, style: TextStyle(fontSize: 24.0)),
+            Text(widget.number.text,
+                style: TextStyle(
+                    fontSize: 24.0,
+                    color: widget.number.isMainNumber
+                        ? DefaultTheme.buttonColor
+                        : DefaultTheme.colorScheme.onSurface)),
             FlatButton(
               onPressed: () {
                 setState(() {

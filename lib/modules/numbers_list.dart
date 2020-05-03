@@ -12,7 +12,6 @@ abstract class INumbersList extends StatefulWidget {
   bool isNotEmpty();
   bool oneNumber();
   INumber get mainNumber;
-  void choise({int index = 0});
 }
 
 class DefaultNumbersList extends INumbersList {
@@ -28,7 +27,7 @@ class DefaultNumbersList extends INumbersList {
         return false;
       });
 
-  int _mainNumberIndex;
+  int _mainNumberIndex = -1;
   @override
   List<INumberDecoration> _numbers = [];
   @override
@@ -36,15 +35,24 @@ class DefaultNumbersList extends INumbersList {
     if (_debugListContains(number))
       return false;
     else {
+      if (_numbers.length == 0) {
+        _mainNumberIndex = 0;
+        number.isMainNumber = true;
+      }
       _numbers.add(NumbersListDecoration(number));
-      return true;
     }
+    return true;
   }
 
   @override
   bool remove(INumber number) {
     if (_debugListContains(number)) {
-      _numbers.removeAt(_debugListIndexOf(number));
+      int index = _debugListIndexOf(number);
+      if (_numbers[index].inDecoration.isMainNumber) _mainNumberIndex = 0;
+
+      _numbers.removeAt(index);
+
+      if (_numbers.isEmpty) _mainNumberIndex = -1;
       return true;
     }
     return false;
@@ -60,15 +68,10 @@ class DefaultNumbersList extends INumbersList {
   bool oneNumber() => _numbers.length == 1;
 
   @override
-  void choise({int index = 0}) {
-    if (oneNumber())
-      _mainNumberIndex = 0;
-    else
-      _mainNumberIndex = index;
+  INumber get mainNumber {
+    if (_mainNumberIndex != -1) return _numbers[_mainNumberIndex].inDecoration;
+    return NoNumber;
   }
-
-  @override
-  INumber get mainNumber => _numbers[_mainNumberIndex].inDecoration;
 }
 
 class _INumbersListState extends State<INumbersList> {

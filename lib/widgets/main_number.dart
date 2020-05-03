@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:saveme/modules/numbers_list.dart';
+import 'package:saveme/models/number.dart';
 
 class MainNumber extends StatefulWidget {
   @override
@@ -40,7 +42,7 @@ class _MainNumberState extends State<MainNumber> {
                 children: <Widget>[
                   Expanded(
                     child: Text(
-                      " +380960123456 ",
+                      " ${NumbersList.mainNumber.text} ",
                       style: TextStyle(fontSize: 32, color: Colors.black),
                     ),
                   ),

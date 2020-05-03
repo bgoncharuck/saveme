@@ -42,7 +42,7 @@ class _SaveMeNumbersState extends State<SaveMeNumbers> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           setState(() {
-            NumbersList.add(Number("DebugNumber"));
+            NumbersList.add(DebugNumber);
             Navigator.of(context).pushNamed("/numbers/add");
           });
         },

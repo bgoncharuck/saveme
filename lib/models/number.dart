@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 abstract class INumber {
-  String _text;
-  String get text;
+  String text;
+  bool isMainNumber;
 }
 
 class Number implements INumber {
-  String _text;
-  Number(this._text);
-  @override
-  String get text => _text;
+  String text;
+  bool isMainNumber = false;
+  Number(this.text);
 }
+
+INumber NoNumber = Number("No Number");
+INumber DebugNumber = Number("DebugNumber");
