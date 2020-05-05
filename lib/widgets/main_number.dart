@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:saveme/models/number.dart';
 import 'package:saveme/modules/numbers_list.dart';
 import 'package:saveme/models/number.dart';
 
@@ -42,7 +43,10 @@ class _MainNumberState extends State<MainNumber> {
                 children: <Widget>[
                   Expanded(
                     child: Text(
-                      " ${NumbersList.mainNumber.text} ",
+                      " ${Numbers.firstWhere((INumber number) {
+                        if (number.isMainNumber) return true;
+                        return false;
+                      }, orElse: () => NoNumber).text} ",
                       style: TextStyle(fontSize: 32, color: Colors.black),
                     ),
                   ),

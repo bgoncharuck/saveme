@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:saveme/style/themes.dart';
 import 'package:saveme/widgets/navigation_button.dart';
 import 'package:saveme/modules/numbers_list.dart';
 import 'package:saveme/models/number.dart';
@@ -18,7 +16,7 @@ class _SaveMeNumbersAddState extends State<SaveMeNumbersAdd> {
       body: SafeArea(
         child: Column(
           children: <Widget>[
-            (NumbersList.isNotEmpty())
+            (Numbers.isNotEmpty)
                 // User need to have at least one number, to see navigation
                 ? Row(
                     children: <Widget>[
@@ -58,7 +56,8 @@ class _SaveMeNumbersAddState extends State<SaveMeNumbersAdd> {
                         editedNumber = changed;
                       },
                       onEditingComplete: () {
-                        NumbersList.add(Number(editedNumber));
+                        Numbers.add(
+                            Number(editedNumber, isMain: Numbers.isEmpty));
                         Navigator.of(context).pushNamed("/numbers");
                       },
                     ),

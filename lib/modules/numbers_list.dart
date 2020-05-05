@@ -1,108 +1,74 @@
 import 'package:flutter/material.dart';
-import 'package:saveme/modules/number_decoration.dart';
+import 'package:saveme/modules/numbers_list.dart';
+import 'package:saveme/style/themes.dart';
 import 'package:saveme/models/number.dart';
 
-abstract class INumbersList extends StatefulWidget {
-  List<INumberDecoration> _numbers;
+List<INumber> Numbers = [];
+
+class NumbersList extends StatefulWidget {
   @override
-  _INumbersListState createState() => _INumbersListState();
-  bool add(INumber number);
-  bool remove(INumber number);
-  bool isEmpty();
-  bool isNotEmpty();
-  bool oneNumber();
-  INumber get mainNumber;
-  set mainNumber(INumber toSet);
-  bool isMainNumber(INumber toCheck);
-  void unsetMainNumber();
-  INumber chooseNewMain();
+  _NumbersListState createState() => _NumbersListState();
 }
 
-class DefaultNumbersList extends INumbersList {
-  int _debugListIndexOf(INumber number) =>
-      _numbers.indexWhere((INumberDecoration decor) {
-        if (decor.inDecoration.text == number.text) return true;
-        return false;
-      });
-
-  bool _debugListContains(INumber number) =>
-      _numbers.any((INumberDecoration decor) {
-        if (decor.inDecoration.text == number.text) return true;
-        return false;
-      });
-
-  int _mainNumberIndex = -1;
-  @override
-  List<INumberDecoration> _numbers = [];
-  @override
-  bool add(INumber number) {
-    if (_debugListContains(number))
-      return false;
-    else {
-      if (_numbers.length == 0) {
-        _mainNumberIndex = 0;
-      }
-      _numbers.add(NumbersListDecoration(number));
-    }
-    return true;
-  }
-
-  @override
-  bool remove(INumber number) {
-    if (_debugListContains(number)) {
-      int index = _debugListIndexOf(number);
-      if (index == _mainNumberIndex) _mainNumberIndex = 0;
-
-      _numbers.removeAt(index);
-
-      if (_numbers.isEmpty) _mainNumberIndex = -1;
-      return true;
-    }
-    return false;
-  }
-
-  @override
-  bool isEmpty() => _numbers.isEmpty;
-
-  @override
-  bool isNotEmpty() => _numbers.isNotEmpty;
-
-  @override
-  bool oneNumber() => _numbers.length == 1;
-
-  @override
-  INumber get mainNumber => (_mainNumberIndex != -1)
-      ? _numbers[_mainNumberIndex].inDecoration
-      : chooseNewMain();
-
-  @override
-  set mainNumber(INumber toSet) {
-    _mainNumberIndex = _debugListIndexOf(toSet);
-  }
-
-  @override
-  bool isMainNumber(INumber toCheck) =>
-      _debugListIndexOf(toCheck) == _mainNumberIndex;
-
-  @override
-  void unsetMainNumber() => _mainNumberIndex = -1;
-
-  @override
-  INumber chooseNewMain() {
-    if (_numbers.isNotEmpty) {
-      _mainNumberIndex = 0;
-      return _numbers[_mainNumberIndex].inDecoration;
-    }
-
-    return NoNumber;
-  }
-}
-
-class _INumbersListState extends State<INumbersList> {
+class _NumbersListState extends State<NumbersList> {
   @override
   Widget build(BuildContext context) {
-    return Column(children: widget._numbers);
+    return new ListView.builder(
+      itemCount: Numbers.length,
+      itemBuilder: (BuildContext context, int index) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: new Column(
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        FlatButton(
+                          onPressed: () {
+                            setState(() {
+                              if (Numbers[index].isMainNumber) {
+                                Numbers[index].isMainNumber = false;
+                              } else {
+                                Numbers.firstWhere((INumber number) {
+                                  if (number.isMainNumber) return true;
+                                  return false;
+                                }, orElse: () => NoNumber).isMainNumber = false;
+
+                                Numbers[index].isMainNumber = true;
+                              }
+                            });
+                          },
+                          child: Text(Numbers[index].text,
+                              style: TextStyle(
+                                  fontSize: 24.0,
+                                  color: Numbers[index].isMainNumber
+                                      ? DefaultTheme.buttonColor
+                                      : DefaultTheme.colorScheme.onSurface)),
+                        ),
+                      ],
+                    ),
+                  ),
+                  FlatButton(
+                    onPressed: () {
+                      setState(() {
+                        Numbers.removeAt(index);
+                      });
+                    },
+                    child: Icon(
+                      Icons.delete,
+                      color: DefaultTheme.colorScheme.onSurface,
+                    ),
+                  ),
+                ],
+              ),
+              Divider(color: DefaultTheme.colorScheme.onSurface),
+            ],
+          ),
+        );
+      },
+    );
   }
 }
-
-final INumbersList NumbersList = DefaultNumbersList();

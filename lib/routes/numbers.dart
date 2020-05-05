@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:saveme/modules/numbers_list.dart';
 import 'package:saveme/style/themes.dart';
 import 'package:saveme/widgets/navigation_button.dart';
-import 'package:saveme/models/number.dart';
 
 class SaveMeNumbers extends StatefulWidget {
   @override
@@ -16,7 +15,7 @@ class _SaveMeNumbersState extends State<SaveMeNumbers> {
       body: SafeArea(
         child: Column(
           children: <Widget>[
-            (NumbersList.isNotEmpty())
+            (Numbers.isNotEmpty)
                 ? Row(
                     children: <Widget>[
                       NavigationButton(
@@ -31,12 +30,7 @@ class _SaveMeNumbersState extends State<SaveMeNumbers> {
                   )
                 : Container(),
             Expanded(
-              child: ListView(
-                children: <Widget>[
-                  Divider(color: DefaultTheme.colorScheme.onSurface),
-                  NumbersList,
-                ],
-              ),
+              child: NumbersList(),
             ),
           ],
         ),
