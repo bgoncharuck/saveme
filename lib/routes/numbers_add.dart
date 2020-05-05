@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:saveme/style/themes.dart';
 import 'package:saveme/widgets/navigation_button.dart';
 import 'package:saveme/modules/numbers_list.dart';
 import 'package:saveme/models/number.dart';
@@ -10,6 +11,7 @@ class SaveMeNumbersAdd extends StatefulWidget {
 }
 
 class _SaveMeNumbersAddState extends State<SaveMeNumbersAdd> {
+  String editedNumber;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +24,7 @@ class _SaveMeNumbersAddState extends State<SaveMeNumbersAdd> {
                     children: <Widget>[
                       NavigationButton(
                         navigate: "/numbers",
-                        name: "Numbers",
+                        name: "Numbers To Call",
                         icon: Icons.arrow_back,
                       ),
                       Expanded(
@@ -32,52 +34,36 @@ class _SaveMeNumbersAddState extends State<SaveMeNumbersAdd> {
                   )
                 : Container(),
             Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Number',
+              child: Padding(
+                padding: const EdgeInsets.all(32),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 32),
+                      child: Text(
+                        "The number of the person you will calling for a help.",
+                        style: TextStyle(
+                          fontSize: 24,
+                        ),
+                      ),
                     ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      FloatingActionButton(
-                        heroTag: "discardCreation",
-                        backgroundColor: Colors.red,
-                        onPressed: () {
-                          setState(() {
-                            if (NumbersList.isNotEmpty())
-                              Navigator.of(context).pushNamed("/numbers");
-                            // User need to have at least one number, if not - exit
-                            else
-                              SystemChannels.platform
-                                  .invokeMethod('SystemNavigator.pop');
-                          });
-                        },
-                        child: Icon(
-                          Icons.close,
-                        ),
+                    TextField(
+                      autofocus: true,
+                      decoration: InputDecoration(
+                        labelText: 'Valid Phone Number',
                       ),
-                      FloatingActionButton(
-                        heroTag: "addNumber",
-                        onPressed: () {
-                          setState(() {
-                            NumbersList.add(DebugNumber);
-                            Navigator.of(context).pushNamed("/numbers");
-                          });
-                        },
-                        child: Icon(
-                          Icons.done,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
+                      onChanged: (String changed) {
+                        editedNumber = changed;
+                      },
+                      onEditingComplete: () {
+                        NumbersList.add(Number(editedNumber));
+                        Navigator.of(context).pushNamed("/numbers");
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
           ],

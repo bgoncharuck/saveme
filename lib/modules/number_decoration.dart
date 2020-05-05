@@ -34,19 +34,18 @@ class __NumbersListDecorationState extends State<_NumbersListDecoration> {
                   FlatButton(
                     onPressed: () {
                       setState(() {
-                        if (widget.number.isMainNumber == true) {
-                          widget.number.isMainNumber = false;
+                        if (NumbersList.isMainNumber(widget.number)) {
                           NumbersList.unsetMainNumber();
                         } else {
-                          widget.number.isMainNumber = true;
                           NumbersList.mainNumber = widget.number;
                         }
+                        Navigator.of(context).pushNamed("/numbers");
                       });
                     },
                     child: Text(widget.number.text,
                         style: TextStyle(
                             fontSize: 24.0,
-                            color: widget.number.isMainNumber
+                            color: NumbersList.isMainNumber(widget.number)
                                 ? DefaultTheme.buttonColor
                                 : DefaultTheme.colorScheme.onSurface)),
                   ),

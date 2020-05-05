@@ -41,8 +41,8 @@ class _NavigationButtonState extends State<NavigationButton> {
           padding: widget.padding,
           onPressed: () {
             setState(() {
-              Navigator.of(context).pushNamed(widget.navigate);
               if (widget.optionalAction != null) widget.optionalAction();
+              Navigator.of(context).pushNamed(widget.navigate);
             });
           },
           child: Row(

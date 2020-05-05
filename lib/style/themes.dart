@@ -18,7 +18,9 @@ ThemeData GreenGreyTheme = ThemeData(
     error: Colors.red,
     onError: Colors.yellow,
   ),
-  hintColor: Colors.white,
+  hintColor: Colors.black,
+  cursorColor: Colors.green,
+  focusColor: Colors.green,
   accentColor: Colors.green,
   accentColorBrightness: Brightness.dark,
   accentIconTheme: IconThemeData(
@@ -35,5 +37,19 @@ ThemeData GreenGreyTheme = ThemeData(
       enabledThumbRadius: 8.0,
     ),
     trackHeight: 8.0,
+  ),
+  inputDecorationTheme: InputDecorationTheme(
+    disabledBorder:
+        UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey[500])),
+    enabledBorder:
+        UnderlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+    focusedBorder:
+        UnderlineInputBorder(borderSide: BorderSide(color: Colors.green)),
+    errorBorder:
+        UnderlineInputBorder(borderSide: BorderSide(color: Colors.red)),
+    focusedErrorBorder:
+        UnderlineInputBorder(borderSide: BorderSide(color: Colors.redAccent)),
+    labelStyle: TextStyle(color: Colors.grey[500]),
+    focusColor: Colors.green,
   ),
 );
