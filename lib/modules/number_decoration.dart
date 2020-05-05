@@ -27,12 +27,32 @@ class __NumbersListDecorationState extends State<_NumbersListDecoration> {
       children: <Widget>[
         Row(
           children: <Widget>[
-            Text(widget.number.text,
-                style: TextStyle(
-                    fontSize: 24.0,
-                    color: widget.number.isMainNumber
-                        ? DefaultTheme.buttonColor
-                        : DefaultTheme.colorScheme.onSurface)),
+            Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  FlatButton(
+                    onPressed: () {
+                      setState(() {
+                        if (widget.number.isMainNumber == true) {
+                          widget.number.isMainNumber = false;
+                          NumbersList.unsetMainNumber();
+                        } else {
+                          widget.number.isMainNumber = true;
+                          NumbersList.mainNumber = widget.number;
+                        }
+                      });
+                    },
+                    child: Text(widget.number.text,
+                        style: TextStyle(
+                            fontSize: 24.0,
+                            color: widget.number.isMainNumber
+                                ? DefaultTheme.buttonColor
+                                : DefaultTheme.colorScheme.onSurface)),
+                  ),
+                ],
+              ),
+            ),
             FlatButton(
               onPressed: () {
                 setState(() {

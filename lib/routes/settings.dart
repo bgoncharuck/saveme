@@ -20,7 +20,7 @@ class _SaveMeSettingsState extends State<SaveMeSettings> {
               children: <Widget>[
                 NavigationButton(
                   navigate: "/numbers",
-                  name: "Additional Numbers",
+                  name: "Numbers",
                   icon: Icons.list,
                 ),
                 Expanded(

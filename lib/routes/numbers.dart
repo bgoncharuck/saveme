@@ -16,18 +16,20 @@ class _SaveMeNumbersState extends State<SaveMeNumbers> {
       body: SafeArea(
         child: Column(
           children: <Widget>[
-            Row(
-              children: <Widget>[
-                NavigationButton(
-                  navigate: "/settings",
-                  name: "Settings",
-                  icon: Icons.arrow_back,
-                ),
-                Expanded(
-                  child: SizedBox(),
-                ),
-              ],
-            ),
+            (NumbersList.isNotEmpty())
+                ? Row(
+                    children: <Widget>[
+                      NavigationButton(
+                        navigate: "/settings",
+                        name: "Settings",
+                        icon: Icons.arrow_back,
+                      ),
+                      Expanded(
+                        child: SizedBox(),
+                      ),
+                    ],
+                  )
+                : Container(),
             Expanded(
               child: ListView(
                 children: <Widget>[

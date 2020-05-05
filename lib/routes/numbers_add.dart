@@ -22,7 +22,7 @@ class _SaveMeNumbersAddState extends State<SaveMeNumbersAdd> {
                     children: <Widget>[
                       NavigationButton(
                         navigate: "/numbers",
-                        name: "Numbers List",
+                        name: "Numbers",
                         icon: Icons.arrow_back,
                       ),
                       Expanded(
@@ -36,13 +36,18 @@ class _SaveMeNumbersAddState extends State<SaveMeNumbersAdd> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  Text("Add Number"),
+                  TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Number',
+                    ),
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       FloatingActionButton(
-                        heroTag: "cleanNumber",
+                        heroTag: "discardCreation",
                         backgroundColor: Colors.red,
                         onPressed: () {
                           setState(() {

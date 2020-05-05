@@ -12,6 +12,9 @@ abstract class INumbersList extends StatefulWidget {
   bool isNotEmpty();
   bool oneNumber();
   INumber get mainNumber;
+  set mainNumber(INumber toSet);
+  void unsetMainNumber();
+  INumber chooseNewMain();
 }
 
 class DefaultNumbersList extends INumbersList {
@@ -68,8 +71,26 @@ class DefaultNumbersList extends INumbersList {
   bool oneNumber() => _numbers.length == 1;
 
   @override
-  INumber get mainNumber {
-    if (_mainNumberIndex != -1) return _numbers[_mainNumberIndex].inDecoration;
+  INumber get mainNumber => (_mainNumberIndex != -1)
+      ? _numbers[_mainNumberIndex].inDecoration
+      : chooseNewMain();
+
+  @override
+  set mainNumber(INumber toSet) {
+    _mainNumberIndex = _debugListIndexOf(toSet);
+  }
+
+  @override
+  void unsetMainNumber() => _mainNumberIndex = -1;
+
+  @override
+  INumber chooseNewMain() {
+    if (_numbers.isNotEmpty) {
+      _mainNumberIndex = 0;
+      _numbers[_mainNumberIndex].inDecoration.isMainNumber = true;
+      return _numbers[_mainNumberIndex].inDecoration;
+    }
+
     return NoNumber;
   }
 }
