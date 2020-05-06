@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:saveme/style/themes.dart';
 import 'package:saveme/models/number.dart';
+import 'package:saveme/widgets/main_number.dart';
 
 List<INumber> Numbers = [];
+
+bool get AtLeastOneNumberExist => Numbers.isEmpty;
+bool get NoNumberSetted => Numbers.isNotEmpty;
+INumber get MainNumber => Numbers[0];
+void AddNumber(INumber number) => Numbers.add(number);
 
 class NumbersList extends StatefulWidget {
   @override
