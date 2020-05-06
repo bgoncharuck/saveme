@@ -13,5 +13,5 @@ class Number implements INumber {
   }
 }
 
-final INumber NoNumber = Number("No Number");
+final INumber NoNumber = Number("");
 final INumber DebugNumber = Number("DebugNumber");

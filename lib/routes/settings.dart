@@ -32,8 +32,8 @@ class _SaveMeSettingsState extends State<SaveMeSettings> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  TimerConfig(),
                   MainNumber(),
+                  TimerConfig(),
                 ],
               ),
             ),
@@ -71,6 +71,7 @@ class _SaveMeSettingsState extends State<SaveMeSettings> {
           ],
         ),
       ),
+      resizeToAvoidBottomPadding: false,
     );
   }
 }
