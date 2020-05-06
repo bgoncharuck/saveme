@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:saveme/style/themes.dart';
 import 'package:saveme/widgets/navigation_button.dart';
 import 'package:saveme/modules/numbers_list.dart';
 import 'package:saveme/models/number.dart';
@@ -48,17 +49,29 @@ class _SaveMeNumbersAddState extends State<SaveMeNumbersAdd> {
                       ),
                     ),
                     TextField(
+                      keyboardType: TextInputType.phone,
                       autofocus: true,
                       decoration: InputDecoration(
                         labelText: 'Valid Phone Number',
+                        icon: Icon(
+                          Icons.import_contacts,
+                          color: DefaultTheme.colorScheme.onBackground,
+                          size: 28.0,
+                        ),
                       ),
                       onChanged: (String changed) {
                         editedNumber = changed;
                       },
                       onEditingComplete: () {
-                        Numbers.add(
-                            Number(editedNumber, isMain: Numbers.isEmpty));
-                        Navigator.of(context).pushNamed("/numbers");
+                        if (editedNumber != null &&
+                            !Numbers.any((INumber number) {
+                              if (number.text == editedNumber) return true;
+                              return false;
+                            })) {
+                          Numbers.add(
+                              Number(editedNumber, isMain: Numbers.isEmpty));
+                          Navigator.of(context).pushNamed("/numbers");
+                        }
                       },
                     ),
                   ],

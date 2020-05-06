@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:saveme/models/number.dart';
 import 'package:saveme/modules/numbers_list.dart';
 import 'package:saveme/models/number.dart';
+import 'package:saveme/style/themes.dart';
 
 class MainNumber extends StatefulWidget {
   @override
@@ -9,6 +10,8 @@ class MainNumber extends StatefulWidget {
 }
 
 class _MainNumberState extends State<MainNumber> {
+  if (Numbrs.isNotEmpty && )
+  String editedNumber;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -39,26 +42,31 @@ class _MainNumberState extends State<MainNumber> {
               ),
             ),
             Expanded(
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Text(
-                      " ${Numbers.firstWhere((INumber number) {
-                        if (number.isMainNumber) return true;
-                        return false;
-                      }, orElse: () => NoNumber).text} ",
-                      style: TextStyle(fontSize: 32, color: Colors.black),
-                    ),
+              child: TextField(
+                keyboardType: TextInputType.phone,
+                autofocus: true,
+                decoration: InputDecoration(
+                  labelText: 'Valid Phone Number',
+                  icon: Icon(
+                    Icons.import_contacts,
+                    color: DefaultTheme.colorScheme.onBackground,
+                    size: 28.0,
                   ),
-                  Padding(
-                    padding: EdgeInsets.all(4.0),
-                    child: Icon(
-                      Icons.file_download,
-                      color: Colors.black,
-                      size: 28.0,
-                    ),
-                  ),
-                ],
+                ),
+                onChanged: (String changed) {
+                  editedNumber = changed;
+                },
+                onEditingComplete: () {
+                  if (editedNumber != null) {
+                    if (Numbers.isNotEmpty)
+                    Numbers.firstWhere((INumber number) {
+                      if (number.isMainNumber) return true;
+                      return false;
+                    }, orElse: () => NoNumber).text= editedNumber;
+                    else Numbers.add(
+                        Number(editedNumber, isMain: Numbers.isEmpty));
+                  }
+                },
               ),
             ),
           ],
