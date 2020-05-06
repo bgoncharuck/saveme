@@ -9,7 +9,7 @@ bool get noNumberSetted => _numbers.isEmpty;
 INumber get mainNumber => _numbers.firstWhere((INumber number) {
       if (number.isMainNumber) return true;
       return false;
-    }, orElse: () => NoNumber);
+    }, orElse: () => noNumber);
 bool numberIsNotAlreadyAddded(String text)=> !_numbers.any((INumber number) {
   if (number.text == text) return true;
   return false;
@@ -46,7 +46,7 @@ class _NumbersListState extends State<NumbersList> {
                                 _numbers.firstWhere((INumber number) {
                                   if (number.isMainNumber) return true;
                                   return false;
-                                }, orElse: () => NoNumber).isMainNumber = false;
+                                }, orElse: () => noNumber).isMainNumber = false;
 
                                 _numbers[index].isMainNumber = true;
                               }

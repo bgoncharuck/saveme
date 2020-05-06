@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 abstract class INumber {
   String text;
   bool isMainNumber;
@@ -13,5 +11,5 @@ class Number implements INumber {
   }
 }
 
-final INumber NoNumber = Number("");
-final INumber DebugNumber = Number("DebugNumber");
+final INumber noNumber = Number("");
+final INumber debugNumber = Number("DebugNumber");
