@@ -59,7 +59,7 @@ class _SaveMeSettingsState extends State<SaveMeSettings> {
                           "Start Again",
                           style: TextStyle(
                               fontSize: 18,
-                              color: DefaultTheme.buttonColor,
+                              color: defaultTheme.mainColor,
                               fontWeight: FontWeight.bold),
                         ),
                       ),

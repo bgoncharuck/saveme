@@ -56,8 +56,8 @@ class _NumbersListState extends State<NumbersList> {
                               style: TextStyle(
                                   fontSize: 24.0,
                                   color: _numbers[index].isMainNumber
-                                      ? DefaultTheme.buttonColor
-                                      : DefaultTheme.colorScheme.onSurface)),
+                                      ? defaultTheme.mainColor
+                                      : defaultTheme.onBackground)),
                         ),
                       ],
                     ),
@@ -70,12 +70,12 @@ class _NumbersListState extends State<NumbersList> {
                     },
                     child: Icon(
                       Icons.delete,
-                      color: DefaultTheme.colorScheme.onSurface,
+                      color: defaultTheme.onBackground,
                     ),
                   ),
                 ],
               ),
-              Divider(color: DefaultTheme.colorScheme.onSurface),
+              Divider(color: defaultTheme.onBackground),
             ],
           ),
         );

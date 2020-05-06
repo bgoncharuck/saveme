@@ -21,7 +21,7 @@ class _MainNumberState extends State<MainNumber> {
           labelText: "Main Phone Number To Call",
           icon: Icon(
             Icons.smartphone,
-            color: DefaultTheme.colorScheme.onBackground,
+            color: defaultTheme.onBackground,
             size: 28.0,
           ),
         ),

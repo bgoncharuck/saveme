@@ -55,7 +55,7 @@ class _SaveMeNumbersAddState extends State<SaveMeNumbersAdd> {
                         labelText: 'Valid Phone Number',
                         icon: Icon(
                           Icons.import_contacts,
-                          color: DefaultTheme.colorScheme.onBackground,
+                          color: defaultTheme.onBackground,
                           size: 28.0,
                         ),
                       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:saveme/style/themes.dart';
 
 class SaveMeMainButton extends StatefulWidget {
   @override
@@ -24,7 +25,7 @@ class _SaveMeMainButtonState extends State<SaveMeMainButton> {
                   },
                   child: Text(
                     "No",
-                    style: TextStyle(color: Colors.green),
+                    style: TextStyle(color: defaultTheme.mainColor),
                   ),
                 ),
                 FlatButton(
@@ -36,13 +37,13 @@ class _SaveMeMainButtonState extends State<SaveMeMainButton> {
                   },
                   child: Text(
                     "Yes",
-                    style: TextStyle(color: Colors.red),
+                    style: TextStyle(color: defaultTheme.accent),
                   ),
                 ),
               ],
             )
           : FlatButton(
-              color: Colors.red,
+              color: defaultTheme.accent,
               onPressed: () {
                 setState(() {
                   showConfirmDialog = true;
@@ -54,7 +55,7 @@ class _SaveMeMainButtonState extends State<SaveMeMainButton> {
                     child: Center(
                       child: Text(
                         "Stop",
-                        style: TextStyle(fontSize: 96, color: Colors.white),
+                        style: TextStyle(fontSize: 96, color: defaultTheme.onMainColor),
                       ),
                     ),
                   ),

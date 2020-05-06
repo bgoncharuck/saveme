@@ -1,36 +1,54 @@
 import 'package:flutter/material.dart';
 
-final ThemeData DefaultTheme = GreenGreyTheme;
+abstract class IDefaultTheme {
+  Color background;
+  Color onBackground;
+  Color mainColor;
+  Color onMainColor;
+  Color label;
+  Color accent;
+}
 
-ThemeData GreenGreyTheme = ThemeData(
+class GreenGreyTheme implements IDefaultTheme {
+  Color background = Colors.grey[100];
+  Color onBackground = Colors.black;
+  Color mainColor = Colors.green;
+  Color onMainColor = Colors.white;
+  Color label = Colors.grey[500];
+  Color accent = Colors.red;
+}
+
+final IDefaultTheme defaultTheme = GreenGreyTheme();
+
+final ThemeData greenGrey = ThemeData(
   colorScheme: ColorScheme(
-    background: Colors.grey[100],
-    onBackground: Colors.black,
+    background: defaultTheme.background,
+    onBackground: defaultTheme.onBackground,
     brightness: Brightness.light,
-    primary: Colors.green,
-    primaryVariant: Colors.green,
-    onPrimary: Colors.white,
-    secondary: Colors.green,
-    secondaryVariant: Colors.green,
-    onSecondary: Colors.white,
-    surface: Colors.grey[100],
-    onSurface: Colors.black,
+    primary: defaultTheme.mainColor,
+    primaryVariant: defaultTheme.mainColor,
+    onPrimary: defaultTheme.onMainColor,
+    secondary: defaultTheme.mainColor,
+    secondaryVariant: defaultTheme.mainColor,
+    onSecondary: defaultTheme.onMainColor,
+    surface: defaultTheme.background,
+    onSurface: defaultTheme.onBackground,
     error: Colors.red,
     onError: Colors.yellow,
   ),
-  hintColor: Colors.black,
-  cursorColor: Colors.green,
-  focusColor: Colors.green,
-  accentColor: Colors.green,
+  hintColor: defaultTheme.onBackground,
+  cursorColor: defaultTheme.mainColor,
+  focusColor: defaultTheme.mainColor,
+  accentColor: defaultTheme.mainColor,
   accentColorBrightness: Brightness.dark,
   accentIconTheme: IconThemeData(
-    color: Colors.white,
+    color: defaultTheme.onMainColor,
   ),
-  buttonColor: Colors.green,
+  buttonColor: defaultTheme.mainColor,
   buttonTheme: ButtonThemeData(
     textTheme: ButtonTextTheme.primary,
   ),
-  scaffoldBackgroundColor: Colors.grey[100],
+  scaffoldBackgroundColor: defaultTheme.background,
   sliderTheme: SliderThemeData(
     thumbShape: RoundSliderThumbShape(
       disabledThumbRadius: 8.0,
@@ -41,15 +59,15 @@ ThemeData GreenGreyTheme = ThemeData(
   inputDecorationTheme: InputDecorationTheme(
     disabledBorder:
         UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey[500])),
-    enabledBorder:
-        UnderlineInputBorder(borderSide: BorderSide(color: Colors.black)),
-    focusedBorder:
-        UnderlineInputBorder(borderSide: BorderSide(color: Colors.green)),
-    errorBorder:
-        UnderlineInputBorder(borderSide: BorderSide(color: Colors.red)),
-    focusedErrorBorder:
-        UnderlineInputBorder(borderSide: BorderSide(color: Colors.redAccent)),
-    labelStyle: TextStyle(color: Colors.grey[500]),
-    focusColor: Colors.green,
+    enabledBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: defaultTheme.onBackground)),
+    focusedBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: defaultTheme.mainColor)),
+    errorBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: defaultTheme.accent)),
+    focusedErrorBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: defaultTheme.accent)),
+    labelStyle: TextStyle(color: defaultTheme.label),
+    focusColor: defaultTheme.mainColor,
   ),
 );

@@ -43,7 +43,7 @@ class _TimerViewState extends State<TimerView> {
             ),
             Text(
               "min",
-              style: TextStyle(fontSize: 32, color: DefaultTheme.buttonColor),
+              style: TextStyle(fontSize: 32, color: defaultTheme.mainColor),
             ),
           ],
         ),
@@ -59,7 +59,7 @@ class _TimerViewState extends State<TimerView> {
             ),
             Text(
               "sec",
-              style: TextStyle(fontSize: 32, color: DefaultTheme.buttonColor),
+              style: TextStyle(fontSize: 32, color: defaultTheme.mainColor),
             ),
           ],
         ),

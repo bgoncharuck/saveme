@@ -16,7 +16,7 @@ class _SaveMeState extends State<SaveMe> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: DefaultTheme,
+      theme: greenGrey,
       title: 'SaveMe',
       home: SaveMeHome(),
       routes: <String, WidgetBuilder>{
