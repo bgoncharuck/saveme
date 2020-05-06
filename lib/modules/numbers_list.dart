@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:saveme/style/themes.dart';
 import 'package:saveme/models/number.dart';
-import 'package:saveme/widgets/main_number.dart';
 
-List<INumber> Numbers = [];
+List<INumber> _numbers = [];
 
-bool get AtLeastOneNumberExist => Numbers.isEmpty;
-bool get NoNumberSetted => Numbers.isNotEmpty;
-INumber get MainNumber => Numbers[0];
-void AddNumber(INumber number) => Numbers.add(number);
+bool get atLeastOneNumberExist => _numbers.isNotEmpty;
+bool get noNumberSetted => _numbers.isEmpty;
+INumber get mainNumber => _numbers.firstWhere((INumber number) {
+      if (number.isMainNumber) return true;
+      return false;
+    }, orElse: () => NoNumber);
+bool numberIsNotAlreadyAddded(String text)=> !_numbers.any((INumber number) {
+  if (number.text == text) return true;
+  return false;
+});
+void addNumber(INumber number) => _numbers.add(number);
 
 class NumbersList extends StatefulWidget {
   @override
@@ -19,7 +25,7 @@ class _NumbersListState extends State<NumbersList> {
   @override
   Widget build(BuildContext context) {
     return new ListView.builder(
-      itemCount: Numbers.length,
+      itemCount: _numbers.length,
       itemBuilder: (BuildContext context, int index) {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -34,22 +40,22 @@ class _NumbersListState extends State<NumbersList> {
                         FlatButton(
                           onPressed: () {
                             setState(() {
-                              if (Numbers[index].isMainNumber) {
-                                Numbers[index].isMainNumber = false;
+                              if (_numbers[index].isMainNumber) {
+                                _numbers[index].isMainNumber = false;
                               } else {
-                                Numbers.firstWhere((INumber number) {
+                                _numbers.firstWhere((INumber number) {
                                   if (number.isMainNumber) return true;
                                   return false;
                                 }, orElse: () => NoNumber).isMainNumber = false;
 
-                                Numbers[index].isMainNumber = true;
+                                _numbers[index].isMainNumber = true;
                               }
                             });
                           },
-                          child: Text(Numbers[index].text,
+                          child: Text(_numbers[index].text,
                               style: TextStyle(
                                   fontSize: 24.0,
-                                  color: Numbers[index].isMainNumber
+                                  color: _numbers[index].isMainNumber
                                       ? DefaultTheme.buttonColor
                                       : DefaultTheme.colorScheme.onSurface)),
                         ),
@@ -59,7 +65,7 @@ class _NumbersListState extends State<NumbersList> {
                   FlatButton(
                     onPressed: () {
                       setState(() {
-                        Numbers.removeAt(index);
+                        _numbers.removeAt(index);
                       });
                     },
                     child: Icon(

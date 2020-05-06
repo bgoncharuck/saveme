@@ -2,28 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:saveme/style/themes.dart';
 
 class NavigationButton extends StatefulWidget {
-  String navigate;
-  String name;
-  IconData icon;
-  EdgeInsets margin;
-  EdgeInsets padding;
-  Function optionalAction;
+  final String navigate;
+  final String name;
+  final IconData icon;
+  final EdgeInsets margin;
+  final EdgeInsets padding;
+  final Function optionalAction;
 
   NavigationButton({
-    @required String navigate,
-    @required String name,
-    @required IconData icon,
-    EdgeInsets margin = const EdgeInsets.all(8.0),
-    EdgeInsets padding = const EdgeInsets.all(8.0),
-    optionalAction,
-  }) {
-    this.navigate = navigate;
-    this.name = name;
-    this.icon = icon;
-    this.margin = margin;
-    this.padding = padding;
-    this.optionalAction = optionalAction;
-  }
+    @required this.navigate,
+    @required this.name,
+    @required this.icon,
+    this.margin = const EdgeInsets.all(8.0),
+    this.padding = const EdgeInsets.all(8.0),
+    this.optionalAction,
+  }) ;
   @override
   _NavigationButtonState createState() => _NavigationButtonState();
 }

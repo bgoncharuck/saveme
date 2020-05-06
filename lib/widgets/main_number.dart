@@ -26,23 +26,17 @@ class _MainNumberState extends State<MainNumber> {
           ),
         ),
         controller: TextEditingController(
-          text: Numbers.firstWhere((INumber number) {
-            if (number.isMainNumber) return true;
-            return false;
-          }, orElse: () => NoNumber).text,
+          text: mainNumber.text,
         ),
         onChanged: (String changed) {
           editedNumber = changed;
         },
         onEditingComplete: () {
           if (editedNumber != null) {
-            if (Numbers.isNotEmpty)
-              Numbers.firstWhere((INumber number) {
-                if (number.isMainNumber) return true;
-                return false;
-              }, orElse: () => NoNumber).text = editedNumber;
+            if (atLeastOneNumberExist)
+              mainNumber.text = editedNumber;
             else
-              Numbers.add(Number(editedNumber, isMain: Numbers.isEmpty));
+              addNumber(Number(editedNumber, isMain: noNumberSetted));
           }
 
           FocusScope.of(context).unfocus();

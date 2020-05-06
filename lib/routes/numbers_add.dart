@@ -17,7 +17,7 @@ class _SaveMeNumbersAddState extends State<SaveMeNumbersAdd> {
       body: SafeArea(
         child: Column(
           children: <Widget>[
-            (Numbers.isNotEmpty)
+            (atLeastOneNumberExist)
                 // User need to have at least one number, to see navigation
                 ? Row(
                     children: <Widget>[
@@ -64,12 +64,9 @@ class _SaveMeNumbersAddState extends State<SaveMeNumbersAdd> {
                       },
                       onEditingComplete: () {
                         if (editedNumber != null &&
-                            !Numbers.any((INumber number) {
-                              if (number.text == editedNumber) return true;
-                              return false;
-                            })) {
-                          Numbers.add(
-                              Number(editedNumber, isMain: Numbers.isEmpty));
+                            numberIsNotAlreadyAddded(editedNumber)) {
+                          addNumber(
+                              Number(editedNumber, isMain: noNumberSetted));
                           Navigator.of(context).pushNamed("/numbers");
                         }
                       },

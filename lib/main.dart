@@ -4,7 +4,6 @@ import 'package:saveme/routes/home.dart';
 import 'package:saveme/routes/settings.dart';
 import 'package:saveme/routes/numbers.dart';
 import 'package:saveme/routes/numbers_add.dart';
-import 'package:saveme/modules/timer.dart';
 
 void main() => runApp(SaveMe());
 
@@ -22,8 +21,7 @@ class _SaveMeState extends State<SaveMe> {
       home: SaveMeHome(),
       routes: <String, WidgetBuilder>{
         '/settings': (BuildContext context) => SaveMeSettings(),
-        '/numbers': (BuildContext context) =>
-            (timerWasSetted) ? SaveMeNumbers() : SaveMeSettings(),
+        '/numbers': (BuildContext context) => SaveMeNumbers(),
         '/numbers/add': (BuildContext context) => SaveMeNumbersAdd(),
       },
     );

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:saveme/style/themes.dart';
 
@@ -39,7 +38,7 @@ class _TimerViewState extends State<TimerView> {
         Column(
           children: <Widget>[
             Text(
-              "${CallTimer.minute.toInt()}",
+              "${callTimer.minute.toInt()}",
               style: TextStyle(fontSize: 96),
             ),
             Text(
@@ -55,7 +54,7 @@ class _TimerViewState extends State<TimerView> {
         Column(
           children: <Widget>[
             Text(
-              "${CallTimer.second.toInt()}",
+              "${callTimer.second.toInt()}",
               style: TextStyle(fontSize: 96),
             ),
             Text(
@@ -79,7 +78,7 @@ class TimerConfig extends StatefulWidget {
 
 class _TimerConfigState extends State<TimerConfig> {
   _TimerConfigState() {
-    timerWasSetted = true;
+    timerWasSet = true;
   }
   @override
   Widget build(BuildContext context) {
@@ -100,25 +99,25 @@ class _TimerConfigState extends State<TimerConfig> {
           crossAxisAlignment: CrossAxisAlignment.baseline,
           textBaseline: TextBaseline.alphabetic,
           children: <Widget>[
-            Text("${CallTimer.minutes.toInt()} ",
+            Text("${callTimer.minutes.toInt()} ",
                 style: TextStyle(fontSize: 48)),
             Text("minutes", style: TextStyle(fontSize: 24)),
           ],
         ),
         Slider(
-          value: CallTimer.minutes,
+          value: callTimer.minutes,
           min: 0.0,
           max: 60.0,
           divisions: 60,
           onChanged: (double changed) {
             setState(() {
-              CallTimer.minutes = changed;
+              callTimer.minutes = changed;
             });
           },
           onChangeEnd: (double changed) {
             setState(() {
-              CallTimer.minutes = changed;
-              CallTimer.stop();
+              callTimer.minutes = changed;
+              callTimer.stop();
             });
           },
         ),
@@ -127,25 +126,25 @@ class _TimerConfigState extends State<TimerConfig> {
           crossAxisAlignment: CrossAxisAlignment.baseline,
           textBaseline: TextBaseline.alphabetic,
           children: <Widget>[
-            Text("${CallTimer.seconds.toInt()} ",
+            Text("${callTimer.seconds.toInt()} ",
                 style: TextStyle(fontSize: 48)),
             Text("seconds", style: TextStyle(fontSize: 24)),
           ],
         ),
         Slider(
-          value: CallTimer.seconds,
+          value: callTimer.seconds,
           min: 0.0,
           max: 60.0,
           divisions: 60,
           onChanged: (double changed) {
             setState(() {
-              CallTimer.seconds = changed;
+              callTimer.seconds = changed;
             });
           },
           onChangeEnd: (double changed) {
             setState(() {
-              CallTimer.seconds = changed;
-              CallTimer.stop();
+              callTimer.seconds = changed;
+              callTimer.stop();
             });
           },
         ),
@@ -154,5 +153,5 @@ class _TimerConfigState extends State<TimerConfig> {
   }
 }
 
-final ISaveMeTimer CallTimer = DefaultTimer();
-bool timerWasSetted = false;
+final ISaveMeTimer callTimer = DefaultTimer();
+bool timerWasSet = false;
