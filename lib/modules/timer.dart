@@ -78,11 +78,23 @@ class TimerConfig extends StatefulWidget {
 }
 
 class _TimerConfigState extends State<TimerConfig> {
+  _TimerConfigState() {
+    timerWasSetted = true;
+  }
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 8),
+          child: Text(
+            "Set the Calling timer. Next time you run the app, it starts.",
+            style: TextStyle(
+              fontSize: 20,
+            ),
+          ),
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.baseline,
@@ -143,3 +155,4 @@ class _TimerConfigState extends State<TimerConfig> {
 }
 
 final ISaveMeTimer CallTimer = DefaultTimer();
+bool timerWasSetted = false;
