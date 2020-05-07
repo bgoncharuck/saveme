@@ -15,6 +15,9 @@ class SaveMe extends StatefulWidget {
 
 class _SaveMeState extends State<SaveMe> {
   @override
+  _SaveMeState() {
+    readNumbersFromFileSystemIfAny();
+  }
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: saveMeLight,

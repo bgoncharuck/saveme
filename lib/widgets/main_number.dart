@@ -40,9 +40,10 @@ class _MainNumberState extends State<MainNumber> {
           controller: _editedNumber,
           onEditingComplete: () {
             if (_mainNumberFormKey.currentState.validate()) {
-              if (atLeastOneNumberExist)
+              if (atLeastOneNumberExist) {
                 mainNumber.text = _editedNumber.text;
-              else
+                updateListOnFileSystem;
+              } else
                 addNumber(Number(_editedNumber.text, isMain: noNumberSetted));
 
               _editedNumber.text = mainNumber.text;

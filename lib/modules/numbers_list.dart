@@ -1,8 +1,41 @@
+import 'dart:convert';
+import 'dart:io';
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:saveme/style/themes.dart';
 import 'package:saveme/models/number.dart';
 
 List<INumber> _numbers = [];
+
+// TODO
+//Future<bool> readNumbersFromFileSystemIfAny() async {
+//  if (await Permission.storage.request().isGranted) {
+//    var openedStream = _numbersListOnFileSystem.openRead();
+//    List<INumber> _listToFill = [];
+//    openedStream.transform(utf8.decoder).listen((String readedFile) {
+//      _listToFill = jsonDecode(readedFile);
+//    }, onDone: () {
+//      _numbers = _listToFill;
+//    }, onError: (e) {
+//      print(e.toString());
+//    });
+//  }
+//  return false;
+//}
+//
+//Future<bool> get updateListOnFileSystem async {
+//  if (await Permission.storage.request().isGranted) if (_numbers.isNotEmpty) {
+//    var openedStream = _numbersListOnFileSystem.openWrite();
+//    openedStream.write(jsonEncode(_numbers));
+//    openedStream.close();
+//    return true;
+//  }
+//  return false;
+//}
+
+bool readNumbersFromFileSystemIfAny() => false;
+bool get updateListOnFileSystem => false;
 
 bool get atLeastOneNumberExist => _numbers.isNotEmpty;
 bool get noNumberSetted => _numbers.isEmpty;
@@ -18,7 +51,10 @@ bool numberIsAlreadyAddded(String text) => _numbers.any((INumber number) {
       if (number.text == text) return true;
       return false;
     });
-void addNumber(INumber number) => _numbers.add(number);
+void addNumber(INumber number) {
+  _numbers.add(number);
+  updateListOnFileSystem;
+}
 
 class NumbersList extends StatefulWidget {
   @override
@@ -54,6 +90,8 @@ class _NumbersListState extends State<NumbersList> {
 
                                 _numbers[index].isMainNumber = true;
                               }
+
+                              updateListOnFileSystem;
                             });
                           },
                           child: Text(_numbers[index].text,
@@ -70,6 +108,7 @@ class _NumbersListState extends State<NumbersList> {
                     onPressed: () {
                       setState(() {
                         _numbers.removeAt(index);
+                        updateListOnFileSystem;
                       });
                     },
                     child: Icon(
