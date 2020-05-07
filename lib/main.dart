@@ -4,6 +4,7 @@ import 'package:saveme/routes/home.dart';
 import 'package:saveme/routes/settings.dart';
 import 'package:saveme/routes/numbers.dart';
 import 'package:saveme/routes/numbers_add.dart';
+import 'package:saveme/modules/numbers_list.dart';
 
 void main() => runApp(SaveMe());
 
@@ -18,10 +19,12 @@ class _SaveMeState extends State<SaveMe> {
     return MaterialApp(
       theme: saveMeLight,
       title: 'SaveMe',
-      home: SaveMeHome(),
+      home: (atLeastOneNumberExist) ? SaveMeHome() : SaveMeNumbersAdd(),
       routes: <String, WidgetBuilder>{
+        '/home': (BuildContext context) => SaveMeHome(),
         '/settings': (BuildContext context) => SaveMeSettings(),
-        '/numbers': (BuildContext context) => SaveMeNumbers(),
+        '/numbers': (BuildContext context) =>
+            (isFirstStart) ? SaveMeSettings() : SaveMeNumbers(),
         '/numbers/add': (BuildContext context) => SaveMeNumbersAdd(),
       },
     );

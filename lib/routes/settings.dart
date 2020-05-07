@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:saveme/modules/numbers_list.dart';
 import 'package:saveme/style/themes.dart';
 import 'package:saveme/widgets/navigation_button.dart';
 import 'package:saveme/widgets/main_number.dart';
 import 'package:saveme/modules/timer.dart';
+
+bool _timerWasChecked = false;
+bool get isFirstStart => !_timerWasChecked;
 
 class SaveMeSettings extends StatefulWidget {
   @override
@@ -10,6 +14,9 @@ class SaveMeSettings extends StatefulWidget {
 }
 
 class _SaveMeSettingsState extends State<SaveMeSettings> {
+  _SaveMeSettingsState() {
+    _timerWasChecked = true;
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,37 +44,39 @@ class _SaveMeSettingsState extends State<SaveMeSettings> {
                 ],
               ),
             ),
-            Row(
-              children: <Widget>[
-                Expanded(
-                    child: Container(
-                  color: Colors.grey[800],
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.center,
+            (atLeastOneNumberExist)
+                ? Row(
                     children: <Widget>[
-                      Icon(Icons.alarm_off, color: Colors.white),
-                      Text(
-                        "Timer Was Stopped",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      FlatButton(
-                        onPressed: () {
-                          Navigator.of(context).pushNamed("/");
-                        },
-                        child: Text(
-                          "Start Again",
-                          style: TextStyle(
-                              fontSize: 18,
-                              color: defaultTheme.mainColor,
-                              fontWeight: FontWeight.bold),
+                      Expanded(
+                          child: Container(
+                        color: Colors.grey[800],
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Icon(Icons.alarm_off, color: Colors.white),
+                            Text(
+                              "Timer Was Stopped",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            FlatButton(
+                              onPressed: () {
+                                Navigator.of(context).pushNamed("/home");
+                              },
+                              child: Text(
+                                "Start Again",
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    color: defaultTheme.mainColor,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
+                      )),
                     ],
-                  ),
-                )),
-              ],
-            ),
+                  )
+                : Container(),
           ],
         ),
       ),

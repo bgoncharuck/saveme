@@ -51,7 +51,6 @@ class _AddNumberFormState extends State<AddNumberForm> {
             onEditingComplete: () {
               if (_addNumberFormKey.currentState.validate()) {
                 addNumber(Number(_editedNumber.text, isMain: noNumberSetted));
-                _editedNumber.text = "";
                 Navigator.of(context).pushNamed("/numbers");
               }
             },
