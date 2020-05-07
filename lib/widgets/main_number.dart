@@ -9,38 +9,47 @@ class MainNumber extends StatefulWidget {
 }
 
 class _MainNumberState extends State<MainNumber> {
-  String editedNumber;
+  final TextEditingController _editedNumber = TextEditingController();
+  final _mainNumberFormKey = GlobalKey<FormState>();
+  _MainNumberState() {
+    _editedNumber.text = mainNumber.text;
+  }
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(right: 16, left: 16),
-      child: TextField(
-        keyboardType: TextInputType.phone,
-        autofocus: false,
-        decoration: InputDecoration(
-          labelText: "Main Phone Number To Call",
-          icon: Icon(
-            Icons.smartphone,
-            color: defaultTheme.onBackground,
-            size: 28.0,
+      child: Form(
+        key: _mainNumberFormKey,
+        child: TextFormField(
+          validator: (String number) {
+            if (number.isEmpty || number.length < 3) {
+              return 'Number must to be valid';
+            }
+            return null;
+          },
+          keyboardType: TextInputType.phone,
+          autofocus: false,
+          decoration: InputDecoration(
+            labelText: "Main Phone Number To Call",
+            icon: Icon(
+              Icons.smartphone,
+              color: defaultTheme.onBackground,
+              size: 28.0,
+            ),
           ),
-        ),
-        controller: TextEditingController(
-          text: mainNumber.text,
-        ),
-        onChanged: (String changed) {
-          editedNumber = changed;
-        },
-        onEditingComplete: () {
-          if (editedNumber != null) {
-            if (atLeastOneNumberExist)
-              mainNumber.text = editedNumber;
-            else
-              addNumber(Number(editedNumber, isMain: noNumberSetted));
-          }
+          controller: _editedNumber,
+          onEditingComplete: () {
+            if (_mainNumberFormKey.currentState.validate()) {
+              if (atLeastOneNumberExist)
+                mainNumber.text = _editedNumber.text;
+              else
+                addNumber(Number(_editedNumber.text, isMain: noNumberSetted));
 
-          FocusScope.of(context).unfocus();
-        },
+              _editedNumber.text = mainNumber.text;
+            }
+            FocusScope.of(context).unfocus();
+          },
+        ),
       ),
     );
   }

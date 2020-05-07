@@ -20,7 +20,7 @@ class GreenGreyTheme implements IDefaultTheme {
 
 final IDefaultTheme defaultTheme = GreenGreyTheme();
 
-final ThemeData greenGrey = ThemeData(
+final ThemeData saveMeLight = ThemeData(
   colorScheme: ColorScheme(
     background: defaultTheme.background,
     onBackground: defaultTheme.onBackground,

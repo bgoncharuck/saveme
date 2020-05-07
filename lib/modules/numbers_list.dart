@@ -10,10 +10,14 @@ INumber get mainNumber => _numbers.firstWhere((INumber number) {
       if (number.isMainNumber) return true;
       return false;
     }, orElse: () => noNumber);
-bool numberIsNotAlreadyAddded(String text)=> !_numbers.any((INumber number) {
-  if (number.text == text) return true;
-  return false;
-});
+bool numberIsNotAlreadyAddded(String text) => !_numbers.any((INumber number) {
+      if (number.text == text) return true;
+      return false;
+    });
+bool numberIsAlreadyAddded(String text) => _numbers.any((INumber number) {
+      if (number.text == text) return true;
+      return false;
+    });
 void addNumber(INumber number) => _numbers.add(number);
 
 class NumbersList extends StatefulWidget {
