@@ -14,15 +14,26 @@ class SaveMe extends StatefulWidget {
 }
 
 class _SaveMeState extends State<SaveMe> {
-  @override
-  _SaveMeState() {
-    readNumbersFromFileSystemIfAny();
+  bool _filesLoaded = false;
+
+  Future _loadFiles() async {
+    if (await readNumbersFromFileSystemIfAny) {
+      print("Access was granted and files laoded");
+      _filesLoaded = true;
+    } else {
+      print("Access to filesystem denied for some reason.");
+    }
   }
+
   Widget build(BuildContext context) {
+    this._loadFiles();
+
     return MaterialApp(
       theme: saveMeLight,
       title: 'SaveMe',
-      home: (atLeastOneNumberExist) ? SaveMeHome() : SaveMeNumbersAdd(),
+      home: (_filesLoaded && atLeastOneNumberExist)
+          ? SaveMeHome()
+          : SaveMeNumbersAdd(),
       routes: <String, WidgetBuilder>{
         '/home': (BuildContext context) => SaveMeHome(),
         '/settings': (BuildContext context) => SaveMeSettings(),
