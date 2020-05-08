@@ -1,0 +1,40 @@
+import "dart:io";
+import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:path_provider/path_provider.dart';
+
+abstract class IStorageFile {
+  Future<bool> Write({@required String data, @required String asFile});
+  //  @NULLABLE
+  Future<String> Read({@required String fromFile});
+}
+
+class DefaultStorage implements IStorageFile {
+  Future<String> get _appDirPath async =>
+      (await getApplicationDocumentsDirectory()).path;
+
+  @override
+  Future<bool> Write({@required String data, @required String asFile}) async {
+    if (await Permission.storage.request().isGranted)
+      return (await File("${await _appDirPath}/saveme/$asFile"))
+              .writeAsString(data) !=
+          null;
+    return false;
+  }
+
+  //  @NULLABLE
+  @override
+  Future<String> Read({@required String fromFile}) async {
+    if (await Permission.storage.request().isGranted)
+      try {
+        return (await File("${await _appDirPath}/saveme/$fromFile"))
+            .readAsString();
+      } catch (readError) {
+        print(readError);
+        return null;
+      }
+    return null;
+  }
+}
+
+final IStorageFile storage = DefaultStorage();
