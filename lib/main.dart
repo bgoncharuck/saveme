@@ -18,7 +18,7 @@ class _SaveMeState extends State<SaveMe> {
 
   Future _loadFiles() async {
     if (await readNumbersFromFileSystemIfAny) {
-      print("Access was granted and files laoded");
+      print("Access was granted and files loaded");
       _filesLoaded = true;
     } else {
       print("Access to filesystem denied for some reason.");

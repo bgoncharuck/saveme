@@ -10,14 +10,18 @@ List<INumber> _numbers = [];
 Future<bool> get readNumbersFromFileSystemIfAny async {
   String listOfNumbers = await storage.read(fromFile: "numbers_list.json");
   if (listOfNumbers != null) {
-    _numbers = jsonDecode(listOfNumbers);
+    var numbersFromJSON = json.decode(listOfNumbers).toList();
+    _numbers = [];
+    for (Map<String, dynamic> mappedNumber in numbersFromJSON)
+      _numbers.add(Number.fromJson(mappedNumber));
+
     return true;
   }
   return false;
 }
 
 Future<bool> get updateListOnFileSystem async => await storage.write(
-    data: jsonEncode(_numbers), asFile: "numbers_list.json");
+    data: json.encode(_numbers), asFile: "numbers_list.json");
 
 bool get atLeastOneNumberExist => _numbers.isNotEmpty;
 bool get noNumberSetted => _numbers.isEmpty;
