@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:saveme/style/themes.dart';
+import 'dart:async';
 
 abstract class ISaveMeTimer {
   double minutes;
@@ -22,12 +23,7 @@ class DefaultTimer implements ISaveMeTimer {
   }
 }
 
-class TimerView extends StatefulWidget {
-  @override
-  _TimerViewState createState() => _TimerViewState();
-}
-
-class _TimerViewState extends State<TimerView> {
+class TimerView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(

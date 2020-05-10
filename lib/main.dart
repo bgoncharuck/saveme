@@ -3,8 +3,8 @@ import 'package:saveme/style/themes.dart';
 import 'package:saveme/routes/home.dart';
 import 'package:saveme/routes/settings.dart';
 import 'package:saveme/routes/numbers.dart';
-import 'package:saveme/routes/numbers_add.dart';
 import 'package:saveme/modules/numbers_list.dart';
+import 'package:saveme/routes/numbers_add.dart';
 
 void main() => runApp(SaveMe());
 
@@ -14,33 +14,47 @@ class SaveMe extends StatefulWidget {
 }
 
 class _SaveMeState extends State<SaveMe> {
-  bool _filesLoaded = false;
+  Widget _homeWidget = Scaffold(
+    body: SafeArea(
+      child: Center(
+        child: Text("Loading..."),
+      ),
+    ),
+  );
 
   Future _loadFiles() async {
     if (await readNumbersFromFileSystemIfAny) {
       print("Access was granted and files loaded");
-      _filesLoaded = true;
+      setState(() {
+        if (atLeastOneNumberExist)
+          _homeWidget = SaveMeHome();
+        else
+          _homeWidget = SaveMeNumbersAdd();
+      });
     } else {
       print("Access to filesystem denied for some reason.");
+      setState(() {
+        _homeWidget = SaveMeNumbersAdd();
+      });
     }
   }
 
-  Widget build(BuildContext context) {
-    this._loadFiles();
-
-    return MaterialApp(
-      theme: saveMeLight,
-      title: 'SaveMe',
-      home: (_filesLoaded && atLeastOneNumberExist)
-          ? SaveMeHome()
-          : SaveMeNumbersAdd(),
-      routes: <String, WidgetBuilder>{
-        '/home': (BuildContext context) => SaveMeHome(),
-        '/settings': (BuildContext context) => SaveMeSettings(),
-        '/numbers': (BuildContext context) =>
-            (isFirstStart) ? SaveMeSettings() : SaveMeNumbers(),
-        '/numbers/add': (BuildContext context) => SaveMeNumbersAdd(),
-      },
-    );
+  @override
+  void initState() {
+    super.initState();
+    _loadFiles();
   }
+
+  Widget build(BuildContext context) => MaterialApp(
+        theme: saveMeLight,
+        title: 'SaveMe',
+        home: _homeWidget,
+        routes: <String, WidgetBuilder>{
+          '/home': (BuildContext context) => SaveMeHome(),
+          '/settings': (BuildContext context) => SaveMeSettings(),
+          '/numbers': (BuildContext context) =>
+              (isFirstStart) ? SaveMeSettings() : SaveMeNumbers(),
+          '/numbers/add': (BuildContext context) => SaveMeNumbersAdd(),
+        },
+      );
 }

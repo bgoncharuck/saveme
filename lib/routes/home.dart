@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+
 import 'package:saveme/widgets/main_button.dart';
 import 'package:saveme/widgets/navigation_button.dart';
 import 'package:saveme/modules/timer.dart';
 
 class SaveMeHome extends StatefulWidget {
   @override
-  _SaveMeHomeState createState() => _SaveMeHomeState();
+  State<SaveMeHome> createState() => _SaveMeHomeState();
 }
 
 class _SaveMeHomeState extends State<SaveMeHome> {
