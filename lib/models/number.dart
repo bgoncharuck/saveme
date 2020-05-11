@@ -13,7 +13,6 @@ class Number implements INumber {
     isMainNumber = isMain;
   }
 
-  @override
   Number.fromJson(Map<String, dynamic> json)
       : text = json['number'],
         isMainNumber = json['isMainNumber'];
