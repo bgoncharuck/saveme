@@ -5,6 +5,7 @@ import 'package:saveme/routes/settings.dart';
 import 'package:saveme/routes/numbers.dart';
 import 'package:saveme/modules/numbers_list.dart';
 import 'package:saveme/routes/numbers_add.dart';
+import 'package:saveme/widgets/error_message.dart';
 
 void main() => runApp(SaveMe());
 
@@ -34,7 +35,10 @@ class _SaveMeState extends State<SaveMe> {
     } else {
       print("Access to filesystem denied for some reason.");
       setState(() {
-        _homeWidget = SaveMeNumbersAdd();
+        _homeWidget = SaveMeErrorMessage(
+          "My Lord, you did not grant me access to a storage.\nI can't save or load these config files:\n",
+          "timer_setting.json $numbersListSaveFileName",
+        );
       });
     }
   }

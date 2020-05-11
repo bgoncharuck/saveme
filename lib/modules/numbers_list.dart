@@ -5,10 +5,11 @@ import 'package:saveme/style/themes.dart';
 import 'package:saveme/models/number.dart';
 import 'package:saveme/modules/storage_access.dart';
 
+final String numbersListSaveFileName = "numbers_list.json";
 List<INumber> _numbers = [];
 
 Future<bool> get readNumbersFromFileSystemIfAny async {
-  String listOfNumbers = await storage.read(fromFile: "numbers_list.json");
+  String listOfNumbers = await storage.read(fromFile: numbersListSaveFileName);
   if (listOfNumbers != null) {
     var numbersFromJSON = json.decode(listOfNumbers).toList();
     _numbers = [];
@@ -21,7 +22,7 @@ Future<bool> get readNumbersFromFileSystemIfAny async {
 }
 
 Future<bool> get updateListOnFileSystem async => await storage.write(
-    data: json.encode(_numbers), asFile: "numbers_list.json");
+    data: json.encode(_numbers), asFile: numbersListSaveFileName);
 
 bool get atLeastOneNumberExist => _numbers.isNotEmpty;
 bool get noNumberSetted => _numbers.isEmpty;
