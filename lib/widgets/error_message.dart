@@ -12,26 +12,32 @@ class SaveMeErrorMessage extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(32.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Text(
-                "Error",
-                style: TextStyle(
-                  fontSize: 32,
-                  color: defaultTheme.accent,
-                ),
-              ),
-              Text(
-                description,
-                style: TextStyle(fontSize: 22),
-              ),
-              Text(
-                details,
-                style: TextStyle(
-                  fontSize: 22,
-                  color: defaultTheme.accent,
-                ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    "Error",
+                    style: TextStyle(
+                      fontSize: 32,
+                      color: defaultTheme.accent,
+                    ),
+                  ),
+                  Text(
+                    description,
+                    style: TextStyle(fontSize: 22),
+                  ),
+                  Text(
+                    details,
+                    style: TextStyle(
+                      fontSize: 22,
+                      color: defaultTheme.accent,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

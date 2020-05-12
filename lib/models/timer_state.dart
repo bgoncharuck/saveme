@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 abstract class ITimerState {
   double minutes;
@@ -26,5 +26,3 @@ class TimerState implements ITimerState {
         'seconds': seconds,
       };
 }
-
-ITimerState defaultTimerState = TimerState(minutes: 3, seconds: 30);

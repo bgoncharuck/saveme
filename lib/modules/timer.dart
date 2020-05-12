@@ -1,25 +1,56 @@
 import 'package:flutter/material.dart';
 import 'package:saveme/style/themes.dart';
+import 'package:saveme/models/timer_state.dart';
 import 'dart:async';
 
 abstract class ISaveMeTimer {
-  double minutes;
-  double seconds;
+  ITimerState state;
+  Future<ITimerState> save();
+  Future<bool> load(ITimerState state);
+  Future<bool> get readTimerSettingFromFileSystemIfAny;
+  Future<bool> get updateTimerSettingOnFileSystem;
   double minute;
   double second;
   void stop();
 }
 
 class DefaultTimer implements ISaveMeTimer {
-  double minutes = 3.0;
-  double seconds = 30.0;
-  double minute = 3.0;
-  double second = 30.0;
+  ITimerState state = TimerState(
+    minutes: 3,
+    seconds: 30,
+  );
+
+  double minute;
+  double second;
+
+  DefaultTimer() {
+    stop();
+  }
 
   @override
   void stop() {
-    minute = minutes;
-    second = seconds;
+    minute = state.minutes;
+    second = state.seconds;
+  }
+
+  @override
+  Future<ITimerState> save() async {
+    return null;
+  }
+
+  @override
+  Future<bool> load(ITimerState state) async {
+    return false;
+  }
+
+  @override
+  Future<bool> get readTimerSettingFromFileSystemIfAny async {
+    return false;
+  }
+
+  @override
+  Future<bool> get updateTimerSettingOnFileSystem async {
+    return false;
   }
 }
 
@@ -73,9 +104,6 @@ class TimerConfig extends StatefulWidget {
 }
 
 class _TimerConfigState extends State<TimerConfig> {
-  _TimerConfigState() {
-    timerWasSet = true;
-  }
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -95,24 +123,24 @@ class _TimerConfigState extends State<TimerConfig> {
           crossAxisAlignment: CrossAxisAlignment.baseline,
           textBaseline: TextBaseline.alphabetic,
           children: <Widget>[
-            Text("${callTimer.minutes.toInt()} ",
+            Text("${callTimer.state.minutes.toInt()} ",
                 style: TextStyle(fontSize: 48)),
             Text("minutes", style: TextStyle(fontSize: 24)),
           ],
         ),
         Slider(
-          value: callTimer.minutes,
+          value: callTimer.state.minutes,
           min: 0.0,
           max: 60.0,
           divisions: 60,
           onChanged: (double changed) {
             setState(() {
-              callTimer.minutes = changed;
+              callTimer.state.minutes = changed;
             });
           },
           onChangeEnd: (double changed) {
             setState(() {
-              callTimer.minutes = changed;
+              callTimer.state.minutes = changed;
               callTimer.stop();
             });
           },
@@ -122,24 +150,24 @@ class _TimerConfigState extends State<TimerConfig> {
           crossAxisAlignment: CrossAxisAlignment.baseline,
           textBaseline: TextBaseline.alphabetic,
           children: <Widget>[
-            Text("${callTimer.seconds.toInt()} ",
+            Text("${callTimer.state.seconds.toInt()} ",
                 style: TextStyle(fontSize: 48)),
             Text("seconds", style: TextStyle(fontSize: 24)),
           ],
         ),
         Slider(
-          value: callTimer.seconds,
+          value: callTimer.state.seconds,
           min: 0.0,
           max: 60.0,
           divisions: 60,
           onChanged: (double changed) {
             setState(() {
-              callTimer.seconds = changed;
+              callTimer.state.seconds = changed;
             });
           },
           onChangeEnd: (double changed) {
             setState(() {
-              callTimer.seconds = changed;
+              callTimer.state.seconds = changed;
               callTimer.stop();
             });
           },
@@ -150,4 +178,3 @@ class _TimerConfigState extends State<TimerConfig> {
 }
 
 final ISaveMeTimer callTimer = DefaultTimer();
-bool timerWasSet = false;

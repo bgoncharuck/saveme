@@ -5,18 +5,12 @@ import 'package:saveme/widgets/navigation_button.dart';
 import 'package:saveme/widgets/main_number.dart';
 import 'package:saveme/modules/timer.dart';
 
-bool _timerWasChecked = false;
-bool get isFirstStart => !_timerWasChecked;
-
 class SaveMeSettings extends StatefulWidget {
   @override
   _SaveMeSettingsState createState() => _SaveMeSettingsState();
 }
 
 class _SaveMeSettingsState extends State<SaveMeSettings> {
-  _SaveMeSettingsState() {
-    _timerWasChecked = true;
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

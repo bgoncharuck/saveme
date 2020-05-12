@@ -56,8 +56,8 @@ class _SaveMeState extends State<SaveMe> {
         routes: <String, WidgetBuilder>{
           '/home': (BuildContext context) => SaveMeHome(),
           '/settings': (BuildContext context) => SaveMeSettings(),
-          '/numbers': (BuildContext context) =>
-              (isFirstStart) ? SaveMeSettings() : SaveMeNumbers(),
+          // @TODO
+          '/numbers': (BuildContext context) => SaveMeNumbers(),
           '/numbers/add': (BuildContext context) => SaveMeNumbersAdd(),
         },
       );
