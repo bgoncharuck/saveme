@@ -57,8 +57,9 @@ class DefaultTimer implements ISaveMeTimer {
     String timerSetting =
         await storage.read(fromFile: timerSettingSaveFileName);
     if (timerSetting != null) {
-      var timerStateFromJSON = json.decode(timerSetting);
-      print(timerSetting);
+      var loadedTimerState = json.decode(timerSetting);
+      this.load(TimerState.fromJSON(loadedTimerState));
+      this.stop();
       return true;
     }
     return false;
