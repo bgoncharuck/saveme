@@ -17,7 +17,13 @@ class SaveMe extends StatefulWidget {
 }
 
 class _SaveMeState extends State<SaveMe> {
-  Widget _homeWidget = SaveMeNumbersAdd();
+  Widget _homeWidget = Scaffold(
+    body: SafeArea(
+      child: Center(
+        child: Text("Loading..."),
+      ),
+    ),
+  );
   Widget _afterNumberAdded = SaveMeSettings();
 
   Future _loadFiles() async {
@@ -30,6 +36,7 @@ class _SaveMeState extends State<SaveMe> {
       } else
         setState(() {
           updateListOnFileSystem;
+          _homeWidget = SaveMeNumbersAdd();
         });
       if (await callTimer.readTimerSettingFromFileSystem)
         setState(() {
