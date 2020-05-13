@@ -17,13 +17,7 @@ class SaveMe extends StatefulWidget {
 }
 
 class _SaveMeState extends State<SaveMe> {
-  Widget _homeWidget = Scaffold(
-    body: SafeArea(
-      child: Center(
-        child: Text("Loading..."),
-      ),
-    ),
-  );
+  Widget _homeWidget = SaveMeNumbersAdd();
   Widget _afterNumberAdded = SaveMeSettings();
 
   Future _loadFiles() async {
@@ -31,20 +25,20 @@ class _SaveMeState extends State<SaveMe> {
       if (await readNumbersFromFileSystemIfAny) {
         print("Access was granted and files loaded");
         setState(() {
-          if (atLeastOneNumberExist)
-            _homeWidget = SaveMeHome();
-          else
-            _homeWidget = SaveMeNumbersAdd();
+          if (atLeastOneNumberExist) _homeWidget = SaveMeHome();
         });
       } else
-        updateListOnFileSystem;
-
+        setState(() {
+          updateListOnFileSystem;
+        });
       if (await callTimer.readTimerSettingFromFileSystem)
         setState(() {
           _afterNumberAdded = SaveMeNumbers();
         });
       else
-        callTimer.updateTimerSettingOnFileSystem;
+        setState(() {
+          callTimer.updateTimerSettingOnFileSystem;
+        });
     } else {
       print("Access to filesystem denied for some reason.");
       setState(() {
@@ -69,7 +63,6 @@ class _SaveMeState extends State<SaveMe> {
         routes: <String, WidgetBuilder>{
           '/home': (BuildContext context) => SaveMeHome(),
           '/settings': (BuildContext context) => SaveMeSettings(),
-          // @TODO
           '/numbers': (BuildContext context) => SaveMeNumbers(),
           '/numbers/add': (BuildContext context) => SaveMeNumbersAdd(),
           '/numbers/added': (BuildContext context) => _afterNumberAdded,

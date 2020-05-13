@@ -15,6 +15,7 @@ class SaveMeSettings extends StatefulWidget {
 class _SaveMeSettingsState extends State<SaveMeSettings> {
   @override
   Widget build(BuildContext context) {
+    callTimer.updateTimerSettingOnFileSystem;
     wasStarted = true;
     return Scaffold(
       body: SafeArea(
