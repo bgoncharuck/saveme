@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:saveme/style/themes.dart';
 import 'package:saveme/models/timer_state.dart';
+import 'package:saveme/modules/storage_access.dart';
+import 'dart:convert';
 import 'dart:async';
+
+final String timerSettingSaveFileName = "timer_setting.json";
 
 abstract class ISaveMeTimer {
   ITimerState state;
   Future<ITimerState> save();
   Future<bool> load(ITimerState state);
-  Future<bool> get readTimerSettingFromFileSystemIfAny;
+  Future<bool> get readTimerSettingFromFileSystem;
   Future<bool> get updateTimerSettingOnFileSystem;
   double minute;
   double second;
@@ -34,24 +38,37 @@ class DefaultTimer implements ISaveMeTimer {
   }
 
   @override
-  Future<ITimerState> save() async {
-    return null;
-  }
+  Future<ITimerState> save() async => TimerState(
+        minutes: state.minutes,
+        seconds: state.seconds,
+      );
 
   @override
   Future<bool> load(ITimerState state) async {
+    if (state != null) {
+      this.state = state;
+      return true;
+    }
     return false;
   }
 
   @override
-  Future<bool> get readTimerSettingFromFileSystemIfAny async {
+  Future<bool> get readTimerSettingFromFileSystem async {
+    String timerSetting =
+        await storage.read(fromFile: timerSettingSaveFileName);
+    if (timerSetting != null) {
+      var timerStateFromJSON = json.decode(timerSetting);
+      print(timerSetting);
+      return true;
+    }
     return false;
   }
 
   @override
-  Future<bool> get updateTimerSettingOnFileSystem async {
-    return false;
-  }
+  Future<bool> get updateTimerSettingOnFileSystem async => await storage.write(
+        data: json.encode(this.state),
+        asFile: timerSettingSaveFileName,
+      );
 }
 
 class TimerView extends StatelessWidget {
@@ -142,6 +159,7 @@ class _TimerConfigState extends State<TimerConfig> {
             setState(() {
               callTimer.state.minutes = changed;
               callTimer.stop();
+              callTimer.updateTimerSettingOnFileSystem;
             });
           },
         ),
@@ -169,6 +187,7 @@ class _TimerConfigState extends State<TimerConfig> {
             setState(() {
               callTimer.state.seconds = changed;
               callTimer.stop();
+              callTimer.updateTimerSettingOnFileSystem;
             });
           },
         ),

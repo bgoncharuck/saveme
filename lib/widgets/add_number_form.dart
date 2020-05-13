@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:saveme/routes/settings.dart';
 import 'package:saveme/style/themes.dart';
 import 'package:saveme/modules/numbers_list.dart';
 import 'package:saveme/models/number.dart';
@@ -51,7 +52,10 @@ class _AddNumberFormState extends State<AddNumberForm> {
             onEditingComplete: () {
               if (_addNumberFormKey.currentState.validate()) {
                 addNumber(Number(_editedNumber.text, isMain: noNumberSetted));
-                Navigator.of(context).pushNamed("/numbers");
+                if (wasStarted)
+                  Navigator.of(context).pushNamed("/numbers");
+                else
+                  Navigator.of(context).pushNamed("/numbers/added");
               }
             },
           ),

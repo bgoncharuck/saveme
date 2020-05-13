@@ -15,7 +15,6 @@ Future<bool> get readNumbersFromFileSystemIfAny async {
     _numbers = [];
     for (Map<String, dynamic> mappedNumber in numbersFromJSON)
       _numbers.add(Number.fromJson(mappedNumber));
-
     return true;
   }
   return false;
