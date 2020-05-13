@@ -17,14 +17,7 @@ class SaveMe extends StatefulWidget {
 }
 
 class _SaveMeState extends State<SaveMe> {
-  Widget _homeWidget = Scaffold(
-    body: SafeArea(
-      child: Center(
-        child: Text("Loading..."),
-      ),
-    ),
-  );
-  Widget _afterNumberAdded = SaveMeSettings();
+  Widget _homeWidget = SaveMeSettings();
 
   Future _loadFiles() async {
     if (await Permission.storage.request().isGranted) {
@@ -38,11 +31,7 @@ class _SaveMeState extends State<SaveMe> {
           updateListOnFileSystem;
           _homeWidget = SaveMeNumbersAdd();
         });
-      if (await callTimer.readTimerSettingFromFileSystem)
-        setState(() {
-          _afterNumberAdded = SaveMeNumbers();
-        });
-      else
+      if (await callTimer.readTimerSettingFromFileSystem != true)
         setState(() {
           callTimer.updateTimerSettingOnFileSystem;
         });
@@ -72,7 +61,6 @@ class _SaveMeState extends State<SaveMe> {
           '/settings': (BuildContext context) => SaveMeSettings(),
           '/numbers': (BuildContext context) => SaveMeNumbers(),
           '/numbers/add': (BuildContext context) => SaveMeNumbersAdd(),
-          '/numbers/added': (BuildContext context) => _afterNumberAdded,
         },
       );
 }

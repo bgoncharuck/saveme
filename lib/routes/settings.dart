@@ -5,8 +5,6 @@ import 'package:saveme/widgets/navigation_button.dart';
 import 'package:saveme/widgets/main_number.dart';
 import 'package:saveme/modules/timer.dart';
 
-bool wasStarted = false;
-
 class SaveMeSettings extends StatefulWidget {
   @override
   _SaveMeSettingsState createState() => _SaveMeSettingsState();
@@ -15,8 +13,6 @@ class SaveMeSettings extends StatefulWidget {
 class _SaveMeSettingsState extends State<SaveMeSettings> {
   @override
   Widget build(BuildContext context) {
-    callTimer.updateTimerSettingOnFileSystem;
-    wasStarted = true;
     return Scaffold(
       body: SafeArea(
         child: Column(
