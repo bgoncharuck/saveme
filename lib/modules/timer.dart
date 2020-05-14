@@ -1,7 +1,7 @@
 import 'package:saveme/models/timer_state.dart';
 import 'package:saveme/modules/storage_access.dart';
 import 'dart:convert';
-import 'dart:async';
+import 'package:saveme/models/timer_running.dart';
 
 final String timerSettingSaveFileName = "timer_setting.json";
 
@@ -11,8 +11,7 @@ abstract class ISaveMeTimer {
   Future<bool> load(ITimerState state);
   Future<bool> get readTimerSettingFromFileSystem;
   Future<bool> get updateTimerSettingOnFileSystem;
-  double minute;
-  double second;
+  TimerRunningCommand invoker;
   void stop();
   void start();
 }
@@ -22,18 +21,10 @@ class DefaultTimer implements ISaveMeTimer {
     minutes: 3,
     seconds: 30,
   );
-
-  double minute;
-  double second;
+  TimerRunningCommand invoker;
 
   DefaultTimer() {
     stop();
-  }
-
-  @override
-  void stop() {
-    minute = state.minutes;
-    second = state.seconds;
   }
 
   Future _callingEvent() async {}
@@ -42,6 +33,9 @@ class DefaultTimer implements ISaveMeTimer {
   void start() {
     _callingEvent();
   }
+
+  @override
+  void stop() {}
 
   @override
   Future<ITimerState> save() async => TimerState(

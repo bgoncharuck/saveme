@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:saveme/style/themes.dart';
 import 'package:saveme/modules/timer.dart';
 
 class TimerConfig extends StatefulWidget {
@@ -45,7 +44,7 @@ class _TimerConfigState extends State<TimerConfig> {
           onChangeEnd: (double changed) {
             setState(() {
               callTimer.state.minutes = changed;
-              callTimer.stop();
+              callTimer.update();
               callTimer.updateTimerSettingOnFileSystem;
             });
           },
@@ -73,7 +72,7 @@ class _TimerConfigState extends State<TimerConfig> {
           onChangeEnd: (double changed) {
             setState(() {
               callTimer.state.seconds = changed;
-              callTimer.stop();
+              callTimer.update();
               callTimer.updateTimerSettingOnFileSystem;
             });
           },
