@@ -2,10 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 
+StreamController<int> currentMinute = StreamController<int>();
+StreamController<int> currentSecond = StreamController<int>();
+
 abstract class TimerRunningCommand {
   DateTime id;
-  int get minute;
-  int get second;
   bool get isStop;
   bool get isNotStop;
   void start({double minutes = 0, double seconds = 0, Future onFinish()});
@@ -17,8 +18,6 @@ class OneTimerInvoker implements TimerRunningCommand {
   DateTime currentTimer;
   Map<DateTime, TimerRunningCommand> _timers = {};
 
-  int get minute => _timers[currentTimer].minute;
-  int get second => _timers[currentTimer].second;
   bool get isStop => _timers.isEmpty;
   bool get isNotStop => _timers.isNotEmpty;
 
@@ -60,8 +59,6 @@ class StoppedByBooleanCheckTimer implements TimerRunningCommand {
     _second = seconds;
   }
 
-  int get minute => _minute.toInt();
-  int get second => _second.toInt();
   bool get isStop => _isStopped;
   bool get isNotStop => !_isStopped;
 
@@ -78,6 +75,8 @@ class StoppedByBooleanCheckTimer implements TimerRunningCommand {
             ticks.cancel();
           } else if (_minute-- > 0) _second = 60;
         }
+        currentMinute.add(_minute.toInt());
+        currentSecond.add(_second.toInt());
       });
     // if timer set to 0 minutes and 0 seconds
     else if (this.isNotStop) onFinish();

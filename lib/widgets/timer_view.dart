@@ -1,8 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:saveme/style/themes.dart';
 import 'package:saveme/modules/timer.dart';
-
-//callTimer.invoker.minute
+import 'package:saveme/models/timer_running.dart';
 
 class TimerView extends StatefulWidget {
   @override
@@ -11,16 +12,10 @@ class TimerView extends StatefulWidget {
 
 class _TimerViewState extends State<TimerView> {
   @override
-  Widget build(BuildContext context) {
-    return CurrentTimerView(
-        callTimer.state.minutes.toInt(), callTimer.state.seconds.toInt());
+  initState() {
+    callTimer.start();
   }
-}
 
-class CurrentTimerView extends StatelessWidget {
-  final int _minute;
-  final int _second;
-  CurrentTimerView(this._minute, this._second);
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -30,9 +25,20 @@ class CurrentTimerView extends StatelessWidget {
         ),
         Column(
           children: <Widget>[
-            Text(
-              "${_minute}",
-              style: TextStyle(fontSize: 96),
+            StreamBuilder<int>(
+              stream: currentMinute.stream,
+              builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
+                if (snapshot.hasData)
+                  return Text(
+                    "${snapshot.data}",
+                    style: TextStyle(fontSize: 96),
+                  );
+                else
+                  return Text(
+                    "${callTimer.state.minutes.toInt()}",
+                    style: TextStyle(fontSize: 96),
+                  );
+              },
             ),
             Text(
               "min",
@@ -46,9 +52,20 @@ class CurrentTimerView extends StatelessWidget {
         ),
         Column(
           children: <Widget>[
-            Text(
-              "${_second}",
-              style: TextStyle(fontSize: 96),
+            StreamBuilder<int>(
+              stream: currentSecond.stream,
+              builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
+                if (snapshot.hasData)
+                  return Text(
+                    "${snapshot.data}",
+                    style: TextStyle(fontSize: 96),
+                  );
+                else
+                  return Text(
+                    "${callTimer.state.seconds.toInt()}",
+                    style: TextStyle(fontSize: 96),
+                  );
+              },
             ),
             Text(
               "sec",
