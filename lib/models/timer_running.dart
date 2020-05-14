@@ -4,8 +4,8 @@ import 'package:flutter/cupertino.dart';
 
 abstract class TimerRunningCommand {
   DateTime id;
-  double get minute;
-  double get second;
+  int get minute;
+  int get second;
   bool get isStop;
   bool get isNotStop;
   void start({double minutes = 0, double seconds = 0, Future onFinish()});
@@ -17,13 +17,22 @@ class OneTimerInvoker implements TimerRunningCommand {
   DateTime currentTimer;
   Map<DateTime, TimerRunningCommand> _timers = {};
 
-  double get minute => _timers[currentTimer].minute;
-  double get second => _timers[currentTimer].second;
+  int get minute => _timers[currentTimer].minute;
+  int get second => _timers[currentTimer].second;
   bool get isStop => _timers.isEmpty;
   bool get isNotStop => _timers.isNotEmpty;
 
   @override
-  void start({double minutes = 0, double seconds = 0, Future onFinish()}) {}
+  void start({double minutes = 0, double seconds = 0, Future onFinish()}) {
+    this.stop();
+    TimerRunningCommand current = StoppedByBooleanCheckTimer(
+        minutes: minutes, seconds: seconds, onFinish: onFinish);
+    _timers.putIfAbsent(current.id, () {
+      currentTimer = current.id;
+      return current;
+    });
+    _timers[currentTimer].start();
+  }
 
   @override
   void stop({DateTime id}) {
@@ -46,13 +55,13 @@ class StoppedByBooleanCheckTimer implements TimerRunningCommand {
       {@required double minutes,
       @required double seconds,
       @required Future onFinish()}) {
+    id = DateTime.now();
     _minute = minutes;
     _second = seconds;
-    this.start(minutes: minutes, seconds: seconds, onFinish: onFinish);
   }
 
-  double get minute => _minute;
-  double get second => _second;
+  int get minute => _minute.toInt();
+  int get second => _second.toInt();
   bool get isStop => _isStopped;
   bool get isNotStop => !_isStopped;
 
@@ -60,7 +69,7 @@ class StoppedByBooleanCheckTimer implements TimerRunningCommand {
     _isStopped = false;
     if (minutes != 0 || seconds != 0)
       Timer.periodic(Duration(seconds: 1), (ticks) {
-        if (_second == 0) {
+        if (_second-- == 0) {
           if (_minute == 0) {
             // Main magic
             if (this.isNotStop) onFinish();

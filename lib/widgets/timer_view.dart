@@ -2,7 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:saveme/style/themes.dart';
 import 'package:saveme/modules/timer.dart';
 
-class TimerView extends StatelessWidget {
+//callTimer.invoker.minute
+
+class TimerView extends StatefulWidget {
+  @override
+  _TimerViewState createState() => _TimerViewState();
+}
+
+class _TimerViewState extends State<TimerView> {
+  @override
+  Widget build(BuildContext context) {
+    return CurrentTimerView(
+        callTimer.state.minutes.toInt(), callTimer.state.seconds.toInt());
+  }
+}
+
+class CurrentTimerView extends StatelessWidget {
+  final int _minute;
+  final int _second;
+  CurrentTimerView(this._minute, this._second);
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -13,7 +31,7 @@ class TimerView extends StatelessWidget {
         Column(
           children: <Widget>[
             Text(
-              "${callTimer.minute.toInt()}",
+              "${_minute}",
               style: TextStyle(fontSize: 96),
             ),
             Text(
@@ -29,7 +47,7 @@ class TimerView extends StatelessWidget {
         Column(
           children: <Widget>[
             Text(
-              "${callTimer.second.toInt()}",
+              "${_second}",
               style: TextStyle(fontSize: 96),
             ),
             Text(

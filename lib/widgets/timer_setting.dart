@@ -44,7 +44,6 @@ class _TimerConfigState extends State<TimerConfig> {
           onChangeEnd: (double changed) {
             setState(() {
               callTimer.state.minutes = changed;
-              callTimer.update();
               callTimer.updateTimerSettingOnFileSystem;
             });
           },
@@ -72,7 +71,6 @@ class _TimerConfigState extends State<TimerConfig> {
           onChangeEnd: (double changed) {
             setState(() {
               callTimer.state.seconds = changed;
-              callTimer.update();
               callTimer.updateTimerSettingOnFileSystem;
             });
           },
