@@ -21,21 +21,28 @@ class DefaultTimer implements ISaveMeTimer {
     minutes: 3,
     seconds: 30,
   );
-  TimerRunningCommand invoker;
+  TimerRunningCommand invoker = OneTimerInvoker();
 
   DefaultTimer() {
     stop();
   }
 
-  Future _callingEvent() async {}
-
-  @override
-  void start() {
-    _callingEvent();
+  Future _callingEvent() async {
+    print("Calling! Beep beep.");
   }
 
   @override
-  void stop() {}
+  void start() {
+    invoker.start(
+        minutes: state.minutes,
+        seconds: state.seconds,
+        onFinish: _callingEvent);
+  }
+
+  @override
+  void stop() {
+    if (invoker.isNotStop) invoker.stop();
+  }
 
   @override
   Future<ITimerState> save() async => TimerState(
