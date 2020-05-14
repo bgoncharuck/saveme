@@ -3,7 +3,7 @@ import 'package:saveme/modules/numbers_list.dart';
 import 'package:saveme/style/themes.dart';
 import 'package:saveme/widgets/navigation_button.dart';
 import 'package:saveme/widgets/main_number.dart';
-import 'package:saveme/modules/timer.dart';
+import 'package:saveme/widgets/timer_setting.dart';
 
 class SaveMeSettings extends StatefulWidget {
   @override
