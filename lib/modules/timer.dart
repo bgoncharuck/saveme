@@ -8,6 +8,7 @@ import 'dart:async';
 final String timerSettingSaveFileName = "timer_setting.json";
 
 abstract class ISaveMeTimer {
+  bool wasStopped;
   ITimerState state;
   Future<ITimerState> save();
   Future<bool> load(ITimerState state);
@@ -16,9 +17,11 @@ abstract class ISaveMeTimer {
   double minute;
   double second;
   void stop();
+  void start();
 }
 
 class DefaultTimer implements ISaveMeTimer {
+  bool wasStopped = true;
   ITimerState state = TimerState(
     minutes: 3,
     seconds: 30,
@@ -33,8 +36,24 @@ class DefaultTimer implements ISaveMeTimer {
 
   @override
   void stop() {
+    wasStopped = true;
     minute = state.minutes;
     second = state.seconds;
+  }
+
+  Future _callingEvent() async {
+    Timer(
+        Duration(
+            minutes: state.minutes.toInt(), seconds: state.seconds.toInt()),
+        () => (wasStopped)
+            ? print("The Timer Was Stopped.")
+            : print("Calling. BEEP BEEP."));
+  }
+
+  @override
+  void start() {
+    wasStopped = false;
+    _callingEvent();
   }
 
   @override
