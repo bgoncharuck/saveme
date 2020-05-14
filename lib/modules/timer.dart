@@ -66,7 +66,6 @@ class DefaultTimer implements ISaveMeTimer {
     if (timerSetting != null) {
       var loadedTimerState = json.decode(timerSetting);
       this.load(TimerState.fromJSON(loadedTimerState));
-      this.stop();
       return true;
     }
     return false;
