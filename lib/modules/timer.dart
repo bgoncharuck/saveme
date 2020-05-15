@@ -14,7 +14,8 @@ abstract class ISaveMeTimer {
   Future<bool> load(ITimerState state);
   Future<bool> get readTimerSettingFromFileSystem;
   Future<bool> get updateTimerSettingOnFileSystem;
-
+  IInnerTimer innerTimer;
+  void update();
   void stop();
   void start();
 }
@@ -25,18 +26,20 @@ class DefaultTimer implements ISaveMeTimer {
     seconds: 30,
   );
 
-
-  DefaultTimer() {
-    stop();
-  }
+  IInnerTimer innerTimer = StopwatchInnerTimer();
 
   Future _callingEvent() async {
     print("Calling! Beep beep.");
   }
 
   @override
+  void update() {
+    innerTimer.updateInnerTimer(minute: currentMinute, second: currentSecond);
+  }
+
+  @override
   void start() {
-    .start(
+    innerTimer.start(
         minutes: state.minutes,
         seconds: state.seconds,
         onFinish: _callingEvent);
@@ -44,7 +47,7 @@ class DefaultTimer implements ISaveMeTimer {
 
   @override
   void stop() {
-    if (.isNotStop) .stop();
+    if (innerTimer.isNotRunning) innerTimer.stop();
   }
 
   @override

@@ -14,6 +14,7 @@ class _TimerViewState extends State<TimerView> {
   @override
   initState() {
     callTimer.start();
+    Timer.periodic(Duration(seconds: 1), (Timer t) => callTimer.update());
   }
 
   @override
