@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'dart:convert';
 import 'dart:async';
 
-ISaveMeTimer callTimer;
+ISaveMeTimer callTimer = DefaultTimer();
 StreamController<int> currentMinute = StreamController<int>();
 StreamController<int> currentSecond = StreamController<int>();
 final String timerSettingSaveFileName = "timer_setting.json";
@@ -23,7 +23,10 @@ abstract class ISaveMeTimer {
 }
 
 class DefaultTimer implements ISaveMeTimer {
-  ITimerState state;
+  ITimerState state = TimerState(
+    minutes: 1,
+    seconds: 30,
+  );
   IInnerTimer innerTimer = StopwatchInnerTimer();
 
   void _callingEvent() {
