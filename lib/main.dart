@@ -4,6 +4,7 @@ import 'package:saveme/screens/home.dart';
 import 'package:saveme/screens/settings.dart';
 import 'package:saveme/screens/numbers.dart';
 import 'package:saveme/screens/numbers_add.dart';
+import 'models/timer_state.dart';
 import 'package:saveme/modules/numbers_list.dart';
 import 'package:saveme/modules/timer.dart';
 import 'package:saveme/components/error_message.dart';
@@ -31,8 +32,13 @@ class _SaveMeState extends State<SaveMe> {
           updateListOnFileSystem;
           _homeWidget = SaveMeNumbersAdd();
         });
+      callTimer = DefaultTimer();
       if (await callTimer.readTimerSettingFromFileSystem != true)
         setState(() {
+          callTimer.load(TimerState(
+            minutes: 3,
+            seconds: 30,
+          ));
           callTimer.updateTimerSettingOnFileSystem;
         });
     } else {

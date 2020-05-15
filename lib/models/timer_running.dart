@@ -19,13 +19,14 @@ class StopwatchInnerTimer implements IInnerTimer {
 
   void updateInnerTimer(
       {StreamController<int> minute, StreamController<int> second}) {
-    if (_timerDuration.inMilliseconds == _innerTimer.elapsed.inMilliseconds) {
+    if (_innerTimer.elapsedMilliseconds >= _timerDuration.inMilliseconds) {
       this.stop();
       this._onFinish();
     }
 
     final remaining =
         _timerDuration.inMilliseconds - _innerTimer.elapsed.inMilliseconds;
+
     minute.add(((remaining / (1000 * 60)) % 60).toInt());
     second.add(((remaining / 1000) % 60).toInt());
   }
@@ -40,7 +41,7 @@ class StopwatchInnerTimer implements IInnerTimer {
 
   @override
   void stop() {
-    this._innerTimer.stop();
     this._innerTimer.reset();
+    this._innerTimer.stop();
   }
 }

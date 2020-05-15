@@ -1,9 +1,11 @@
 import 'package:saveme/models/timer_state.dart';
 import 'package:saveme/models/timer_running.dart';
 import 'package:saveme/modules/storage_access.dart';
+import 'package:flutter/services.dart';
 import 'dart:convert';
 import 'dart:async';
 
+ISaveMeTimer callTimer;
 StreamController<int> currentMinute = StreamController<int>();
 StreamController<int> currentSecond = StreamController<int>();
 final String timerSettingSaveFileName = "timer_setting.json";
@@ -21,15 +23,12 @@ abstract class ISaveMeTimer {
 }
 
 class DefaultTimer implements ISaveMeTimer {
-  ITimerState state = TimerState(
-    minutes: 3,
-    seconds: 30,
-  );
-
+  ITimerState state;
   IInnerTimer innerTimer = StopwatchInnerTimer();
 
-  Future _callingEvent() async {
+  void _callingEvent() {
     print("Calling! Beep beep.");
+    SystemChannels.platform.invokeMethod('SystemNavigator.pop');
   }
 
   @override
@@ -83,5 +82,3 @@ class DefaultTimer implements ISaveMeTimer {
         asFile: timerSettingSaveFileName,
       );
 }
-
-final ISaveMeTimer callTimer = DefaultTimer();

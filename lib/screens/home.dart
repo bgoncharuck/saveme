@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:saveme/components/main_button.dart';
 import 'package:saveme/components/navigation_button.dart';
 import 'package:saveme/components/timer_view.dart';
+import 'package:saveme/modules/timer.dart';
 
 class SaveMeHome extends StatefulWidget {
   @override
@@ -22,6 +23,9 @@ class _SaveMeHomeState extends State<SaveMeHome> {
                   navigate: "/settings",
                   name: "Settings",
                   icon: Icons.settings,
+                  optionalAction: () {
+                    callTimer.stop();
+                  },
                 ),
                 Expanded(
                   child: SizedBox(),
