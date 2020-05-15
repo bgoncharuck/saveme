@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:saveme/style/themes.dart';
+import 'package:saveme/theme/style.dart';
 
 class SaveMeMainButton extends StatefulWidget {
   @override
@@ -55,7 +55,8 @@ class _SaveMeMainButtonState extends State<SaveMeMainButton> {
                     child: Center(
                       child: Text(
                         "Stop",
-                        style: TextStyle(fontSize: 96, color: defaultTheme.onMainColor),
+                        style: TextStyle(
+                            fontSize: 96, color: defaultTheme.onMainColor),
                       ),
                     ),
                   ),

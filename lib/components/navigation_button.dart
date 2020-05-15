@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:saveme/style/themes.dart';
+import 'package:saveme/theme/style.dart';
 
 class NavigationButton extends StatefulWidget {
   final String navigate;
@@ -16,7 +16,7 @@ class NavigationButton extends StatefulWidget {
     this.margin = const EdgeInsets.all(8.0),
     this.padding = const EdgeInsets.all(8.0),
     this.optionalAction,
-  }) ;
+  });
   @override
   _NavigationButtonState createState() => _NavigationButtonState();
 }

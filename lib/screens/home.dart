@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:saveme/widgets/main_button.dart';
-import 'package:saveme/widgets/navigation_button.dart';
-import 'package:saveme/widgets/timer_view.dart';
+import 'package:saveme/components/main_button.dart';
+import 'package:saveme/components/navigation_button.dart';
+import 'package:saveme/components/timer_view.dart';
 
 class SaveMeHome extends StatefulWidget {
   @override

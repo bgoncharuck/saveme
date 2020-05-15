@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:saveme/style/themes.dart';
+import 'package:saveme/theme/style.dart';
 import 'package:saveme/modules/timer.dart';
 import 'package:saveme/models/timer_running.dart';
 

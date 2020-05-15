@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:saveme/modules/numbers_list.dart';
-import 'package:saveme/style/themes.dart';
-import 'package:saveme/widgets/navigation_button.dart';
-import 'package:saveme/widgets/main_number.dart';
-import 'package:saveme/widgets/timer_setting.dart';
+import 'package:saveme/theme/style.dart';
+import 'package:saveme/components/navigation_button.dart';
+import 'package:saveme/components/main_number.dart';
+import 'package:saveme/components/timer_setting.dart';
 
 class SaveMeSettings extends StatefulWidget {
   @override

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:saveme/style/themes.dart';
+import 'package:saveme/theme/style.dart';
 
 class SaveMeErrorMessage extends StatelessWidget {
   final String description;
