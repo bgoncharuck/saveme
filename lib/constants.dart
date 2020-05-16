@@ -1,4 +1,7 @@
 import 'dart:async';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:permission_handler/permission_handler.dart';
+
 import 'modules/storage_access.dart';
 import 'models/timer.dart';
 import 'theme/style.dart';
@@ -16,3 +19,5 @@ void get fullStopTimer {
   outerTimer.cancel();
   print("Timer was stopped.");
 }
+
+Map<Permission, PermissionStatus> statusOf;

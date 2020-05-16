@@ -19,10 +19,17 @@ class SaveMe extends StatefulWidget {
 class _SaveMeState extends State<SaveMe> {
   Widget _homeWidget = SaveMeSettings();
 
+  Future _getPermissionsIfAny() async {
+    statusOf = await [
+      Permission.storage,
+      Permission.contacts,
+    ].request();
+  }
+
   Future _loadFiles() async {
-    if (await Permission.storage.request().isGranted) {
+    if (statusOf[Permission.storage].isGranted) {
       if (await readNumbersFromFileSystemIfAny) {
-        print("Access was granted and files loaded");
+        print("Access was granted and files loaded.");
         setState(() {
           if (atLeastOneNumberExist) _homeWidget = SaveMeHome();
         });
@@ -47,10 +54,25 @@ class _SaveMeState extends State<SaveMe> {
     }
   }
 
+  Future _checkContactListPermissionStatus() async {
+    if (statusOf[Permission.contacts].isGranted) {
+      print("Access to contacts was granted.");
+    } else {
+      print("Access to contacts was not granted.");
+    }
+    setState(() {});
+  }
+
+  Future asyncInitPart() async {
+    await _getPermissionsIfAny();
+    await _loadFiles();
+    await _checkContactListPermissionStatus();
+  }
+
   @override
   void initState() {
+    asyncInitPart();
     super.initState();
-    _loadFiles();
   }
 
   Widget build(BuildContext context) => MaterialApp(
