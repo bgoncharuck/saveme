@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:saveme/modules/numbers_list.dart';
+import 'package:saveme/models/numbers_list.dart';
 import 'package:saveme/components/navigation_button.dart';
 
 class SaveMeNumbers extends StatefulWidget {
