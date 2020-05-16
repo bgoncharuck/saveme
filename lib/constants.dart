@@ -12,7 +12,7 @@ final ISaveMeTimer callTimer = DefaultTimer();
 final IStorageFile storage = DefaultStorage();
 Timer outerTimer;
 void get fullStopTimer {
-  outerTimer.cancel();
   callTimer.stop();
+  outerTimer.cancel();
   print("Timer was stopped.");
 }

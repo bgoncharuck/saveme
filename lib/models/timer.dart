@@ -1,7 +1,7 @@
 import 'package:saveme/constants.dart';
 import 'package:saveme/models/timer_state.dart';
 import 'package:saveme/models/timer_inner.dart';
-import 'package:flutter/services.dart';
+import 'package:saveme/modules/calling_event.dart';
 import 'dart:convert';
 import 'dart:async';
 
@@ -24,11 +24,6 @@ class DefaultTimer implements ISaveMeTimer {
   );
   IInnerTimer innerTimer = StopwatchInnerTimer();
 
-  void _callingEvent() {
-    print("Calling! Beep beep.");
-    SystemChannels.platform.invokeMethod('SystemNavigator.pop');
-  }
-
   @override
   void update() {
     innerTimer.updateInnerTimer(minute: currentMinute, second: currentSecond);
@@ -37,9 +32,7 @@ class DefaultTimer implements ISaveMeTimer {
   @override
   void start() {
     innerTimer.start(
-        minutes: state.minutes,
-        seconds: state.seconds,
-        onFinish: _callingEvent);
+        minutes: state.minutes, seconds: state.seconds, onFinish: callingEvent);
   }
 
   @override

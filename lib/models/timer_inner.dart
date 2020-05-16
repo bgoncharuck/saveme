@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:saveme/constants.dart';
+
 abstract class IInnerTimer {
   bool get isRunning;
   bool get isNotRunning;
@@ -20,7 +22,7 @@ class StopwatchInnerTimer implements IInnerTimer {
   void updateInnerTimer(
       {StreamController<int> minute, StreamController<int> second}) {
     if (_innerTimer.elapsedMilliseconds >= _timerDuration.inMilliseconds) {
-      this.stop();
+      fullStopTimer;
       this._onFinish();
     }
 
