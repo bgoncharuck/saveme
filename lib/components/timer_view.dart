@@ -2,8 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:saveme/constants.dart';
-import 'package:saveme/theme/style.dart';
-import 'package:saveme/modules/timer.dart';
 
 class TimerView extends StatefulWidget {
   @override

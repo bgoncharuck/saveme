@@ -5,7 +5,7 @@ import 'package:saveme/screens/home.dart';
 import 'package:saveme/screens/settings.dart';
 import 'package:saveme/screens/numbers.dart';
 import 'package:saveme/screens/numbers_add.dart';
-import 'package:saveme/models/numbers_list.dart';
+import 'package:saveme/components/numbers_list.dart';
 import 'package:saveme/components/error_message.dart';
 import 'package:permission_handler/permission_handler.dart';
 
