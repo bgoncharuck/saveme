@@ -1,14 +1,9 @@
+import 'package:saveme/constants.dart';
 import 'package:saveme/models/timer_state.dart';
-import 'package:saveme/models/timer_running.dart';
-import 'package:saveme/modules/storage_access.dart';
+import 'package:saveme/models/timer_inner.dart';
 import 'package:flutter/services.dart';
 import 'dart:convert';
 import 'dart:async';
-
-ISaveMeTimer callTimer = DefaultTimer();
-StreamController<int> currentMinute = StreamController<int>();
-StreamController<int> currentSecond = StreamController<int>();
-final String timerSettingSaveFileName = "timer_setting.json";
 
 abstract class ISaveMeTimer {
   ITimerState state;

@@ -1,0 +1,19 @@
+import 'dart:async';
+import 'modules/storage_access.dart';
+import 'modules/timer.dart';
+import 'theme/style.dart';
+
+final IDefaultTheme defaultTheme = GreenGreyTheme();
+final String numbersListSaveFileName = "numbers_list.json";
+final String timerSettingSaveFileName = "timer_setting.json";
+final StreamController<int> currentMinute = StreamController<int>();
+final StreamController<int> currentSecond = StreamController<int>();
+final ISaveMeTimer callTimer = DefaultTimer();
+final IStorageFile storage = DefaultStorage();
+void get fullStopTimer {
+  outerTimer.cancel();
+  callTimer.stop();
+  print("Timer was stopped.");
+}
+
+Timer outerTimer;

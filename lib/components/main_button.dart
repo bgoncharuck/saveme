@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:saveme/theme/style.dart';
+import 'package:saveme/constants.dart';
 
 class SaveMeMainButton extends StatefulWidget {
   @override
@@ -31,6 +31,7 @@ class _SaveMeMainButtonState extends State<SaveMeMainButton> {
                 FlatButton(
                   onPressed: () {
                     setState(() {
+                      fullStopTimer;
                       SystemChannels.platform
                           .invokeMethod('SystemNavigator.pop');
                     });

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:saveme/theme/style.dart';
+import 'package:saveme/constants.dart';
 import 'package:saveme/modules/numbers_list.dart';
 import 'package:saveme/models/number.dart';
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:saveme/constants.dart';
 
 abstract class IDefaultTheme {
   Color background;
@@ -17,8 +18,6 @@ class GreenGreyTheme implements IDefaultTheme {
   Color label = Colors.grey[500];
   Color accent = Colors.red;
 }
-
-final IDefaultTheme defaultTheme = GreenGreyTheme();
 
 final ThemeData saveMeLight = ThemeData(
   colorScheme: ColorScheme(

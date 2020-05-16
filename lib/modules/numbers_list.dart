@@ -1,11 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:saveme/theme/style.dart';
+import 'package:saveme/constants.dart';
 import 'package:saveme/models/number.dart';
-import 'package:saveme/modules/storage_access.dart';
 
-final String numbersListSaveFileName = "numbers_list.json";
 List<INumber> _numbers = [];
 
 Future<bool> get readNumbersFromFileSystemIfAny async {

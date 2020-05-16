@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:saveme/constants.dart';
 import 'package:saveme/theme/style.dart';
 import 'package:saveme/modules/timer.dart';
-import 'package:saveme/models/timer_running.dart';
 
 class TimerView extends StatefulWidget {
   @override
@@ -14,7 +14,8 @@ class _TimerViewState extends State<TimerView> {
   @override
   initState() {
     callTimer.start();
-    Timer.periodic(Duration(seconds: 1), (Timer t) => callTimer.update());
+    outerTimer =
+        Timer.periodic(Duration(seconds: 1), (Timer t) => callTimer.update());
   }
 
   @override

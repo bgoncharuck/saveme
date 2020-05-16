@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:saveme/constants.dart';
 import 'package:saveme/theme/style.dart';
 import 'package:saveme/screens/home.dart';
 import 'package:saveme/screens/settings.dart';
 import 'package:saveme/screens/numbers.dart';
 import 'package:saveme/screens/numbers_add.dart';
 import 'package:saveme/modules/numbers_list.dart';
-import 'package:saveme/modules/timer.dart';
 import 'package:saveme/components/error_message.dart';
 import 'package:permission_handler/permission_handler.dart';
 

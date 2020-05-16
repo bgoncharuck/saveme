@@ -34,5 +34,3 @@ class DefaultStorage implements IStorageFile {
     return null;
   }
 }
-
-final IStorageFile storage = DefaultStorage();
