@@ -19,6 +19,24 @@ class GreenGreyTheme implements IDefaultTheme {
   Color accent = Colors.red;
 }
 
+class OrangeGreyTheme implements IDefaultTheme {
+  Color background = Colors.grey[100];
+  Color onBackground = Colors.black;
+  Color mainColor = Colors.orange;
+  Color onMainColor = Colors.white;
+  Color label = Colors.grey[500];
+  Color accent = Colors.red;
+}
+
+class YellowGreyTheme implements IDefaultTheme {
+  Color background = Colors.grey[100];
+  Color onBackground = Colors.black;
+  Color mainColor = Colors.yellow;
+  Color onMainColor = Colors.white;
+  Color label = Colors.grey[500];
+  Color accent = Colors.red;
+}
+
 final ThemeData saveMeLight = ThemeData(
   colorScheme: ColorScheme(
     background: defaultTheme.background,
