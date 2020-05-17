@@ -20,9 +20,9 @@ class GreenGreyTheme implements IDefaultTheme {
 }
 
 class OrangeGreyTheme implements IDefaultTheme {
-  Color background = Colors.grey[100];
+  Color background = Colors.grey[200];
   Color onBackground = Colors.black;
-  Color mainColor = Colors.orange;
+  Color mainColor = Colors.orangeAccent;
   Color onMainColor = Colors.white;
   Color label = Colors.grey[500];
   Color accent = Colors.red;
