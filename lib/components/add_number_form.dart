@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:saveme/constants.dart';
 import 'package:saveme/components/numbers_list.dart';
 import 'package:saveme/models/number.dart';
+import 'package:saveme/modules/contacts_access.dart';
 
 class AddNumberForm extends StatefulWidget {
   @override
@@ -12,6 +13,13 @@ class AddNumberForm extends StatefulWidget {
 class _AddNumberFormState extends State<AddNumberForm> {
   final TextEditingController _editedNumber = TextEditingController();
   final _addNumberFormKey = GlobalKey<FormState>();
+  void _numberEditingComplete() {
+    if (_addNumberFormKey.currentState.validate()) {
+      addNumber(Number(_editedNumber.text, isMain: noNumberSetted));
+      Navigator.of(context).pushNamed("/numbers");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -41,19 +49,23 @@ class _AddNumberFormState extends State<AddNumberForm> {
             keyboardType: TextInputType.phone,
             autofocus: true,
             decoration: InputDecoration(
-              icon: Icon(
-                Icons.import_contacts,
-                color: defaultTheme.onBackground,
-                size: 28.0,
+              icon: FlatButton(
+                child: Icon(
+                  Icons.import_contacts,
+                  color: defaultTheme.onBackground,
+                  size: 28.0,
+                ),
+                onPressed: () {
+                  setState(() {
+                    getNumberFromContactsList(_editedNumber);
+                    _numberEditingComplete();
+                  });
+                },
               ),
             ),
             controller: _editedNumber,
             onEditingComplete: () {
-              if (_addNumberFormKey.currentState.validate()) {
-                addNumber(Number(_editedNumber.text, isMain: noNumberSetted));
-                Navigator.of(context).pushNamed("/numbers");
-                ;
-              }
+              _numberEditingComplete();
             },
           ),
         ],

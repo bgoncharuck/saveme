@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:saveme/models/number.dart';
 import 'package:saveme/components/numbers_list.dart';
 import 'package:saveme/constants.dart';
+import 'package:saveme/modules/contacts_access.dart';
 
 class MainNumber extends StatefulWidget {
   @override
@@ -11,6 +12,19 @@ class MainNumber extends StatefulWidget {
 class _MainNumberState extends State<MainNumber> {
   final TextEditingController _editedNumber = TextEditingController();
   final _mainNumberFormKey = GlobalKey<FormState>();
+  void _numberEditingComplete() {
+    if (_mainNumberFormKey.currentState.validate()) {
+      if (atLeastOneNumberExist) {
+        mainNumber.text = _editedNumber.text;
+        updateListOnFileSystem;
+      } else
+        addNumber(Number(_editedNumber.text, isMain: noNumberSetted));
+
+      _editedNumber.text = mainNumber.text;
+    }
+    FocusScope.of(context).unfocus();
+  }
+
   _MainNumberState() {
     _editedNumber.text = mainNumber.text;
   }
@@ -31,24 +45,23 @@ class _MainNumberState extends State<MainNumber> {
           autofocus: false,
           decoration: InputDecoration(
             labelText: "Main Phone Number To Call",
-            icon: Icon(
-              Icons.smartphone,
-              color: defaultTheme.onBackground,
-              size: 28.0,
+            icon: FlatButton(
+              child: Icon(
+                Icons.smartphone,
+                color: defaultTheme.onBackground,
+                size: 28.0,
+              ),
+              onPressed: () {
+                setState(() {
+                  getNumberFromContactsList(_editedNumber);
+                  _numberEditingComplete();
+                });
+              },
             ),
           ),
           controller: _editedNumber,
           onEditingComplete: () {
-            if (_mainNumberFormKey.currentState.validate()) {
-              if (atLeastOneNumberExist) {
-                mainNumber.text = _editedNumber.text;
-                updateListOnFileSystem;
-              } else
-                addNumber(Number(_editedNumber.text, isMain: noNumberSetted));
-
-              _editedNumber.text = mainNumber.text;
-            }
-            FocusScope.of(context).unfocus();
+            _numberEditingComplete();
           },
         ),
       ),

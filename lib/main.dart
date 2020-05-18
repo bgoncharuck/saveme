@@ -18,6 +18,7 @@ class SaveMe extends StatefulWidget {
 
 class _SaveMeState extends State<SaveMe> {
   Widget _homeWidget = SaveMeSettings();
+  Map<Permission, PermissionStatus> statusOf;
 
   Future _getPermissionsIfAny() async {
     statusOf = await [
