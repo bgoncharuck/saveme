@@ -27,4 +27,3 @@ Future<bool> getNumberFromContactsList(
   }
   return false;
 }
-// void
