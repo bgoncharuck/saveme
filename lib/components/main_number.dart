@@ -12,6 +12,8 @@ class MainNumber extends StatefulWidget {
 class _MainNumberState extends State<MainNumber> {
   final TextEditingController _editedNumber = TextEditingController();
   final _mainNumberFormKey = GlobalKey<FormState>();
+  FocusNode numberInputFocus;
+  bool _contactWasPicked = false;
   void _numberEditingComplete() {
     if (_mainNumberFormKey.currentState.validate()) {
       if (atLeastOneNumberExist) {
@@ -22,48 +24,66 @@ class _MainNumberState extends State<MainNumber> {
 
       _editedNumber.text = mainNumber.text;
     }
-    FocusScope.of(context).unfocus();
   }
 
-  _MainNumberState() {
-    _editedNumber.text = mainNumber.text;
+  Future get _editedByContactsPick async {
+    _contactWasPicked = await getNumberFromContactsList(_editedNumber);
+    if (_contactWasPicked) {
+      _numberEditingComplete();
+      _contactWasPicked = false;
+    }
   }
+
+  @override
+  void initState() {
+    _editedNumber.text = mainNumber.text;
+    numberInputFocus = FocusNode();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(right: 16, left: 16),
-      child: Form(
-        key: _mainNumberFormKey,
-        child: TextFormField(
-          validator: (String number) {
-            if (number.isEmpty || number.length < 3) {
-              return 'Number must to be valid';
-            }
-            return null;
-          },
-          keyboardType: TextInputType.phone,
-          autofocus: false,
-          decoration: InputDecoration(
-            labelText: "Main Phone Number To Call",
-            icon: FlatButton(
-              child: Icon(
-                Icons.smartphone,
-                color: defaultTheme.onBackground,
-                size: 28.0,
-              ),
-              onPressed: () {
-                setState(() {
-                  getNumberFromContactsList(_editedNumber);
+      child: Row(
+        children: <Widget>[
+          FlatButton(
+            child: Icon(
+              Icons.smartphone,
+              color: defaultTheme.onBackground,
+              size: 28.0,
+            ),
+            onPressed: () {
+              setState(() {
+                _editedByContactsPick;
+              });
+            },
+          ),
+          Flexible(
+            child: Form(
+              key: _mainNumberFormKey,
+              child: TextFormField(
+                validator: (String number) {
+                  if (number.isEmpty || number.length < 3) {
+                    return 'Number must to be valid';
+                  }
+                  return null;
+                },
+                keyboardType: TextInputType.phone,
+                focusNode: numberInputFocus,
+                autofocus: false,
+                decoration: InputDecoration(
+                  labelText: "Main Phone Number To Call",
+                ),
+                controller: _editedNumber,
+                onEditingComplete: () {
                   _numberEditingComplete();
-                });
-              },
+                  numberInputFocus.unfocus();
+                },
+              ),
             ),
           ),
-          controller: _editedNumber,
-          onEditingComplete: () {
-            _numberEditingComplete();
-          },
-        ),
+        ],
       ),
     );
   }

@@ -18,7 +18,12 @@ class DefaultContactsAction implements IContactsAction {
   }
 }
 
-Future getNumberFromContactsList(TextEditingController textController) async {
+Future<bool> getNumberFromContactsList(
+    TextEditingController textController) async {
   String number = await contacts.choose();
-  if (number != null) textController.text = number;
+  if (number != null) {
+    textController.text = number;
+    return true;
+  }
+  return false;
 }

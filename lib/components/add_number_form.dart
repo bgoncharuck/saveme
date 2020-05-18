@@ -13,11 +13,27 @@ class AddNumberForm extends StatefulWidget {
 class _AddNumberFormState extends State<AddNumberForm> {
   final TextEditingController _editedNumber = TextEditingController();
   final _addNumberFormKey = GlobalKey<FormState>();
+  FocusNode numberInputFocus;
+  bool _contactWasPicked = false;
   void _numberEditingComplete() {
     if (_addNumberFormKey.currentState.validate()) {
       addNumber(Number(_editedNumber.text, isMain: noNumberSetted));
       Navigator.of(context).pushNamed("/numbers");
     }
+  }
+
+  Future get _editedByContactsPick async {
+    _contactWasPicked = await getNumberFromContactsList(_editedNumber);
+    if (_contactWasPicked) {
+      _numberEditingComplete();
+      _contactWasPicked = false;
+    }
+  }
+
+  @override
+  void initState() {
+    numberInputFocus = FocusNode();
+    super.initState();
   }
 
   @override
@@ -37,19 +53,9 @@ class _AddNumberFormState extends State<AddNumberForm> {
               ),
             ),
           ),
-          TextFormField(
-            validator: (String number) {
-              if (number.isEmpty || number.length < 3) {
-                return 'Number must to be valid';
-              } else if (numberIsAlreadyAddded(number)) {
-                return "You already added this number";
-              }
-              return null;
-            },
-            keyboardType: TextInputType.phone,
-            autofocus: true,
-            decoration: InputDecoration(
-              icon: FlatButton(
+          Row(
+            children: <Widget>[
+              FlatButton(
                 child: Icon(
                   Icons.import_contacts,
                   color: defaultTheme.onBackground,
@@ -57,16 +63,30 @@ class _AddNumberFormState extends State<AddNumberForm> {
                 ),
                 onPressed: () {
                   setState(() {
-                    getNumberFromContactsList(_editedNumber);
-                    _numberEditingComplete();
+                    _editedByContactsPick;
                   });
                 },
               ),
-            ),
-            controller: _editedNumber,
-            onEditingComplete: () {
-              _numberEditingComplete();
-            },
+              Flexible(
+                child: TextFormField(
+                  validator: (String number) {
+                    if (number.isEmpty || number.length < 3) {
+                      return 'Number must to be valid';
+                    } else if (numberIsAlreadyAddded(number)) {
+                      return "You already added this number";
+                    }
+                    return null;
+                  },
+                  keyboardType: TextInputType.phone,
+                  focusNode: numberInputFocus,
+                  autofocus: true,
+                  controller: _editedNumber,
+                  onEditingComplete: () {
+                    _numberEditingComplete();
+                  },
+                ),
+              ),
+            ],
           ),
         ],
       ),
