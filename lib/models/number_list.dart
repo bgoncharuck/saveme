@@ -21,47 +21,50 @@ class DefaultNumberList implements INumberList {
 
   @override
   Future<bool> get readFromFileSystemIfAny async {
-    String listOfNumbers = await storage.read(fromFile: numbersListSaveFileName);
-    if (listOfNumbers != null) {
-      var numbersFromJSON = json.decode(listOfNumbers).toList();
-      numbers = [];
-      for (Map<String, dynamic> mappedNumber in numbersFromJSON)
-        numbers.add(Number.fromJson(mappedNumber));
-      return true;
-    }
-    return false;
+
+    String listOfNumbers = await storage.read(
+      fromFile: numbersListSaveFileName
+    );
+    if (listOfNumbers == null) return false;
+    if (this.numbers.isNotEmpty) this.numbers = [];
+
+    var numbersFromJSON = json.decode(listOfNumbers).toList();
+    for (Map<String, dynamic> mappedNumber in numbersFromJSON)
+      this.numbers.add(Number.fromJson(mappedNumber));
+    return true;
   }
 
   @override
   Future<bool> get updateOnFileSystem async => await storage.write(
-      data: json.encode(numbers), asFile: numbersListSaveFileName);
+      data: json.encode(this.numbers), asFile: numbersListSaveFileName
+  );
 
   @override
-  bool get atLeastOneNumberExist => numbers.isNotEmpty;
+  bool get atLeastOneNumberExist => this.numbers.isNotEmpty;
   @override
-  bool get noNumberSetted => numbers.isEmpty;
+  bool get noNumberSetted => this.numbers.isEmpty;
 
   @override
-  INumber get mainNumber => numbers.firstWhere((INumber number) {
+  INumber get mainNumber => this.numbers.firstWhere((INumber number) {
         if (number.isMainNumber) return true;
         return false;
       }, orElse: () => noNumber);
 
   @override
-  bool numberIsNotAlreadyAddded(String text) => !numbers.any((INumber number) {
+  bool numberIsNotAlreadyAddded(String text) => !this.numbers.any((INumber number) {
         if (number.text == text) return true;
         return false;
       });
 
   @override
-  bool numberIsAlreadyAddded(String text) => numbers.any((INumber number) {
+  bool numberIsAlreadyAddded(String text) => this.numbers.any((INumber number) {
         if (number.text == text) return true;
         return false;
       });
 
   @override
   void addNumber(INumber number) {
-    numbers.add(number);
+    this.numbers.add(number);
     this.updateOnFileSystem;
   }
 }
