@@ -24,6 +24,12 @@ class _ContactNumberInputFormState extends State<ContactNumberInputForm> {
   final _numberFormKey = GlobalKey<FormState>();
   bool _contactWasPicked = false;
 
+  @override
+  void initState() {
+    if (widget.isEditable) _editedNumberController.text = mainNumber.text;
+    super.initState();
+  }
+
   void _addNumber() =>
       addNumber(Number(_editedNumberController.text, isMain: noNumberSetted));
 
@@ -74,6 +80,7 @@ class _ContactNumberInputFormState extends State<ContactNumberInputForm> {
           child: Form(
             key: _numberFormKey,
             child: TextFormField(
+              controller: _editedNumberController,
               validator: (String number) {
                 if (number.isEmpty || number.length < 3) {
                   return 'Number must to be valid';
