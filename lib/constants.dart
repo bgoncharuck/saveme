@@ -8,8 +8,10 @@ final IDefaultTheme defaultTheme = OrangeGreyTheme();
 final String numbersListSaveFileName = "numbers_list.json";
 final String timerSettingSaveFileName = "timer_setting.json";
 final IStorageFile storage = DefaultStorage();
+final IContactsAction contacts = DefaultContactsAction();
+
+// not actually constants
 ISaveMeTimer callTimer = DefaultTimer();
-IContactsAction contacts = DefaultContactsAction();
 StreamController<int> currentMinute;
 StreamController<int> currentSecond;
 Timer outerTimer;

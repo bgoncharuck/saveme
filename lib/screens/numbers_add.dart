@@ -33,7 +33,21 @@ class _SaveMeNumbersAddState extends State<SaveMeNumbersAdd> {
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(32),
-                child: AddNumberForm(),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 32),
+                      child: Text(
+                        "The number of the person you will calling for a help.",
+                        style: TextStyle(
+                          fontSize: 24,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
