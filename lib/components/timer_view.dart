@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter/material.dart';
 import 'package:saveme/constants.dart';
 import 'package:saveme/models/timer.dart';
@@ -44,9 +44,9 @@ class _TimerViewState extends State<TimerView> {
                     style: TextStyle(fontSize: 96),
                   );
                 else
-                  return Text(
-                    "loading..",
-                    style: TextStyle(fontSize: 16),
+                  return SpinKitPumpingHeart(
+                    color: defaultTheme.mainColor,
+                    size: 32,
                   );
               },
             ),
@@ -71,9 +71,9 @@ class _TimerViewState extends State<TimerView> {
                     style: TextStyle(fontSize: 96),
                   );
                 else
-                  return Text(
-                    "loading..",
-                    style: TextStyle(fontSize: 16),
+                  return SpinKitPumpingHeart(
+                    color: defaultTheme.mainColor,
+                    size: 32,
                   );
               },
             ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:saveme/components/main_button.dart';
 import 'package:saveme/components/navigation_button.dart';
 import 'package:saveme/components/timer_view.dart';
