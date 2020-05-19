@@ -30,6 +30,14 @@ class _SaveMeState extends State<SaveMe> {
         language = UkranianLanguage();
         break;
 
+      case 'DE':
+        language = GermanLanguage();
+        break;
+
+      case 'RU':
+        language = RussianLanguage();
+        break;
+
       default:
         language = EnglishLanguage();
         break;

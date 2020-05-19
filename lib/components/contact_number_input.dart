@@ -5,10 +5,10 @@ import 'package:saveme/constants.dart';
 import 'package:saveme/modules/contacts_access.dart';
 
 class ContactNumberInputForm extends StatefulWidget {
-  Function onEditingComplete;
-  IconData icon;
-  bool isEditable;
-  bool autofocus;
+  final Function onEditingComplete;
+  final IconData icon;
+  final bool isEditable;
+  final bool autofocus;
   ContactNumberInputForm(
       {@required this.onEditingComplete,
       @required this.icon,
@@ -54,6 +54,7 @@ class _ContactNumberInputFormState extends State<ContactNumberInputForm> {
   Future get _editedByContactsPick async {
     _contactWasPicked =
         await getNumberFromContactsList(_editedNumberController);
+
     if (_contactWasPicked) {
       _numberEditingComplete();
       _contactWasPicked = false;
@@ -98,6 +99,7 @@ class _ContactNumberInputFormState extends State<ContactNumberInputForm> {
               autofocus: widget.autofocus,
               onEditingComplete: () {
                 _numberEditingComplete();
+
                 if (!widget.autofocus) FocusScope.of(context).unfocus();
               },
             ),
