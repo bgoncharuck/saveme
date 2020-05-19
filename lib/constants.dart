@@ -6,13 +6,13 @@ import 'package:saveme/theme/language.dart';
 import 'package:saveme/theme/style.dart';
 
 final IDefaultTheme defaultTheme = OrangeGreyTheme();
-ILanguageSetting language = EnglishLanguage();
 final String numbersListSaveFileName = "numbers_list.json";
 final String timerSettingSaveFileName = "timer_setting.json";
 final IStorageFile storage = DefaultStorage();
 final IContactsAction contacts = DefaultContactsAction();
 
 // not actually constants
+ILanguageSetting language;
 ISaveMeTimer callTimer = DefaultTimer();
 StreamController<int> currentMinute;
 StreamController<int> currentSecond;

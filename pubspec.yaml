@@ -13,6 +13,7 @@ dependencies:
   path_provider: ^1.6.7
   permission_handler: ^5.0.0+hotfix.5
   contact_picker: ^0.0.2
+  flutter_spinkit: ^2.1.0
 
 dev_dependencies:
   flutter_test:

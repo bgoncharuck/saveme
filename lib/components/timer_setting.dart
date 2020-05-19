@@ -15,7 +15,7 @@ class _TimerConfigState extends State<TimerConfig> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 8),
           child: Text(
-            "Set the Calling timer. Next time you run the app, it starts.",
+            language.setTheCallingTimerDescription,
             style: TextStyle(
               fontSize: 20,
             ),
