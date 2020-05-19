@@ -20,7 +20,7 @@ class SaveMeErrorMessage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    "Error",
+                    language.labelError,
                     style: TextStyle(
                       fontSize: 32,
                       color: defaultTheme.accent,

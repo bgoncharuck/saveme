@@ -70,7 +70,7 @@ class _SaveMeState extends State<SaveMe> {
       print("Access to filesystem denied for some reason.");
       setState(() {
         _homeWidget = SaveMeErrorMessage(
-          "My Lord, you did not grant me access to a storage.\nI can't save or load these config files:\n",
+          language.loadFilesAccessErrorText,
           "$timerSettingSaveFileName $numbersListSaveFileName",
         );
       });
