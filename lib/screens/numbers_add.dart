@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:saveme/components/contact_number_input.dart';
 import 'package:saveme/components/numbers_list.dart';
-import 'package:saveme/components/add_number_form.dart';
 import 'package:saveme/components/navigation_button.dart';
 
 class SaveMeNumbersAdd extends StatefulWidget {
@@ -45,6 +45,14 @@ class _SaveMeNumbersAddState extends State<SaveMeNumbersAdd> {
                           fontSize: 24,
                         ),
                       ),
+                    ),
+                    ContactNumberInputForm(
+                      onEditingComplete: () {
+                        Navigator.of(context).pushNamed("/numbers");
+                      },
+                      icon: Icons.import_contacts,
+                      isEditable: false,
+                      autofocus: true,
                     ),
                   ],
                 ),

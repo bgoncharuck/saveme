@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:saveme/components/contact_number_input.dart';
 import 'package:saveme/constants.dart';
 import 'package:saveme/components/numbers_list.dart';
 import 'package:saveme/components/navigation_button.dart';
-import 'package:saveme/components/main_number.dart';
 import 'package:saveme/components/timer_setting.dart';
 
 class SaveMeSettings extends StatefulWidget {
@@ -33,7 +33,12 @@ class _SaveMeSettingsState extends State<SaveMeSettings> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  MainNumber(),
+                  ContactNumberInputForm(
+                    onEditingComplete: () {},
+                    icon: Icons.smartphone,
+                    isEditable: true,
+                    autofocus: false,
+                  ),
                   TimerConfig(),
                 ],
               ),

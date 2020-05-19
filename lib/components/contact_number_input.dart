@@ -8,22 +8,95 @@ class ContactNumberInputForm extends StatefulWidget {
   Function onEditingComplete;
   IconData icon;
   bool isEditable;
+  bool autofocus;
   ContactNumberInputForm(
       {@required this.onEditingComplete,
       @required this.icon,
-      @required this.isEditable});
+      @required this.isEditable,
+      @required this.autofocus});
 
   @override
   _ContactNumberInputFormState createState() => _ContactNumberInputFormState();
 }
 
 class _ContactNumberInputFormState extends State<ContactNumberInputForm> {
-  final TextEditingController _editedNumber = TextEditingController();
-  final _mainNumberFormKey = GlobalKey<FormState>();
-  bool contactWasPicked = false;
+  final TextEditingController _editedNumberController = TextEditingController();
+  final _numberFormKey = GlobalKey<FormState>();
+  bool _contactWasPicked = false;
+
+  void _addNumber() =>
+      addNumber(Number(_editedNumberController.text, isMain: noNumberSetted));
+
+  void _numberEditingComplete() {
+    if (_numberFormKey.currentState.validate()) {
+      if (widget.isEditable) {
+        if (atLeastOneNumberExist) {
+          mainNumber.text = _editedNumberController.text;
+          updateListOnFileSystem;
+        } else
+          _addNumber();
+
+        _editedNumberController.text = mainNumber.text;
+      } else {
+        _addNumber();
+      }
+
+      widget.onEditingComplete();
+    }
+  }
+
+  Future get _editedByContactsPick async {
+    _contactWasPicked =
+        await getNumberFromContactsList(_editedNumberController);
+    if (_contactWasPicked) {
+      _numberEditingComplete();
+      _contactWasPicked = false;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Row(
+      children: <Widget>[
+        FlatButton(
+          child: Icon(
+            widget.icon,
+            color: defaultTheme.onBackground,
+            size: 28.0,
+          ),
+          onPressed: () {
+            setState(() {
+              _editedByContactsPick;
+            });
+          },
+        ),
+        Flexible(
+          child: Form(
+            key: _numberFormKey,
+            child: TextFormField(
+              validator: (String number) {
+                if (number.isEmpty || number.length < 3) {
+                  return 'Number must to be valid';
+                } else if (!widget.isEditable &&
+                    numberIsAlreadyAddded(number)) {
+                  return "You already added this number";
+                }
+                return null;
+              },
+              keyboardType: TextInputType.phone,
+              decoration: InputDecoration(
+                labelText:
+                    (widget.isEditable) ? "Main Phone Number To Call" : "",
+              ),
+              autofocus: widget.autofocus,
+              onEditingComplete: () {
+                _numberEditingComplete();
+                if (!widget.autofocus) FocusScope.of(context).unfocus();
+              },
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }
