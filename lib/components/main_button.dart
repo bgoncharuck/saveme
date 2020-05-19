@@ -14,8 +14,8 @@ class _SaveMeMainButtonState extends State<SaveMeMainButton> {
     return Expanded(
       child: showConfirmDialog
           ? AlertDialog(
-              title: Text("Stop The Timer?"),
-              content: Text("Are you okay?"),
+              title: Text(language.stopTheTimerAlertTitle),
+              content: Text(language.stopTheTimerAlertContent),
               actions: <Widget>[
                 FlatButton(
                   onPressed: () {
@@ -24,7 +24,7 @@ class _SaveMeMainButtonState extends State<SaveMeMainButton> {
                     });
                   },
                   child: Text(
-                    "No",
+                    language.stopTheTimerAlertActionNo,
                     style: TextStyle(color: defaultTheme.mainColor),
                   ),
                 ),
@@ -37,7 +37,7 @@ class _SaveMeMainButtonState extends State<SaveMeMainButton> {
                     });
                   },
                   child: Text(
-                    "Yes",
+                    language.stopTheTimerAlertActionYes,
                     style: TextStyle(color: defaultTheme.accent),
                   ),
                 ),
@@ -55,7 +55,7 @@ class _SaveMeMainButtonState extends State<SaveMeMainButton> {
                   Expanded(
                     child: Center(
                       child: Text(
-                        "Stop",
+                        language.stopTheTimerButtonLabel,
                         style: TextStyle(
                             fontSize: 96, color: defaultTheme.onMainColor),
                       ),
