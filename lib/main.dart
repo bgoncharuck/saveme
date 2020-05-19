@@ -38,12 +38,10 @@ class _SaveMeState extends State<SaveMe> {
         setState(() {
           updateListOnFileSystem;
         });
-      if (await callTimer.readTimerSettingFromFileSystem != true)
+      if (await storage.read(fromFile: timerSettingSaveFileName) == null)
         setState(() {
           callTimer.updateTimerSettingOnFileSystem;
         });
-      else
-        setState(() {});
     } else {
       print("Access to filesystem denied for some reason.");
       setState(() {
@@ -61,7 +59,6 @@ class _SaveMeState extends State<SaveMe> {
     } else {
       print("Access to contacts was not granted.");
     }
-    setState(() {});
   }
 
   Future asyncInitPart() async {

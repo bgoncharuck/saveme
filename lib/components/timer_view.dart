@@ -45,8 +45,8 @@ class _TimerViewState extends State<TimerView> {
                   );
                 else
                   return Text(
-                    "${callTimer.state.minutes.toInt()}",
-                    style: TextStyle(fontSize: 96),
+                    "loading..",
+                    style: TextStyle(fontSize: 16),
                   );
               },
             ),
@@ -72,8 +72,8 @@ class _TimerViewState extends State<TimerView> {
                   );
                 else
                   return Text(
-                    "${callTimer.state.seconds.toInt()}",
-                    style: TextStyle(fontSize: 96),
+                    "loading..",
+                    style: TextStyle(fontSize: 16),
                   );
               },
             ),

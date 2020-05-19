@@ -83,10 +83,10 @@ class _ContactNumberInputFormState extends State<ContactNumberInputForm> {
               controller: _editedNumberController,
               validator: (String number) {
                 if (number.isEmpty || number.length < 3) {
-                  return 'Number must to be valid';
+                  return language.numberMustBeValid;
                 } else if (!widget.isEditable &&
                     numberIsAlreadyAddded(number)) {
-                  return "You already added this number";
+                  return language.numberMustBeValid;
                 }
                 return null;
               },
