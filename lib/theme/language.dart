@@ -14,10 +14,11 @@ class EnglishLanguage implements ILanguageSetting {
 }
 
 class GermanLanguage implements ILanguageSetting {
-  String numberMustBeValid = "";
-  String numberAlreadyAdded = "";
+  String numberMustBeValid = 'Die Nummer muss gültig sein';
+  String numberAlreadyAdded = "Sie haben diese Nummer bereits hinzugefügt";
 
-  String setTheCallingTimerDescription = "";
+  String setTheCallingTimerDescription =
+      "Stellen Sie den Anruf-Timer ein. Wenn Sie die App das nächste Mal ausführen, wird sie gestartet.";
 }
 
 class UkranianLanguage implements ILanguageSetting {
@@ -29,8 +30,9 @@ class UkranianLanguage implements ILanguageSetting {
 }
 
 class RussianLanguage implements ILanguageSetting {
-  String numberMustBeValid = "";
-  String numberAlreadyAdded = "";
+  String numberMustBeValid = "Не является номером телефона";
+  String numberAlreadyAdded = "Этот номер уже добавлен";
 
-  String setTheCallingTimerDescription = "";
+  String setTheCallingTimerDescription =
+      "Установите таймер звонка. Отчет начнется на следующий запуск";
 }
