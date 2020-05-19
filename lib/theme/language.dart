@@ -8,7 +8,10 @@ abstract class ILanguageSetting {
   String stopTheTimerAlertContent;
   String stopTheTimerAlertActionYes;
   String stopTheTimerAlertActionNo;
-
+  String minutes;
+  String seconds;
+  String min;
+  String sec;
   String setTheCallingTimerDescription;
   String loadFilesAccessErrorText;
 }
@@ -23,7 +26,10 @@ class EnglishLanguage implements ILanguageSetting {
   String stopTheTimerAlertContent = "Are you okay?";
   String stopTheTimerAlertActionYes = "Yes";
   String stopTheTimerAlertActionNo = "No";
-
+  String minutes = "minutes";
+  String seconds = "seconds";
+  String min = "min";
+  String sec = "sec";
   String setTheCallingTimerDescription =
       "Set the Calling timer. Next time you run the app, it starts.";
   String loadFilesAccessErrorText = "My Lord, you did not grant me access to a storage.\nI can't save or load these config files:\n";
@@ -40,7 +46,10 @@ class GermanLanguage implements ILanguageSetting {
   String stopTheTimerAlertContent = "";
   String stopTheTimerAlertActionYes = "";
   String stopTheTimerAlertActionNo = "";
-
+  String minutes = "";
+  String seconds = "";
+  String min = "";
+  String sec = "";
   String setTheCallingTimerDescription =
       "Stellen Sie den Anruf-Timer ein. Wenn Sie die App das nächste Mal ausführen, wird sie gestartet.";
   String loadFilesAccessErrorText = "";
@@ -56,7 +65,10 @@ class UkranianLanguage implements ILanguageSetting {
   String stopTheTimerAlertContent = "Ви почуваєтесь краще?";
   String stopTheTimerAlertActionYes = "Так";
   String stopTheTimerAlertActionNo = "Ні";
-
+  String minutes = "хвилин";
+  String seconds = "секунд";
+  String min = "хв";
+  String sec = "сек";
   String setTheCallingTimerDescription =
       "Встановіть таймер дзвінку. У наступний запуск, відлік почнеться.";
   String loadFilesAccessErrorText = "Господарю, Ви не надали мені прав доступу до файлів.\nЯ не зможу зберегти або завантажити ці файли налаштувань:\n";
@@ -72,7 +84,10 @@ class RussianLanguage implements ILanguageSetting {
   String stopTheTimerAlertContent = "Вы чувствуете себя лучше?";
   String stopTheTimerAlertActionYes = "Да";
   String stopTheTimerAlertActionNo = "Нет";
-
+  String minutes = "минут";
+  String seconds = "секунд";
+  String min = "мин";
+  String sec = "сек";
   String setTheCallingTimerDescription =
       "Установите таймер звонка. Отчет начнется на следующий запуск";
   String loadFilesAccessErrorText = "Хозяин, Вы не предоставили мне прав доступа к файлам.\nЯ не смогу сохранить или загрузить эти файлы настроек:\n";

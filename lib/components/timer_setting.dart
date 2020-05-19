@@ -28,7 +28,7 @@ class _TimerConfigState extends State<TimerConfig> {
           children: <Widget>[
             Text("${callTimer.state.minutes.toInt()} ",
                 style: TextStyle(fontSize: 48)),
-            Text("minutes", style: TextStyle(fontSize: 24)),
+            Text(language.minutes, style: TextStyle(fontSize: 24)),
           ],
         ),
         Slider(
@@ -55,7 +55,7 @@ class _TimerConfigState extends State<TimerConfig> {
           children: <Widget>[
             Text("${callTimer.state.seconds.toInt()} ",
                 style: TextStyle(fontSize: 48)),
-            Text("seconds", style: TextStyle(fontSize: 24)),
+            Text(language.seconds, style: TextStyle(fontSize: 24)),
           ],
         ),
         Slider(
