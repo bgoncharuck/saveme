@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:saveme/components/numbers_list.dart';
 import 'package:saveme/components/navigation_button.dart';
+import 'package:saveme/constants.dart';
 
 class SaveMeNumbers extends StatefulWidget {
   @override
@@ -14,7 +15,7 @@ class _SaveMeNumbersState extends State<SaveMeNumbers> {
       body: SafeArea(
         child: Column(
           children: <Widget>[
-            (atLeastOneNumberExist)
+            (numbers.atLeastOneNumberExist)
                 ? Row(
                     children: <Widget>[
                       NavigationButton(

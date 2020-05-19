@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:saveme/models/number.dart';
-import 'package:saveme/components/numbers_list.dart';
 import 'package:saveme/constants.dart';
 import 'package:saveme/modules/contacts_access.dart';
 
@@ -26,23 +25,23 @@ class _ContactNumberInputFormState extends State<ContactNumberInputForm> {
 
   @override
   void initState() {
-    if (widget.isEditable) _editedNumberController.text = mainNumber.text;
+    if (widget.isEditable) _editedNumberController.text = numbers.mainNumber.text;
     super.initState();
   }
 
   void _addNumber() =>
-      addNumber(Number(_editedNumberController.text, isMain: noNumberSetted));
+      numbers.addNumber(Number(_editedNumberController.text, isMain: numbers.noNumberSetted));
 
   void _numberEditingComplete() {
     if (_numberFormKey.currentState.validate()) {
       if (widget.isEditable) {
-        if (atLeastOneNumberExist) {
-          mainNumber.text = _editedNumberController.text;
-          updateListOnFileSystem;
+        if (numbers.atLeastOneNumberExist) {
+          numbers.mainNumber.text = _editedNumberController.text;
+          numbers.updateOnFileSystem;
         } else
           _addNumber();
 
-        _editedNumberController.text = mainNumber.text;
+        _editedNumberController.text = numbers.mainNumber.text;
       } else {
         _addNumber();
       }
@@ -86,7 +85,7 @@ class _ContactNumberInputFormState extends State<ContactNumberInputForm> {
                 if (number.isEmpty || number.length < 3) {
                   return language.numberMustBeValid;
                 } else if (!widget.isEditable &&
-                    numberIsAlreadyAddded(number)) {
+                    numbers.numberIsAlreadyAddded(number)) {
                   return language.numberMustBeValid;
                 }
                 return null;

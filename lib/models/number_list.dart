@@ -5,6 +5,7 @@ import 'package:saveme/constants.dart';
 import 'package:saveme/models/number.dart';
 
 abstract class INumberList {
+  List<INumber> numbers;
   Future<bool> get readFromFileSystemIfAny;
   Future<bool> get updateOnFileSystem;
   bool get atLeastOneNumberExist;
@@ -16,16 +17,16 @@ abstract class INumberList {
 }
 
 class DefaultNumberList implements INumberList {
-  List<INumber> _numbers = [];
+  List<INumber> numbers = [];
 
   @override
   Future<bool> get readFromFileSystemIfAny async {
     String listOfNumbers = await storage.read(fromFile: numbersListSaveFileName);
     if (listOfNumbers != null) {
       var numbersFromJSON = json.decode(listOfNumbers).toList();
-      _numbers = [];
+      numbers = [];
       for (Map<String, dynamic> mappedNumber in numbersFromJSON)
-        _numbers.add(Number.fromJson(mappedNumber));
+        numbers.add(Number.fromJson(mappedNumber));
       return true;
     }
     return false;
@@ -33,34 +34,34 @@ class DefaultNumberList implements INumberList {
 
   @override
   Future<bool> get updateOnFileSystem async => await storage.write(
-      data: json.encode(_numbers), asFile: numbersListSaveFileName);
+      data: json.encode(numbers), asFile: numbersListSaveFileName);
 
   @override
-  bool get atLeastOneNumberExist => _numbers.isNotEmpty;
+  bool get atLeastOneNumberExist => numbers.isNotEmpty;
   @override
-  bool get noNumberSetted => _numbers.isEmpty;
+  bool get noNumberSetted => numbers.isEmpty;
 
   @override
-  INumber get mainNumber => _numbers.firstWhere((INumber number) {
+  INumber get mainNumber => numbers.firstWhere((INumber number) {
         if (number.isMainNumber) return true;
         return false;
       }, orElse: () => noNumber);
 
   @override
-  bool numberIsNotAlreadyAddded(String text) => !_numbers.any((INumber number) {
+  bool numberIsNotAlreadyAddded(String text) => !numbers.any((INumber number) {
         if (number.text == text) return true;
         return false;
       });
 
   @override
-  bool numberIsAlreadyAddded(String text) => _numbers.any((INumber number) {
+  bool numberIsAlreadyAddded(String text) => numbers.any((INumber number) {
         if (number.text == text) return true;
         return false;
       });
 
   @override
   void addNumber(INumber number) {
-    _numbers.add(number);
+    numbers.add(number);
     this.updateOnFileSystem;
   }
 }

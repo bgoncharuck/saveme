@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:saveme/components/contact_number_input.dart';
-import 'package:saveme/components/numbers_list.dart';
 import 'package:saveme/components/navigation_button.dart';
+import 'package:saveme/constants.dart';
 
 class SaveMeNumbersAdd extends StatefulWidget {
   @override
@@ -15,7 +15,7 @@ class _SaveMeNumbersAddState extends State<SaveMeNumbersAdd> {
       body: SafeArea(
         child: Column(
           children: <Widget>[
-            (atLeastOneNumberExist)
+            (numbers.atLeastOneNumberExist)
                 // User need to have at least one number, to see navigation
                 ? Row(
                     children: <Widget>[

@@ -6,7 +6,6 @@ import 'package:saveme/screens/home.dart';
 import 'package:saveme/screens/settings.dart';
 import 'package:saveme/screens/numbers.dart';
 import 'package:saveme/screens/numbers_add.dart';
-import 'package:saveme/components/numbers_list.dart';
 import 'package:saveme/components/error_message.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'dart:io' show Platform;
@@ -53,14 +52,14 @@ class _SaveMeState extends State<SaveMe> {
 
   Future _loadFiles() async {
     if (statusOf[Permission.storage].isGranted) {
-      if (await readNumbersFromFileSystemIfAny) {
+      if (await numbers.readFromFileSystemIfAny) {
         print("Access was granted and files loaded.");
         setState(() {
-          if (atLeastOneNumberExist) _homeWidget = SaveMeHome();
+          if (numbers.atLeastOneNumberExist) _homeWidget = SaveMeHome();
         });
       } else
         setState(() {
-          updateListOnFileSystem;
+          numbers.updateOnFileSystem;
         });
       if (await storage.read(fromFile: timerSettingSaveFileName) == null)
         setState(() {

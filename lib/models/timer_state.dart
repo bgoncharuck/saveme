@@ -12,7 +12,7 @@ class TimerState implements ITimerState {
   double minutes;
   double seconds;
 
-  TimerState({@required double this.minutes, @required double this.seconds});
+  TimerState({@required this.minutes, @required this.seconds});
 
   TimerState.fromJSON(Map<String, dynamic> json)
       : minutes = json['minutes'],

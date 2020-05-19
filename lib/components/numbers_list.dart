@@ -12,7 +12,7 @@ class _NumbersListState extends State<NumbersList> {
   @override
   Widget build(BuildContext context) {
     return new ListView.builder(
-      itemCount: _numbers.length,
+      itemCount: numbers.numbers.length,
       itemBuilder: (BuildContext context, int index) {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -27,24 +27,24 @@ class _NumbersListState extends State<NumbersList> {
                         FlatButton(
                           onPressed: () {
                             setState(() {
-                              if (_numbers[index].isMainNumber) {
-                                _numbers[index].isMainNumber = false;
+                              if (numbers.numbers[index].isMainNumber) {
+                                numbers.numbers[index].isMainNumber = false;
                               } else {
-                                _numbers.firstWhere((INumber number) {
+                                numbers.numbers.firstWhere((INumber number) {
                                   if (number.isMainNumber) return true;
                                   return false;
                                 }, orElse: () => noNumber).isMainNumber = false;
 
-                                _numbers[index].isMainNumber = true;
+                                numbers.numbers[index].isMainNumber = true;
                               }
 
-                              updateListOnFileSystem;
+                              numbers.updateOnFileSystem;
                             });
                           },
-                          child: Text(_numbers[index].text,
+                          child: Text(numbers.numbers[index].text,
                               style: TextStyle(
                                   fontSize: 24.0,
-                                  color: _numbers[index].isMainNumber
+                                  color: numbers.numbers[index].isMainNumber
                                       ? defaultTheme.mainColor
                                       : defaultTheme.onBackground)),
                         ),
@@ -54,8 +54,8 @@ class _NumbersListState extends State<NumbersList> {
                   FlatButton(
                     onPressed: () {
                       setState(() {
-                        _numbers.removeAt(index);
-                        updateListOnFileSystem;
+                        numbers.numbers.removeAt(index);
+                        numbers.updateOnFileSystem;
                       });
                     },
                     child: Icon(
