@@ -21,6 +21,7 @@ abstract class ILanguageSetting {
   String addTheNumberDescription;
   String startTimerAgainLabel;
   String startTimerAgainAction;
+  String mainNumberEditingLabel;
 }
 
 class EnglishLanguage implements ILanguageSetting {
@@ -43,9 +44,11 @@ class EnglishLanguage implements ILanguageSetting {
       "My Lord, you did not grant me access to a storage.\nI can't save or load these config files:\n";
   String settingsNavigationButton = "Settings";
   String numbersNavigationButton = "Numbers To Call";
-  String addTheNumberDescription = "The number of the person you will calling for a help.";
+  String addTheNumberDescription =
+      "The number of the person you will calling for a help.";
   String startTimerAgainLabel = "Timer Was Stopped";
   String startTimerAgainAction = "Start Again";
+  String mainNumberEditingLabel = "Main Phone Number To Call";
 }
 
 // @TODO
@@ -71,6 +74,7 @@ class GermanLanguage implements ILanguageSetting {
   String addTheNumberDescription = "";
   String startTimerAgainLabel = "";
   String startTimerAgainAction = "";
+  String mainNumberEditingLabel = "";
 }
 
 class UkranianLanguage implements ILanguageSetting {
@@ -93,9 +97,11 @@ class UkranianLanguage implements ILanguageSetting {
       "Господарю, Ви не надали мені прав доступу до файлів.\nЯ не зможу зберегти або завантажити ці файли налаштувань:\n";
   String settingsNavigationButton = "Налаштування";
   String numbersNavigationButton = "Номери Для Дзвінка";
-  String addTheNumberDescription = "Номер людини, до якої Ви будете дзвонити за допомогою.";
+  String addTheNumberDescription =
+      "Номер людини, до якої Ви будете дзвонити за допомогою.";
   String startTimerAgainLabel = "Таймер Було Зупинено";
   String startTimerAgainAction = "Почати";
+  String mainNumberEditingLabel = "Основний Номер Для Дзвінка";
 }
 
 class RussianLanguage implements ILanguageSetting {
@@ -118,9 +124,11 @@ class RussianLanguage implements ILanguageSetting {
       "Хозяин, Вы не предоставили мне прав доступа к файлам.\nЯ не смогу сохранить или загрузить эти файлы настроек:\n";
   String settingsNavigationButton = "Настройка";
   String numbersNavigationButton = "Номера Для Звонка";
-  String addTheNumberDescription = "Номер человека, которому Вы будете звонить за помощью.";
+  String addTheNumberDescription =
+      "Номер человека, которому Вы будете звонить за помощью.";
   String startTimerAgainLabel = "Таймер Было Остановлено";
   String startTimerAgainAction = "Старт";
+  String mainNumberEditingLabel = "Основной Номер Для Звонка";
 }
 
 ILanguageSetting get systemLanguage {

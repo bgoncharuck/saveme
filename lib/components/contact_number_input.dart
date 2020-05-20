@@ -24,12 +24,13 @@ class _ContactNumberInputFormState extends State<ContactNumberInputForm> {
 
   @override
   void initState() {
-    if (widget.isEditable) _editedNumberController.text = numbers.mainNumber.text;
+    if (widget.isEditable)
+      _editedNumberController.text = numbers.mainNumber.text;
     super.initState();
   }
 
-  void _addNumber() =>
-      numbers.addNumber(Number(_editedNumberController.text, isMain: numbers.noNumberSetted));
+  void _addNumber() => numbers.addNumber(
+      Number(_editedNumberController.text, isMain: numbers.noNumberSetted));
 
   void _numberEditingComplete() {
     if (_numberFormKey.currentState.validate()) {
@@ -50,8 +51,7 @@ class _ContactNumberInputFormState extends State<ContactNumberInputForm> {
   }
 
   Future get _editedByContactsPick async {
-    _contactWasPicked =
-        await contacts.getNumber(_editedNumberController);
+    _contactWasPicked = await contacts.getNumber(_editedNumberController);
 
     if (_contactWasPicked) {
       _numberEditingComplete();
@@ -92,7 +92,7 @@ class _ContactNumberInputFormState extends State<ContactNumberInputForm> {
               keyboardType: TextInputType.phone,
               decoration: InputDecoration(
                 labelText:
-                    (widget.isEditable) ? "Main Phone Number To Call" : "",
+                    (widget.isEditable) ? language.mainNumberEditingLabel : "",
               ),
               autofocus: widget.autofocus,
               onEditingComplete: () {
