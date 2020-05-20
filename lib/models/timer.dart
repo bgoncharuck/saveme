@@ -11,10 +11,8 @@ abstract class ISaveMeTimer {
   Future<bool> load(ITimerState state);
   Future<bool> get readTimerSettingFromFileSystem;
   Future<bool> get updateTimerSettingOnFileSystem;
-  IInnerTimer innerTimer;
-  StreamController<int> currentMinute;
-  StreamController<int> currentSecond;
-  void update();
+  StreamController<int> get currentMinute;
+  StreamController<int> get currentSecond;
   void stop();
   void start();
 }
@@ -24,24 +22,25 @@ class DefaultTimer implements ISaveMeTimer {
     minutes: 1,
     seconds: 30,
   );
-  IInnerTimer innerTimer = StopwatchInnerTimer();
-  StreamController<int> currentMinute;
-  StreamController<int> currentSecond;
-
-  @override
-  void update() {
-    innerTimer.updateInnerTimer(minute: currentMinute, second: currentSecond);
-  }
+  IInnerTimer _innerTimer = StopwatchInnerTimer();
+  Timer _outerTimer;
+  StreamController<int> get currentMinute => _innerTimer.minute;
+  StreamController<int> get currentSecond => _innerTimer.second;
 
   @override
   void start() {
-    innerTimer.start(
+    _innerTimer.start(
         minutes: state.minutes, seconds: state.seconds, onFinish: callingEvent);
+    _outerTimer = Timer.periodic(
+        Duration(seconds: 1), (Timer t) => _innerTimer.updateInnerTimer);
   }
 
   @override
   void stop() {
-    if (innerTimer.isRunning) innerTimer.stop();
+    if (_innerTimer.isRunning) {
+      _innerTimer.stop();
+      _outerTimer.cancel();
+    }
   }
 
   @override

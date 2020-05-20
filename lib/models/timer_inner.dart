@@ -1,12 +1,11 @@
 import 'dart:async';
 
-import 'package:saveme/constants.dart';
-
 abstract class IInnerTimer {
   bool get isRunning;
   bool get isNotRunning;
-  void updateInnerTimer(
-      {StreamController<int> minute, StreamController<int> second});
+  StreamController<int> get minute;
+  StreamController<int> get second;
+  void get updateInnerTimer;
   void start({double minutes = 0, double seconds = 0, Function onFinish});
   void stop();
 }
@@ -15,12 +14,12 @@ class StopwatchInnerTimer implements IInnerTimer {
   Stopwatch _innerTimer = Stopwatch();
   Duration _timerDuration;
   Function _onFinish;
-
+  final StreamController<int> minute = StreamController<int>.broadcast();
+  final StreamController<int> second = StreamController<int>.broadcast();
   bool get isRunning => _innerTimer.isRunning;
   bool get isNotRunning => !_innerTimer.isRunning;
 
-  void updateInnerTimer(
-      {StreamController<int> minute, StreamController<int> second}) {
+  void get updateInnerTimer {
     if (_innerTimer.elapsedMilliseconds >= _timerDuration.inMilliseconds) {
       this.stop();
       this._onFinish();
@@ -37,7 +36,7 @@ class StopwatchInnerTimer implements IInnerTimer {
   void start({double minutes = 0, double seconds = 0, Function onFinish}) {
     this._onFinish = onFinish;
     this._timerDuration =
-        Duration(minutes: minutes.toInt(), seconds: seconds.toInt() + 1);
+        Duration(minutes: minutes.toInt(), seconds: seconds.toInt() + 2);
     this._innerTimer.start();
   }
 
