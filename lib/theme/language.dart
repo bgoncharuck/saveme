@@ -98,7 +98,7 @@ class RussianLanguage implements ILanguageSetting {
       "Хозяин, Вы не предоставили мне прав доступа к файлам.\nЯ не смогу сохранить или загрузить эти файлы настроек:\n";
 }
 
-ILanguageSetting get UserSystemLanguage {
+ILanguageSetting get systemLanguage {
   String languageCode = Platform.localeName.split('_')[1];
   print("Language code is $languageCode");
   switch (languageCode) {

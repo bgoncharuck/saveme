@@ -12,4 +12,4 @@ final IStorageFile storage = DefaultStorage();
 final INumberList numbers = DefaultNumberList();
 final IContactsAction contacts = DefaultContactsAction();
 final ISaveMeTimer callTimer = DefaultTimer();
-final ILanguageSetting language = UserSystemLanguage;
+final ILanguageSetting language = systemLanguage;
