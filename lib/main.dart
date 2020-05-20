@@ -6,8 +6,8 @@ import 'package:saveme/screens/home.dart';
 import 'package:saveme/screens/settings.dart';
 import 'package:saveme/screens/numbers.dart';
 import 'package:saveme/screens/numbers_add.dart';
+import 'package:saveme/screens/loading_screen.dart';
 import 'package:saveme/components/error_message.dart';
-import 'package:saveme/components/loading_screen.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'dart:io' show Platform;
 

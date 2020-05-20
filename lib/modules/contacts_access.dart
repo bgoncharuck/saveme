@@ -5,25 +5,29 @@ import 'package:flutter/material.dart';
 
 abstract class IContactsAction {
   Future<String> choose();
+  Future<bool> getNumber(
+    TextEditingController textController);
 }
 
 class DefaultContactsAction implements IContactsAction {
   @override
   Future<String> choose() async {
-    if (await Permission.contacts.request().isGranted) {
-      final ContactPicker _contactPicker = ContactPicker();
-      Contact _contact = await _contactPicker.selectContact();
-      return _contact.phoneNumber.number;
-    }
-  }
-}
+    if (await Permission.contacts.request().isGranted == false)
+      return null;
 
-Future<bool> getNumberFromContactsList(
+    final ContactPicker _contactPicker = ContactPicker();
+    Contact _contact = await _contactPicker.selectContact();
+    return _contact.phoneNumber.number;
+  }
+
+  @override
+  Future<bool> getNumber(
     TextEditingController textController) async {
-  String number = await contacts.choose();
-  if (number != null) {
+
+    String number = await contacts.choose();
+    if (number == null) return false;
+
     textController.text = number;
     return true;
   }
-  return false;
 }

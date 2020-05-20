@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:saveme/models/number.dart';
 import 'package:saveme/constants.dart';
-import 'package:saveme/modules/contacts_access.dart';
 
 class ContactNumberInputForm extends StatefulWidget {
   final Function onEditingComplete;
@@ -52,7 +51,7 @@ class _ContactNumberInputFormState extends State<ContactNumberInputForm> {
 
   Future get _editedByContactsPick async {
     _contactWasPicked =
-        await getNumberFromContactsList(_editedNumberController);
+        await contacts.getNumber(_editedNumberController);
 
     if (_contactWasPicked) {
       _numberEditingComplete();
