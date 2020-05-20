@@ -10,8 +10,6 @@ class TimerView extends StatefulWidget {
 
 class _TimerViewState extends State<TimerView> {
   Future _asyncInitState() async {
-    currentMinute = StreamController<int>();
-    currentSecond = StreamController<int>();
     await callTimer.readTimerSettingFromFileSystem;
     callTimer.start();
   }
@@ -32,7 +30,7 @@ class _TimerViewState extends State<TimerView> {
         Column(
           children: <Widget>[
             StreamBuilder<int>(
-              stream: currentMinute.stream,
+              stream: callTimer.currentMinute.stream,
               builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
                 if (snapshot.hasData)
                   return Text(
@@ -59,7 +57,7 @@ class _TimerViewState extends State<TimerView> {
         Column(
           children: <Widget>[
             StreamBuilder<int>(
-              stream: currentSecond.stream,
+              stream: callTimer.currentSecond.stream,
               builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
                 if (snapshot.hasData)
                   return Text(

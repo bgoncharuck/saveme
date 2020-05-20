@@ -12,6 +12,8 @@ abstract class ISaveMeTimer {
   Future<bool> get readTimerSettingFromFileSystem;
   Future<bool> get updateTimerSettingOnFileSystem;
   IInnerTimer innerTimer;
+  StreamController<int> currentMinute;
+  StreamController<int> currentSecond;
   void update();
   void stop();
   void start();
@@ -23,6 +25,8 @@ class DefaultTimer implements ISaveMeTimer {
     seconds: 30,
   );
   IInnerTimer innerTimer = StopwatchInnerTimer();
+  StreamController<int> currentMinute;
+  StreamController<int> currentSecond;
 
   @override
   void update() {

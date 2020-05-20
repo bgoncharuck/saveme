@@ -14,7 +14,4 @@ final INumberList numbers = DefaultNumberList();
 final IContactsAction contacts = DefaultContactsAction();
 final ISaveMeTimer callTimer = DefaultTimer();
 
-// runtime variables
 ILanguageSetting language;
-StreamController<int> currentMinute;
-StreamController<int> currentSecond;

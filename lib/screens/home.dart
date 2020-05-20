@@ -15,6 +15,8 @@ class _SaveMeHomeState extends State<SaveMeHome> {
 
   @override
   void initState() {
+    callTimer.currentMinute = StreamController<int>();
+    callTimer.currentSecond = StreamController<int>();
     _outerTimer =
         Timer.periodic(Duration(seconds: 1), (Timer t) => callTimer.update());
     super.initState();
