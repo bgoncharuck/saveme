@@ -37,7 +37,7 @@ class StopwatchInnerTimer implements IInnerTimer {
   void start({double minutes = 0, double seconds = 0, Function onFinish}) {
     this._onFinish = onFinish;
     this._timerDuration =
-        Duration(minutes: minutes.toInt(), seconds: seconds.toInt() + 2);
+        Duration(minutes: minutes.toInt(), seconds: seconds.toInt() + 1);
     this._innerTimer.start();
   }
 

@@ -3,6 +3,7 @@ import 'package:saveme/components/main_button.dart';
 import 'package:saveme/components/navigation_button.dart';
 import 'package:saveme/components/timer_view.dart';
 import 'package:saveme/constants.dart';
+import 'dart:async';
 
 class SaveMeHome extends StatefulWidget {
   @override
@@ -10,6 +11,15 @@ class SaveMeHome extends StatefulWidget {
 }
 
 class _SaveMeHomeState extends State<SaveMeHome> {
+  Timer _outerTimer;
+
+  @override
+  void initState() {
+    _outerTimer =
+        Timer.periodic(Duration(seconds: 1), (Timer t) => callTimer.update());
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,6 +34,7 @@ class _SaveMeHomeState extends State<SaveMeHome> {
                   icon: Icons.settings,
                   optionalAction: () {
                     callTimer.stop();
+                    _outerTimer.cancel();
                   },
                 ),
                 Expanded(

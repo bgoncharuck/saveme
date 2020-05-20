@@ -12,10 +12,9 @@ final String timerSettingSaveFileName = "timer_setting.json";
 final IStorageFile storage = DefaultStorage();
 final INumberList numbers = DefaultNumberList();
 final IContactsAction contacts = DefaultContactsAction();
+final ISaveMeTimer callTimer = DefaultTimer();
 
-// not actually constants
+// runtime variables
 ILanguageSetting language;
-ISaveMeTimer callTimer = DefaultTimer();
 StreamController<int> currentMinute;
 StreamController<int> currentSecond;
-Timer outerTimer;

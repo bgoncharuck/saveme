@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter/material.dart';
 import 'package:saveme/constants.dart';
-import 'package:saveme/models/timer.dart';
 
 class TimerView extends StatefulWidget {
   @override
@@ -13,11 +12,8 @@ class _TimerViewState extends State<TimerView> {
   Future _asyncInitState() async {
     currentMinute = StreamController<int>();
     currentSecond = StreamController<int>();
-    callTimer = DefaultTimer();
     await callTimer.readTimerSettingFromFileSystem;
     callTimer.start();
-    outerTimer =
-        Timer.periodic(Duration(seconds: 1), (Timer t) => callTimer.update());
   }
 
   @override
