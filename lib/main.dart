@@ -7,6 +7,7 @@ import 'package:saveme/screens/settings.dart';
 import 'package:saveme/screens/numbers.dart';
 import 'package:saveme/screens/numbers_add.dart';
 import 'package:saveme/components/error_message.dart';
+import 'package:saveme/components/loading_screen.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'dart:io' show Platform;
 
@@ -18,7 +19,7 @@ class SaveMe extends StatefulWidget {
 }
 
 class _SaveMeState extends State<SaveMe> {
-  Widget _homeWidget = SaveMeSettings();
+  Widget _homeWidget = LoadingScreen();
   Map<Permission, PermissionStatus> statusOf;
 
   void getUserLocale() {
@@ -58,13 +59,10 @@ class _SaveMeState extends State<SaveMe> {
           if (numbers.atLeastOneNumberExist) _homeWidget = SaveMeHome();
         });
       } else
-        setState(() {
-          numbers.updateOnFileSystem;
-        });
+        numbers.updateOnFileSystem;
+
       if (await storage.read(fromFile: timerSettingSaveFileName) == null)
-        setState(() {
-          callTimer.updateTimerSettingOnFileSystem;
-        });
+        callTimer.updateTimerSettingOnFileSystem;
     } else {
       print("Access to filesystem denied for some reason.");
       setState(() {
@@ -76,7 +74,7 @@ class _SaveMeState extends State<SaveMe> {
     }
   }
 
-  Future _checkContactListPermissionStatus() async {
+  _checkContactListPermissionStatus() {
     if (statusOf[Permission.contacts].isGranted) {
       print("Access to contacts was granted.");
     } else {
@@ -86,8 +84,12 @@ class _SaveMeState extends State<SaveMe> {
 
   Future asyncInitPart() async {
     await _getPermissionsIfAny();
+    // if loaded first time, this will show up
+    setState(() {
+      _homeWidget = SaveMeSettings();
+    });
     await _loadFiles();
-    await _checkContactListPermissionStatus();
+    _checkContactListPermissionStatus();
   }
 
   @override
