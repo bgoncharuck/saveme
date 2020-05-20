@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:saveme/constants.dart';
-import 'package:saveme/theme/language.dart';
 import 'package:saveme/theme/style.dart';
 import 'package:saveme/screens/home.dart';
 import 'package:saveme/screens/settings.dart';
@@ -9,7 +8,6 @@ import 'package:saveme/screens/numbers_add.dart';
 import 'package:saveme/screens/loading_screen.dart';
 import 'package:saveme/components/error_message.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'dart:io' show Platform;
 
 void main() => runApp(SaveMe());
 
@@ -21,28 +19,6 @@ class SaveMe extends StatefulWidget {
 class _SaveMeState extends State<SaveMe> {
   Widget _homeWidget = LoadingScreen();
   Map<Permission, PermissionStatus> statusOf;
-
-  void getUserLocale() {
-    String languageCode = Platform.localeName.split('_')[1];
-    print("Language code is $languageCode");
-    switch (languageCode) {
-      case 'UA':
-        language = UkranianLanguage();
-        break;
-
-      case 'DE':
-        language = GermanLanguage();
-        break;
-
-      case 'RU':
-        language = RussianLanguage();
-        break;
-
-      default:
-        language = EnglishLanguage();
-        break;
-    }
-  }
 
   Future _getPermissionsIfAny() async {
     statusOf = await [
@@ -95,7 +71,6 @@ class _SaveMeState extends State<SaveMe> {
   @override
   void initState() {
     asyncInitPart();
-    getUserLocale();
     super.initState();
   }
 

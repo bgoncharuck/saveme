@@ -1,3 +1,5 @@
+import 'dart:io' show Platform;
+
 abstract class ILanguageSetting {
   String numberMustBeValid;
   String numberAlreadyAdded;
@@ -32,7 +34,8 @@ class EnglishLanguage implements ILanguageSetting {
   String sec = "sec";
   String setTheCallingTimerDescription =
       "Set the Calling timer.\nNext time you run the app, it starts.";
-  String loadFilesAccessErrorText = "My Lord, you did not grant me access to a storage.\nI can't save or load these config files:\n";
+  String loadFilesAccessErrorText =
+      "My Lord, you did not grant me access to a storage.\nI can't save or load these config files:\n";
 }
 
 // @TODO
@@ -71,7 +74,8 @@ class UkranianLanguage implements ILanguageSetting {
   String sec = "сек";
   String setTheCallingTimerDescription =
       "Встановіть таймер дзвінку.\nВідлік почнеться під час наступного запуску.";
-  String loadFilesAccessErrorText = "Господарю, Ви не надали мені прав доступу до файлів.\nЯ не зможу зберегти або завантажити ці файли налаштувань:\n";
+  String loadFilesAccessErrorText =
+      "Господарю, Ви не надали мені прав доступу до файлів.\nЯ не зможу зберегти або завантажити ці файли налаштувань:\n";
 }
 
 class RussianLanguage implements ILanguageSetting {
@@ -90,5 +94,24 @@ class RussianLanguage implements ILanguageSetting {
   String sec = "сек";
   String setTheCallingTimerDescription =
       "Установите таймер звонка.\nОтчет начнется на следующий запуск";
-  String loadFilesAccessErrorText = "Хозяин, Вы не предоставили мне прав доступа к файлам.\nЯ не смогу сохранить или загрузить эти файлы настроек:\n";
+  String loadFilesAccessErrorText =
+      "Хозяин, Вы не предоставили мне прав доступа к файлам.\nЯ не смогу сохранить или загрузить эти файлы настроек:\n";
+}
+
+ILanguageSetting get UserSystemLanguage {
+  String languageCode = Platform.localeName.split('_')[1];
+  print("Language code is $languageCode");
+  switch (languageCode) {
+    case 'UA':
+      return UkranianLanguage();
+
+    case 'DE':
+      return GermanLanguage();
+
+    case 'RU':
+      return RussianLanguage();
+
+    default:
+      return EnglishLanguage();
+  }
 }
