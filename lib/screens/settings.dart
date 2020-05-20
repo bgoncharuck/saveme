@@ -20,7 +20,7 @@ class _SaveMeSettingsState extends State<SaveMeSettings> {
               children: <Widget>[
                 NavigationButton(
                   navigate: "/numbers",
-                  name: "Numbers To Call",
+                  name: language.numbersNavigationButton,
                   icon: Icons.list,
                 ),
                 Expanded(
@@ -54,7 +54,7 @@ class _SaveMeSettingsState extends State<SaveMeSettings> {
                           children: <Widget>[
                             Icon(Icons.alarm_off, color: Colors.white),
                             Text(
-                              "Timer Was Stopped",
+                              language.startTimerAgainLabel,
                               style: TextStyle(color: Colors.white),
                             ),
                             FlatButton(
@@ -62,7 +62,7 @@ class _SaveMeSettingsState extends State<SaveMeSettings> {
                                 Navigator.of(context).pushNamed("/home");
                               },
                               child: Text(
-                                "Start Again",
+                                language.startTimerAgainAction,
                                 style: TextStyle(
                                     fontSize: 18,
                                     color: defaultTheme.mainColor,

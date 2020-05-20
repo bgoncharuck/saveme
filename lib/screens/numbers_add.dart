@@ -21,7 +21,7 @@ class _SaveMeNumbersAddState extends State<SaveMeNumbersAdd> {
                     children: <Widget>[
                       NavigationButton(
                         navigate: "/numbers",
-                        name: "Numbers To Call",
+                        name: language.numbersNavigationButton,
                         icon: Icons.arrow_back,
                       ),
                       Expanded(
@@ -40,7 +40,7 @@ class _SaveMeNumbersAddState extends State<SaveMeNumbersAdd> {
                     Padding(
                       padding: const EdgeInsets.only(bottom: 32),
                       child: Text(
-                        "The number of the person you will calling for a help.",
+                        language.addTheNumberDescription,
                         style: TextStyle(
                           fontSize: 24,
                         ),

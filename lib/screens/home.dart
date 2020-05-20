@@ -20,7 +20,7 @@ class _SaveMeHomeState extends State<SaveMeHome> {
               children: <Widget>[
                 NavigationButton(
                   navigate: "/settings",
-                  name: "Settings",
+                  name: language.settingsNavigationButton,
                   icon: Icons.settings,
                   optionalAction: () {
                     callTimer.stop();
