@@ -37,7 +37,7 @@ class DefaultTimer implements ISaveMeTimer {
 
   @override
   void stop() {
-    if (innerTimer.isNotRunning) innerTimer.stop();
+    if (innerTimer.isRunning) innerTimer.stop();
   }
 
   @override
@@ -48,23 +48,20 @@ class DefaultTimer implements ISaveMeTimer {
 
   @override
   Future<bool> load(ITimerState state) async {
-    if (state != null) {
-      this.state = state;
-      return true;
-    }
-    return false;
+    if (state == null) return false;
+    this.state = state;
+    return true;
   }
 
   @override
   Future<bool> get readTimerSettingFromFileSystem async {
     String timerSetting =
         await storage.read(fromFile: timerSettingSaveFileName);
-    if (timerSetting != null) {
-      var loadedTimerState = json.decode(timerSetting);
-      this.load(TimerState.fromJSON(loadedTimerState));
-      return true;
-    }
-    return false;
+    if (timerSetting == null) return false;
+
+    var loadedTimerState = json.decode(timerSetting);
+    this.load(TimerState.fromJSON(loadedTimerState));
+    return true;
   }
 
   @override

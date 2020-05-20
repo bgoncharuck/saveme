@@ -22,7 +22,7 @@ class StopwatchInnerTimer implements IInnerTimer {
   void updateInnerTimer(
       {StreamController<int> minute, StreamController<int> second}) {
     if (_innerTimer.elapsedMilliseconds >= _timerDuration.inMilliseconds) {
-      fullStopTimer;
+      this.stop();
       this._onFinish();
     }
 
@@ -37,7 +37,7 @@ class StopwatchInnerTimer implements IInnerTimer {
   void start({double minutes = 0, double seconds = 0, Function onFinish}) {
     this._onFinish = onFinish;
     this._timerDuration =
-        Duration(minutes: minutes.toInt(), seconds: seconds.toInt());
+        Duration(minutes: minutes.toInt(), seconds: seconds.toInt() + 2);
     this._innerTimer.start();
   }
 
@@ -45,5 +45,6 @@ class StopwatchInnerTimer implements IInnerTimer {
   void stop() {
     this._innerTimer.reset();
     this._innerTimer.stop();
+    print("Timer was stopped.");
   }
 }

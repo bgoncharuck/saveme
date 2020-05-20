@@ -23,7 +23,7 @@ class _SaveMeHomeState extends State<SaveMeHome> {
                   name: "Settings",
                   icon: Icons.settings,
                   optionalAction: () {
-                    fullStopTimer;
+                    callTimer.stop();
                   },
                 ),
                 Expanded(

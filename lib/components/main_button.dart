@@ -23,15 +23,12 @@ class _SaveMeMainButtonState extends State<SaveMeMainButton> {
                       showConfirmDialog = false;
                     });
                   },
-                  child: Text(
-                    language.stopTheTimerAlertActionNo,
-                    style: TextStyle(color: defaultTheme.mainColor),
-                  ),
+                  child: Text(language.stopTheTimerAlertActionNo),
                 ),
                 FlatButton(
                   onPressed: () {
                     setState(() {
-                      fullStopTimer;
+                      callTimer.stop();
                       SystemChannels.platform
                           .invokeMethod('SystemNavigator.pop');
                     });

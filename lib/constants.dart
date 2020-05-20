@@ -19,8 +19,3 @@ ISaveMeTimer callTimer = DefaultTimer();
 StreamController<int> currentMinute;
 StreamController<int> currentSecond;
 Timer outerTimer;
-void get fullStopTimer {
-  callTimer.stop();
-  outerTimer.cancel();
-  print("Timer was stopped.");
-}
