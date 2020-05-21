@@ -21,10 +21,8 @@ class DefaultNumberList implements INumberList {
 
   @override
   Future<bool> get readFromFileSystemIfAny async {
-
-    String listOfNumbers = await storage.read(
-      fromFile: numbersListSaveFileName
-    );
+    String listOfNumbers =
+        await storage.read(fromFile: numbersListSaveFileName);
     if (listOfNumbers == null) return false;
     if (this.numbers.isNotEmpty) this.numbers = [];
 
@@ -36,8 +34,7 @@ class DefaultNumberList implements INumberList {
 
   @override
   Future<bool> get updateOnFileSystem async => await storage.write(
-      data: json.encode(this.numbers), asFile: numbersListSaveFileName
-  );
+      data: json.encode(this.numbers), asFile: numbersListSaveFileName);
 
   @override
   bool get atLeastOneNumberExist => this.numbers.isNotEmpty;
@@ -51,7 +48,8 @@ class DefaultNumberList implements INumberList {
       }, orElse: () => noNumber);
 
   @override
-  bool numberIsNotAlreadyAddded(String text) => !this.numbers.any((INumber number) {
+  bool numberIsNotAlreadyAddded(String text) =>
+      !this.numbers.any((INumber number) {
         if (number.text == text) return true;
         return false;
       });
@@ -64,6 +62,7 @@ class DefaultNumberList implements INumberList {
 
   @override
   void addNumber(INumber number) {
+    number.text = number.text.replaceAll(RegExp(r"\s\b|\b\s"), "");
     this.numbers.add(number);
     this.updateOnFileSystem;
   }

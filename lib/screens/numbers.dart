@@ -13,10 +13,10 @@ class _SaveMeNumbersState extends State<SaveMeNumbers> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: <Widget>[
-            (numbers.atLeastOneNumberExist)
-                ? Row(
+        child: (numbers.atLeastOneNumberExist)
+            ? Column(
+                children: <Widget>[
+                  Row(
                     children: <Widget>[
                       NavigationButton(
                         navigate: "/settings",
@@ -27,13 +27,13 @@ class _SaveMeNumbersState extends State<SaveMeNumbers> {
                         child: SizedBox(),
                       ),
                     ],
-                  )
-                : Container(),
-            Expanded(
-              child: NumbersList(),
-            ),
-          ],
-        ),
+                  ),
+                  Expanded(
+                    child: NumbersList(),
+                  ),
+                ],
+              )
+            : Center(child: Text(language.noNumbersAdded)),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

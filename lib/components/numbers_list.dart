@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:saveme/constants.dart';
 import 'package:saveme/models/number.dart';
-
+import 'package:saveme/screens/numbers.dart';
 
 class NumbersList extends StatefulWidget {
   @override
@@ -56,6 +56,11 @@ class _NumbersListState extends State<NumbersList> {
                       setState(() {
                         numbers.numbers.removeAt(index);
                         numbers.updateOnFileSystem;
+                        if (numbers.numbers.isEmpty) {
+                          Navigator.of(context).pushNamedAndRemoveUntil(
+                              '/numbers', (Route<dynamic> route) => false);
+                          Navigator.of(context).pushNamed("/numbers/add");
+                        }
                       });
                     },
                     child: Icon(

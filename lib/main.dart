@@ -29,12 +29,13 @@ class _SaveMeState extends State<SaveMe> {
 
   Future<Widget> _chooseHomeScreenDependingOnLoadedFiles() async {
     if (_statusOf[Permission.storage].isGranted) {
-      bool isNull = true;
+      bool isNotNull = true;
       try {
-        isNull = await storage.read(fromFile: timerSettingSaveFileName) == null;
+        isNotNull = await callTimer.readTimerSettingFromFileSystem;
       } catch (fileNotExistError) {} finally {
-        if (isNull) callTimer.updateTimerSettingOnFileSystem;
+        if (!isNotNull) callTimer.updateTimerSettingOnFileSystem;
       }
+
       try {
         if (await numbers.readFromFileSystemIfAny) {
           print("Access was granted and files loaded.");

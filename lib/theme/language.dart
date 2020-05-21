@@ -22,6 +22,7 @@ abstract class ILanguageSetting {
   String startTimerAgainLabel;
   String startTimerAgainAction;
   String mainNumberEditingLabel;
+  String noNumbersAdded;
 }
 
 class EnglishLanguage implements ILanguageSetting {
@@ -49,6 +50,7 @@ class EnglishLanguage implements ILanguageSetting {
   String startTimerAgainLabel = "Timer Was Stopped";
   String startTimerAgainAction = "Start Again";
   String mainNumberEditingLabel = "Main Phone Number To Call";
+  String noNumbersAdded = "At least one number must exist.";
 }
 
 // @TODO
@@ -75,6 +77,7 @@ class GermanLanguage implements ILanguageSetting {
   String startTimerAgainLabel = "";
   String startTimerAgainAction = "";
   String mainNumberEditingLabel = "";
+  String noNumbersAdded = "";
 }
 
 class UkranianLanguage implements ILanguageSetting {
@@ -102,6 +105,7 @@ class UkranianLanguage implements ILanguageSetting {
   String startTimerAgainLabel = "Таймер Було Зупинено";
   String startTimerAgainAction = "Почати";
   String mainNumberEditingLabel = "Основний Номер Для Дзвінка";
+  String noNumbersAdded = "Додайте хоча б один номер.";
 }
 
 class RussianLanguage implements ILanguageSetting {
@@ -129,6 +133,7 @@ class RussianLanguage implements ILanguageSetting {
   String startTimerAgainLabel = "Таймер Было Остановлено";
   String startTimerAgainAction = "Старт";
   String mainNumberEditingLabel = "Основной Номер Для Звонка";
+  String noNumbersAdded = "Добавьте хотя бы один номер.";
 }
 
 ILanguageSetting get systemLanguage {

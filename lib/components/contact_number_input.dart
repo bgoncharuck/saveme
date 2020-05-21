@@ -36,7 +36,8 @@ class _ContactNumberInputFormState extends State<ContactNumberInputForm> {
     if (_numberFormKey.currentState.validate()) {
       if (widget.isEditable) {
         if (numbers.atLeastOneNumberExist) {
-          numbers.mainNumber.text = _editedNumberController.text;
+          numbers.mainNumber.text =
+              _editedNumberController.text.replaceAll(RegExp(r"\s\b|\b\s"), "");
           numbers.updateOnFileSystem;
         } else
           _addNumber();
