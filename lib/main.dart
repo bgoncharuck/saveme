@@ -18,30 +18,37 @@ class SaveMe extends StatefulWidget {
 
 class _SaveMeState extends State<SaveMe> {
   Widget _homeWidget = LoadingScreen();
-  Map<Permission, PermissionStatus> statusOf;
+  Map<Permission, PermissionStatus> _statusOf;
 
   Future _getPermissionsIfAny() async {
-    statusOf = await [
+    _statusOf = await [
       Permission.storage,
       Permission.contacts,
     ].request();
   }
 
   Future _loadFiles() async {
-    if (statusOf[Permission.storage].isGranted) {
+    // if loaded first time, this will show up
+    setState(() {
+      _homeWidget = SaveMeSettings();
+    });
+    if (_statusOf[Permission.storage].isGranted) {
       if (await numbers.readFromFileSystemIfAny) {
-        print("Access was granted and files loaded.");
         setState(() {
+          print("Access was granted and files loaded.");
           if (numbers.atLeastOneNumberExist) _homeWidget = SaveMeHome();
         });
       } else
-        numbers.updateOnFileSystem;
-
+        setState(() {
+          numbers.updateOnFileSystem;
+        });
       if (await storage.read(fromFile: timerSettingSaveFileName) == null)
-        callTimer.updateTimerSettingOnFileSystem;
+        setState(() {
+          callTimer.updateTimerSettingOnFileSystem;
+        });
     } else {
-      print("Access to filesystem denied for some reason.");
       setState(() {
+        print("Access to filesystem denied for some reason.");
         _homeWidget = SaveMeErrorMessage(
           language.loadFilesAccessErrorText,
           "$timerSettingSaveFileName $numbersListSaveFileName",
@@ -51,7 +58,7 @@ class _SaveMeState extends State<SaveMe> {
   }
 
   _checkContactListPermissionStatus() {
-    if (statusOf[Permission.contacts].isGranted) {
+    if (_statusOf[Permission.contacts].isGranted) {
       print("Access to contacts was granted.");
     } else {
       print("Access to contacts was not granted.");
@@ -60,10 +67,6 @@ class _SaveMeState extends State<SaveMe> {
 
   Future asyncInitPart() async {
     await _getPermissionsIfAny();
-    // if loaded first time, this will show up
-    setState(() {
-      _homeWidget = SaveMeSettings();
-    });
     await _loadFiles();
     _checkContactListPermissionStatus();
   }
