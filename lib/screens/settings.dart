@@ -34,7 +34,7 @@ class _SaveMeSettingsState extends State<SaveMeSettings> {
                 children: <Widget>[
                   ContactNumberInputForm(
                     onEditingComplete: () {},
-                    icon: Icons.smartphone,
+                    icon: Icons.contacts,
                     isEditable: true,
                     autofocus: false,
                   ),

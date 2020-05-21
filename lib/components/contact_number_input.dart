@@ -64,17 +64,20 @@ class _ContactNumberInputFormState extends State<ContactNumberInputForm> {
   Widget build(BuildContext context) {
     return Row(
       children: <Widget>[
-        FlatButton(
-          child: Icon(
-            widget.icon,
-            color: defaultTheme.onBackground,
-            size: 28.0,
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: FloatingActionButton(
+            child: Icon(
+              widget.icon,
+              color: defaultTheme.onMainColor,
+              size: 28.0,
+            ),
+            onPressed: () {
+              setState(() {
+                _editedByContactsPick;
+              });
+            },
           ),
-          onPressed: () {
-            setState(() {
-              _editedByContactsPick;
-            });
-          },
         ),
         Flexible(
           child: Form(

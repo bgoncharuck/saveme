@@ -27,9 +27,9 @@ class _NumbersListState extends State<NumbersList> {
                         FlatButton(
                           onPressed: () {
                             setState(() {
-                              if (numbers.numbers[index].isMainNumber) {
-                                numbers.numbers[index].isMainNumber = false;
-                              } else {
+                              if (numbers.numbers[index].isMainNumber)
+                                return;
+                              else {
                                 numbers.numbers.firstWhere((INumber number) {
                                   if (number.isMainNumber) return true;
                                   return false;

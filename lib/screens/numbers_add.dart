@@ -50,7 +50,7 @@ class _SaveMeNumbersAddState extends State<SaveMeNumbersAdd> {
                       onEditingComplete: () {
                         Navigator.of(context).pushNamed("/numbers");
                       },
-                      icon: Icons.import_contacts,
+                      icon: Icons.contacts,
                       isEditable: false,
                       autofocus: true,
                     ),
