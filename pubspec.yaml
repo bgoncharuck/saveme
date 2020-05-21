@@ -9,6 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  android_intent: ^0.3.7+2
   cupertino_icons: ^0.1.2
   path_provider: ^1.6.7
   permission_handler: ^5.0.0+hotfix.5

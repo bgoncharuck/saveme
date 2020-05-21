@@ -85,7 +85,7 @@ class _ContactNumberInputFormState extends State<ContactNumberInputForm> {
             child: TextFormField(
               controller: _editedNumberController,
               validator: (String number) {
-                if (number.isEmpty || number.length < 3) {
+                if (number.isEmpty || number.length < 3 || number.length > 22) {
                   return language.numberMustBeValid;
                 } else if (!widget.isEditable &&
                     numbers.numberIsAlreadyAddded(number)) {
