@@ -27,47 +27,46 @@ class _SaveMeState extends State<SaveMe> {
     ].request();
   }
 
-  Future _loadFiles() async {
-    // if loaded first time, this will show up
-    setState(() {
-      _homeWidget = SaveMeSettings();
-    });
+  Future<Widget> _chooseHomeScreenDependingOnLoadedFiles() async {
     if (_statusOf[Permission.storage].isGranted) {
-      if (await numbers.readFromFileSystemIfAny) {
-        setState(() {
+      bool isNull = true;
+      try {
+        isNull = await storage.read(fromFile: timerSettingSaveFileName) == null;
+      } catch (fileNotExistError) {} finally {
+        if (isNull) callTimer.updateTimerSettingOnFileSystem;
+      }
+      try {
+        if (await numbers.readFromFileSystemIfAny) {
           print("Access was granted and files loaded.");
-          if (numbers.atLeastOneNumberExist) _homeWidget = SaveMeHome();
-        });
-      } else
-        setState(() {
-          numbers.updateOnFileSystem;
-        });
-      if (await storage.read(fromFile: timerSettingSaveFileName) == null)
-        setState(() {
-          callTimer.updateTimerSettingOnFileSystem;
-        });
+          // on default case
+          if (numbers.atLeastOneNumberExist) return SaveMeHome();
+        }
+      } catch (fileNotExistError) {} finally {
+        numbers.updateOnFileSystem;
+      }
     } else {
-      setState(() {
-        print("Access to filesystem denied for some reason.");
-        _homeWidget = SaveMeErrorMessage(
-          language.loadFilesAccessErrorText,
-          "$timerSettingSaveFileName $numbersListSaveFileName",
-        );
-      });
+      print("Access to filesystem denied for some reason.");
+      // on access error will show up
+      return SaveMeErrorMessage(
+        language.loadFilesAccessErrorText,
+        "$timerSettingSaveFileName $numbersListSaveFileName",
+      );
     }
+    // on first load
+    return SaveMeSettings();
   }
 
   _checkContactListPermissionStatus() {
     if (_statusOf[Permission.contacts].isGranted) {
       print("Access to contacts was granted.");
-    } else {
+    } else
       print("Access to contacts was not granted.");
-    }
   }
 
   Future asyncInitPart() async {
     await _getPermissionsIfAny();
-    await _loadFiles();
+    _homeWidget = await _chooseHomeScreenDependingOnLoadedFiles();
+    setState(() {});
     _checkContactListPermissionStatus();
   }
 

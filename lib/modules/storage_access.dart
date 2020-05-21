@@ -15,22 +15,18 @@ class DefaultStorage implements IStorageFile {
 
   @override
   Future<bool> write({@required String data, @required String asFile}) async {
-    if (await Permission.storage.request().isGranted)
-      return (await File("${await _appDirPath}/$asFile")).writeAsString(data) !=
-          null;
-    return false;
+    if (await Permission.storage.request().isGranted == false) return false;
+    return (File("${await _appDirPath}/$asFile")).writeAsString(data) != null;
   }
 
   //  @NULLABLE
   @override
   Future<String> read({@required String fromFile}) async {
-    if (await Permission.storage.request().isGranted)
-      try {
-        return (await File("${await _appDirPath}/$fromFile")).readAsString();
-      } catch (readError) {
-        print(readError);
-        return null;
-      }
-    return null;
+    if (await Permission.storage.request().isGranted == false) return null;
+    try {
+      return (File("${await _appDirPath}/$fromFile")).readAsString();
+    } catch (readError) {
+      return null;
+    }
   }
 }
