@@ -31,7 +31,7 @@ class _SaveMeState extends State<SaveMe> {
   Future<Widget> _chooseHomeScreenDependingOnLoadedFiles() async {
     if (_statusOf[Permission.phone].isGranted == false)
       return SaveMeErrorMessage(
-        "Can't call",
+        language.noCallingPermissionError,
         "",
       );
     if (_statusOf[Permission.storage].isGranted) {

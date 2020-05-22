@@ -15,6 +15,7 @@ abstract class ILanguageSetting {
   String min;
   String sec;
   String setTheCallingTimerDescription;
+  String noCallingPermissionError;
   String loadFilesAccessErrorText;
   String settingsNavigationButton;
   String numbersNavigationButton;
@@ -43,6 +44,8 @@ class EnglishLanguage implements ILanguageSetting {
       "Set the Calling timer.\nNext time you run the app, it starts.";
   String loadFilesAccessErrorText =
       "My Lord, you did not grant me access to a storage.\nI can't save or load these config files:\n";
+  String noCallingPermissionError =
+      "My Lord, you did not grant me access to the phone calls.\nAs a proud Call Timer, I can't work without that permission.";
   String settingsNavigationButton = "Settings";
   String numbersNavigationButton = "Numbers To Call";
   String addTheNumberDescription =
@@ -71,6 +74,7 @@ class GermanLanguage implements ILanguageSetting {
   String setTheCallingTimerDescription =
       "Stellen Sie den Anruf-Timer ein.\nWenn Sie die App das nächste Mal ausführen, wird sie gestartet.";
   String loadFilesAccessErrorText = "";
+  String noCallingPermissionError = "";
   String settingsNavigationButton = "";
   String numbersNavigationButton = "";
   String addTheNumberDescription = "";
@@ -98,6 +102,8 @@ class UkranianLanguage implements ILanguageSetting {
       "Встановіть таймер дзвінку.\nВідлік почнеться під час наступного запуску.";
   String loadFilesAccessErrorText =
       "Господарю, Ви не надали мені прав доступу до файлів.\nЯ не зможу зберегти або завантажити ці файли налаштувань:\n";
+  String noCallingPermissionError =
+      "Господарю, Ви не надали мені прав доступу на дзвінки.\nЯ, як таймер дзвінку, не зможу працювати без цього дозволу.";
   String settingsNavigationButton = "Налаштування";
   String numbersNavigationButton = "Номери Для Дзвінка";
   String addTheNumberDescription =
@@ -126,6 +132,8 @@ class RussianLanguage implements ILanguageSetting {
       "Установите таймер звонка.\nОтчет начнется на следующий запуск";
   String loadFilesAccessErrorText =
       "Хозяин, Вы не предоставили мне прав доступа к файлам.\nЯ не смогу сохранить или загрузить эти файлы настроек:\n";
+  String noCallingPermissionError =
+      "Хозяин, Вы не предоставили мне права сделать звонок.\nЯ, как таймер звонка, не смогу работать без этого разрешения.";
   String settingsNavigationButton = "Настройка";
   String numbersNavigationButton = "Номера Для Звонка";
   String addTheNumberDescription =
