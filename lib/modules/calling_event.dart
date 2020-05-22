@@ -9,7 +9,7 @@ Future asyncCallingEvent(String number) async {
   if (Platform.isAndroid) {
     AndroidIntent intent = AndroidIntent(
       action: "android.intent.action.CALL",
-      data: "tel:${number}",
+      data: "tel:$number",
       flags: [Flag.FLAG_ACTIVITY_NEW_TASK],
     );
     await intent.launch();

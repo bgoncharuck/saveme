@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:saveme/constants.dart';
-import 'package:saveme/screens/home.dart';
-import 'package:saveme/screens/settings.dart';
 import 'package:saveme/screens/loading.dart';
 import 'package:saveme/theme/style.dart';
 import 'package:saveme/routes.dart';
@@ -56,32 +54,9 @@ class _SaveMeState extends State<SaveMe> {
     return false;
   }
 
-  Future<Widget> get chooseHomeScreenForDefaultRoute async {
-    // check if timer setting available from filesystem
-    bool isNotNull = true;
-    try {
-      isNotNull = await callTimer.readTimerSettingFromFileSystem;
-    } catch (fileNotExistError) {} finally {
-      if (!isNotNull) callTimer.updateTimerSettingOnFileSystem;
-    }
-    // check if numbers list available from filesystem
-    try {
-      if (await numbers.readFromFileSystemIfAny) {
-        print("DefaultRouteSetup: Completed.");
-        if (numbers.atLeastOneNumberExist) return SaveMeHome();
-      }
-    } catch (fileNotExistError) {} finally {
-      numbers.updateOnFileSystem;
-    }
-    // if not available or empty, then
-    print("Warning - DefaultRouteSetup: Need at least one number.");
-    return SaveMeSettings();
-  }
-
   Future<void> asyncInitPart() async {
     await requestPermissions;
     Widget errors = await chooseYourError;
-    // On Error
     if (errors != null) {
       setState(() {
         homeScreen = errors;
@@ -89,11 +64,9 @@ class _SaveMeState extends State<SaveMe> {
       return;
     }
     if (await isFirstStart) {
-      // First Start Route
       print("Route: First Start");
       return;
     }
-    // Default Route
     print("Route: Default");
     routeToUse = defaultRoute;
     homeScreen = await chooseHomeScreenForDefaultRoute;

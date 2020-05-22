@@ -10,3 +10,24 @@ final defaultRoute = <String, WidgetBuilder>{
   '/numbers': (BuildContext context) => SaveMeNumbers(),
   '/numbers/add': (BuildContext context) => SaveMeNumbersAdd(),
 };
+Future<Widget> get chooseHomeScreenForDefaultRoute async {
+  // check if timer setting available from filesystem
+  bool isNotNull = true;
+  try {
+    isNotNull = await callTimer.readTimerSettingFromFileSystem;
+  } catch (fileNotExistError) {} finally {
+    if (!isNotNull) callTimer.updateTimerSettingOnFileSystem;
+  }
+  // check if numbers list available from filesystem
+  try {
+    if (await numbers.readFromFileSystemIfAny) {
+      print("DefaultRouteSetup: Completed.");
+      if (numbers.atLeastOneNumberExist) return SaveMeHome();
+    }
+  } catch (fileNotExistError) {} finally {
+    numbers.updateOnFileSystem;
+  }
+  // if not available or empty, then
+  print("Warning - DefaultRouteSetup: Need at least one number.");
+  return SaveMeSettings();
+}

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:saveme/constants.dart';
 import 'package:saveme/models/number.dart';
-import 'package:saveme/screens/numbers.dart';
 
 class NumbersList extends StatefulWidget {
   @override
