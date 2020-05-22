@@ -29,6 +29,9 @@ class DefaultNumberList implements INumberList {
     var numbersFromJSON = json.decode(listOfNumbers).toList();
     for (Map<String, dynamic> mappedNumber in numbersFromJSON)
       this.numbers.add(Number.fromJson(mappedNumber));
+
+    if (this.numbers.isNotEmpty && this.mainNumber.text == "")
+      this.numbers[0].isMainNumber = true;
     return true;
   }
 
