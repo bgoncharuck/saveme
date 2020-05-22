@@ -8,6 +8,7 @@ import 'package:saveme/screens/numbers_add.dart';
 import 'package:saveme/screens/loading.dart';
 import 'package:saveme/components/error_message.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:saveme/routes/default.dart';
 
 void main() => runApp(SaveMe());
 
@@ -17,81 +18,61 @@ class SaveMe extends StatefulWidget {
 }
 
 class _SaveMeState extends State<SaveMe> {
-  Widget _homeWidget = LoadingScreen();
-  Map<Permission, PermissionStatus> _statusOf;
-
-  Future _getPermissionsIfAny() async {
-    _statusOf = await [
-      Permission.storage,
-      Permission.contacts,
-      Permission.phone,
-    ].request();
-  }
-
-  Future<Widget> _chooseHomeScreenDependingOnLoadedFiles() async {
-    if (_statusOf[Permission.phone].isGranted == false)
+  Widget routeToUse = LoadingScreen();
+  Map<Permission, PermissionStatus> statusOf;
+  //
+  //
+  Future<void> get requestPermissions async => statusOf = await [
+        Permission.phone,
+        Permission.storage,
+        Permission.contacts,
+      ].request();
+  Future<bool> get isFirstStart async => false;
+  Future<Widget> get chooseYourError async {
+    if (statusOf[Permission.phone].isGranted == false) {
+      print(
+          "Init 0 - ERROR - PermissionsCheck: Phone call access was not granted.");
       return SaveMeErrorMessage(
         language.noCallingPermissionError,
         "",
       );
-    if (_statusOf[Permission.storage].isGranted) {
-      bool isNotNull = true;
-      try {
-        isNotNull = await callTimer.readTimerSettingFromFileSystem;
-      } catch (fileNotExistError) {} finally {
-        if (!isNotNull) callTimer.updateTimerSettingOnFileSystem;
-      }
-
-      try {
-        if (await numbers.readFromFileSystemIfAny) {
-          print("Access was granted and files loaded.");
-          // on default case
-          if (numbers.atLeastOneNumberExist) return SaveMeHome();
-        }
-      } catch (fileNotExistError) {} finally {
-        numbers.updateOnFileSystem;
-      }
-    } else {
-      print("Access to filesystem denied for some reason.");
-      // on access error will show up
+    }
+    print("Init 0 - PermissionsCheck: Phone call access was granted.");
+    if (statusOf[Permission.storage].isGranted == false) {
+      print(
+          "Init 0 - ERROR - PermissionsCheck: Storage access was not granted.");
       return SaveMeErrorMessage(
         language.loadFilesAccessErrorText,
         "$timerSettingSaveFileName $numbersListSaveFileName",
       );
     }
-    // on first load
-    return SaveMeSettings();
+    print("Init 0 - PermissionsCheck: Storage access was granted.");
+    if (statusOf[Permission.contacts].isGranted)
+      print("Init 0 - PermissionsCheck: Contacts access was granted.");
+    return null;
   }
 
-  _checkContactListPermissionStatus() {
-    if (_statusOf[Permission.contacts].isGranted) {
-      print("Access to contacts was granted.");
-    } else
-      print("Access to contacts was not granted.");
+  //
+  //
+  Future<void> asyncInitPart() async {
+    await requestPermissions;
+    Widget errors = await chooseYourError;
+    if (errors == null) {
+      return;
+    }
+    // if any error
+    setState(() {
+      routeToUse = errors;
+    });
   }
 
-  Future asyncInitPart() async {
-    await _getPermissionsIfAny();
-    _homeWidget = await _chooseHomeScreenDependingOnLoadedFiles();
-    setState(() {});
-    _checkContactListPermissionStatus();
-  }
-
+  //
+  //
   @override
   void initState() {
     asyncInitPart();
     super.initState();
   }
 
-  Widget build(BuildContext context) => MaterialApp(
-        theme: saveMeLight,
-        title: 'SaveMe',
-        home: _homeWidget,
-        routes: <String, WidgetBuilder>{
-          '/home': (BuildContext context) => SaveMeHome(),
-          '/settings': (BuildContext context) => SaveMeSettings(),
-          '/numbers': (BuildContext context) => SaveMeNumbers(),
-          '/numbers/add': (BuildContext context) => SaveMeNumbersAdd(),
-        },
-      );
+  Widget build(BuildContext context) => routeToUse;
 }

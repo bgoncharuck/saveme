@@ -5,18 +5,22 @@ import 'dart:io' show Platform;
 
 import 'package:saveme/constants.dart';
 
-Future _asyncCallingEvent() async {
+Future asyncCallingEvent(String number) async {
   if (Platform.isAndroid) {
     AndroidIntent intent = AndroidIntent(
       action: "android.intent.action.CALL",
-      data: "tel:${numbers.mainNumber.text}",
+      data: "tel:${number}",
       flags: [Flag.FLAG_ACTIVITY_NEW_TASK],
     );
     await intent.launch();
   }
-  SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+}
+
+void callingToMainNumber() {
+  asyncCallingEvent(numbers.mainNumber.text);
 }
 
 void callingEvent() {
-  _asyncCallingEvent();
+  callingToMainNumber();
+  SystemChannels.platform.invokeMethod('SystemNavigator.pop');
 }
