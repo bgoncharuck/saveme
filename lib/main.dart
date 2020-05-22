@@ -18,7 +18,8 @@ class SaveMe extends StatefulWidget {
 }
 
 class _SaveMeState extends State<SaveMe> {
-  Widget routeToUse = LoadingScreen();
+  Widget routeToUse =
+      MaterialApp(theme: saveMeLight, title: 'SaveMe', home: LoadingScreen());
   Map<Permission, PermissionStatus> statusOf;
   //
   //
@@ -29,6 +30,7 @@ class _SaveMeState extends State<SaveMe> {
       ].request();
   Future<bool> get isFirstStart async => false;
   Future<Widget> get chooseYourError async {
+    //
     if (statusOf[Permission.phone].isGranted == false) {
       print(
           "Init 0 - ERROR - PermissionsCheck: Phone call access was not granted.");
@@ -38,6 +40,7 @@ class _SaveMeState extends State<SaveMe> {
       );
     }
     print("Init 0 - PermissionsCheck: Phone call access was granted.");
+    //
     if (statusOf[Permission.storage].isGranted == false) {
       print(
           "Init 0 - ERROR - PermissionsCheck: Storage access was not granted.");
@@ -47,8 +50,10 @@ class _SaveMeState extends State<SaveMe> {
       );
     }
     print("Init 0 - PermissionsCheck: Storage access was granted.");
+    //
     if (statusOf[Permission.contacts].isGranted)
       print("Init 0 - PermissionsCheck: Contacts access was granted.");
+    //
     return null;
   }
 
@@ -62,7 +67,8 @@ class _SaveMeState extends State<SaveMe> {
     }
     // if any error
     setState(() {
-      routeToUse = errors;
+      routeToUse =
+          MaterialApp(theme: saveMeLight, title: 'SaveMe', home: errors);
     });
   }
 
