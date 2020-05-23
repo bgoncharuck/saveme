@@ -67,7 +67,9 @@ class _NumbersListState extends State<NumbersList> {
                     },
                     child: Icon(
                       Icons.delete,
-                      color: defaultTheme.onBackground,
+                      color: numbers.numbers[index].isMainNumber
+                          ? defaultTheme.mainColor
+                          : defaultTheme.onBackground,
                     ),
                   ),
                 ],
