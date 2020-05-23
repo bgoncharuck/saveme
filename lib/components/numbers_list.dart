@@ -40,7 +40,10 @@ class _NumbersListState extends State<NumbersList> {
                               numbers.updateOnFileSystem;
                             });
                           },
-                          child: Text(numbers.numbers[index].text,
+                          child: Text(
+                              (numbers.numbers[index].contactName.isNotEmpty)
+                                  ? numbers.numbers[index].contactName
+                                  : numbers.numbers[index].text,
                               style: TextStyle(
                                   fontSize: 24.0,
                                   color: numbers.numbers[index].isMainNumber

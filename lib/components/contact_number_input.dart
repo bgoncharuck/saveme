@@ -20,7 +20,7 @@ class ContactNumberInputForm extends StatefulWidget {
 class _ContactNumberInputFormState extends State<ContactNumberInputForm> {
   final TextEditingController _editedNumberController = TextEditingController();
   final _numberFormKey = GlobalKey<FormState>();
-  bool _contactWasPicked = false;
+  String _contactWasPicked = null;
 
   @override
   void initState() {
@@ -29,8 +29,9 @@ class _ContactNumberInputFormState extends State<ContactNumberInputForm> {
     super.initState();
   }
 
-  void _addNumber() => numbers.addNumber(
-      Number(_editedNumberController.text, isMain: numbers.noNumberSetted));
+  void _addNumber({String contactName = ""}) =>
+      numbers.addNumber(Number(_editedNumberController.text,
+          isMain: numbers.noNumberSetted, contactName: contactName));
 
   void _numberEditingComplete() {
     if (_numberFormKey.currentState.validate()) {
@@ -52,11 +53,12 @@ class _ContactNumberInputFormState extends State<ContactNumberInputForm> {
   }
 
   Future get _editedByContactsPick async {
-    _contactWasPicked = await contacts.getNumber(_editedNumberController);
+    _contactWasPicked = await contacts.getContact(_editedNumberController);
 
-    if (_contactWasPicked) {
-      _numberEditingComplete();
-      _contactWasPicked = false;
+    if (_contactWasPicked != null) {
+      _addNumber(contactName: _contactWasPicked);
+      _contactWasPicked = null;
+      widget.onEditingComplete();
     }
   }
 
