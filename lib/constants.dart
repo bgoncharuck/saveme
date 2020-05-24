@@ -8,6 +8,7 @@ import 'package:saveme/theme/style.dart';
 final IDefaultTheme defaultTheme = OrangeGreyTheme();
 final String numbersListSaveFileName = "numbers_list.json";
 final String timerSettingSaveFileName = "timer_setting.json";
+final isFirstStartFileName = "is_first_start.txt";
 final IStorageFile storage = DefaultStorage();
 final INumberList numbers = DefaultNumberList();
 final IContactsAction contacts = DefaultContactsAction();

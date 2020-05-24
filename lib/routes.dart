@@ -32,3 +32,6 @@ Future<Widget> get chooseHomeScreenForDefaultRoute async {
   print("Warning - DefaultRouteSetup: Need at least one number.");
   return SaveMeSettings();
 }
+
+final firstStartRoute = <String, WidgetBuilder>{};
+Future<Widget> get HomeScreenForFirstRoute async {}

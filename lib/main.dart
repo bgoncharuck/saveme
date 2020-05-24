@@ -51,6 +51,8 @@ class _SaveMeState extends State<SaveMe> {
   }
 
   Future<bool> get isFirstStart async {
+    String readed = await storage.read(fromFile: isFirstStartFileName);
+    if (readed == null || readed != "false") return true;
     return false;
   }
 
@@ -65,6 +67,7 @@ class _SaveMeState extends State<SaveMe> {
     }
     if (await isFirstStart) {
       print("Route: First Start");
+
       return;
     }
     print("Route: Default");
