@@ -20,8 +20,7 @@ class _NumbersListState extends State<NumbersList> {
               Row(
                 children: <Widget>[
                   Expanded(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                    child: Wrap(
                       children: <Widget>[
                         FlatButton(
                           onPressed: () {
