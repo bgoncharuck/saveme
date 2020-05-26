@@ -23,7 +23,10 @@ class _SaveMeMainButtonState extends State<SaveMeMainButton> {
                       showConfirmDialog = false;
                     });
                   },
-                  child: Text(language.stopTheTimerAlertActionNo),
+                  child: Text(
+                    language.stopTheTimerAlertActionNo,
+                    style: TextStyle(color: defaultTheme.onBackground),
+                  ),
                 ),
                 FlatButton(
                   onPressed: () {

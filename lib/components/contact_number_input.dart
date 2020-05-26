@@ -116,7 +116,7 @@ class _ContactNumberInputFormState extends State<ContactNumberInputForm> {
               keyboardType: TextInputType.phone,
               decoration: InputDecoration(
                 labelText:
-                    (widget.isEditable) ? language.mainNumberEditingLabel : "",
+                    (widget.isEditable) ? language.mainPhoneNumberLabel : "",
               ),
               autofocus: widget.autofocus,
               onEditingComplete: () {

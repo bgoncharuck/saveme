@@ -22,7 +22,6 @@ abstract class ILanguageSetting {
   String addTheNumberDescription;
   String startTimerAgainLabel;
   String startTimerAgainAction;
-  String mainNumberEditingLabel;
   String noNumbersAdded;
   String fromContacts;
 }
@@ -53,41 +52,39 @@ class EnglishLanguage implements ILanguageSetting {
       "The number of the person you will calling for a help.";
   String startTimerAgainLabel = "Timer Was Stopped";
   String startTimerAgainAction = "Start Again";
-  String mainNumberEditingLabel = "Main Phone Number To Call";
   String noNumbersAdded = "At least one number must exist.";
   String fromContacts = "from contacts";
 }
 
 // @TODO
 class GermanLanguage implements ILanguageSetting {
-  String numberMustBeValid = 'Number must to be valid';
-  String numberAlreadyAdded = "You already added this number";
-  String mainPhoneNumberLabel = "Main Phone Number To Call";
+  String numberMustBeValid = "Die Nummer muss gültig sein";
+  String numberAlreadyAdded = "Diese Nummer bereits hinzugefügt";
+  String mainPhoneNumberLabel = "Telefonnummer zum Anrufen";
   String labelError = "Error";
-  String stopTheTimerButtonLabel = "Stop";
-  String stopTheTimerAlertTitle = "Stop The Timer?";
-  String stopTheTimerAlertContent = "Are you okay?";
-  String stopTheTimerAlertActionYes = "Yes";
-  String stopTheTimerAlertActionNo = "No";
-  String minutes = "minutes";
-  String seconds = "seconds";
+  String stopTheTimerButtonLabel = "Stoppen";
+  String stopTheTimerAlertTitle = "Timer stoppen?";
+  String stopTheTimerAlertContent = "Bist du in Ordnung?";
+  String stopTheTimerAlertActionYes = "Ja";
+  String stopTheTimerAlertActionNo = "Nein";
+  String minutes = "Minuten";
+  String seconds = "Sekunden";
   String min = "min";
-  String sec = "sec";
+  String sec = "sek";
   String setTheCallingTimerDescription =
-      "Set the Calling timer.\nNext time you run the app, it starts.\n\nThe first call will need to be confirmed.";
+      "Stellen Sie den Anruf-Timer ein.\nWenn Sie die App das nächste Mal ausführen, wird sie gestartet.\n\nDer erste Anruf muss bestätigt werden.";
   String loadFilesAccessErrorText =
-      "My Lord, you did not grant me access to a storage.\nI can't save or load these config files:\n";
+      "Mein Herr, du hast mir keinen Zugang zu einem Speicher gewährt.\nIch kann diese Konfigurationsdateien nicht speichern oder laden:\n";
   String noCallingPermissionError =
-      "My Lord, you did not grant me access to the phone calls.\nAs a proud Call Timer, I can't work without that permission.";
-  String settingsNavigationButton = "Settings";
-  String numbersNavigationButton = "Numbers To Call";
+      "Mein Herr, Sie haben mir keinen Zugang zu den Telefonanrufen gewährt.\nAls stolzer Anruf-Timer kann ich ohne diese Erlaubnis nicht arbeiten.";
+  String settingsNavigationButton = "Konfigurieren";
+  String numbersNavigationButton = "Zu rufende Nummern";
   String addTheNumberDescription =
-      "The number of the person you will calling for a help.";
-  String startTimerAgainLabel = "Timer Was Stopped";
-  String startTimerAgainAction = "Start Again";
-  String mainNumberEditingLabel = "Main Phone Number To Call";
-  String noNumbersAdded = "At least one number must exist.";
-  String fromContacts = "from contacts";
+      "Die Nummer der Person, die Sie für eine Hilfe rufen werden.";
+  String startTimerAgainLabel = "Timer gestoppt";
+  String startTimerAgainAction = "Von vorn anfangen";
+  String noNumbersAdded = "Es muss mindestens eine Nummer vorhanden sein.";
+  String fromContacts = "von Kontakten";
 }
 
 class UkranianLanguage implements ILanguageSetting {
@@ -116,7 +113,6 @@ class UkranianLanguage implements ILanguageSetting {
       "Номер людини, до якої Ви будете дзвонити за допомогою.";
   String startTimerAgainLabel = "Таймер Було Зупинено";
   String startTimerAgainAction = "Почати";
-  String mainNumberEditingLabel = "Основний Номер Для Дзвінка";
   String noNumbersAdded = "Додайте хоча б один номер.";
   String fromContacts = "з контактів";
 }
@@ -147,7 +143,6 @@ class RussianLanguage implements ILanguageSetting {
       "Номер человека, которому Вы будете звонить за помощью.";
   String startTimerAgainLabel = "Таймер Было Остановлено";
   String startTimerAgainAction = "Старт";
-  String mainNumberEditingLabel = "Основной Номер Для Звонка";
   String noNumbersAdded = "Добавьте хотя бы один номер.";
   String fromContacts = "с контактов";
 }
