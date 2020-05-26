@@ -50,14 +50,6 @@ class _SaveMeState extends State<SaveMe> {
     return null;
   }
 
-  Future<bool> get isFirstStart async {
-    String fromFile = await storage.read(fromFile: isFirstStartFileName);
-    if (fromFile == null || fromFile != "false") {
-      return true;
-    }
-    return false;
-  }
-
   Future<void> asyncInitPart() async {
     await requestPermissions;
     Widget errors = await chooseYourError;
@@ -65,13 +57,6 @@ class _SaveMeState extends State<SaveMe> {
       setState(() {
         homeScreen = errors;
       });
-      return;
-    }
-    if (await isFirstStart) {
-      print("Route: First Start");
-      routeToUse = firstStartRoute;
-      homeScreen = await HomeScreenForFirstRoute;
-      setState(() {});
       return;
     }
     print("Route: Default");

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:saveme/constants.dart';
-import 'package:saveme/screens/first_start_number.dart';
 import 'package:saveme/screens/home.dart';
 import 'package:saveme/screens/settings.dart';
 import 'package:saveme/screens/numbers.dart';
@@ -32,9 +31,4 @@ Future<Widget> get chooseHomeScreenForDefaultRoute async {
   // if not available or empty, then
   print("Warning - DefaultRouteSetup: Need at least one number.");
   return SaveMeSettings();
-}
-
-final firstStartRoute = <String, WidgetBuilder>{};
-Future<Widget> get HomeScreenForFirstRoute async {
-  return FirstStartNumberPicker();
 }
