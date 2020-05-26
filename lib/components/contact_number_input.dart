@@ -56,7 +56,13 @@ class _ContactNumberInputFormState extends State<ContactNumberInputForm> {
     _contactWasPicked = await contacts.getContact(_editedNumberController);
 
     if (_contactWasPicked != null) {
-      _addNumber(contactName: _contactWasPicked);
+      if (numbers.noNumberSetted)
+        _addNumber(contactName: _contactWasPicked);
+      else {
+        numbers.mainNumber.isMainNumber = false;
+        numbers.addNumber(Number(_editedNumberController.text,
+            isMain: true, contactName: _contactWasPicked));
+      }
       _contactWasPicked = null;
       widget.onEditingComplete();
     }
