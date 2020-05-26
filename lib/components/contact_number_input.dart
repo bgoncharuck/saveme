@@ -4,12 +4,10 @@ import 'package:saveme/constants.dart';
 
 class ContactNumberInputForm extends StatefulWidget {
   final Function onEditingComplete;
-  final IconData icon;
   final bool isEditable;
   final bool autofocus;
   ContactNumberInputForm(
       {@required this.onEditingComplete,
-      @required this.icon,
       @required this.isEditable,
       @required this.autofocus});
 
@@ -73,18 +71,32 @@ class _ContactNumberInputFormState extends State<ContactNumberInputForm> {
     return Row(
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: FloatingActionButton(
-            child: Icon(
-              widget.icon,
-              color: defaultTheme.onMainColor,
-              size: 28.0,
-            ),
-            onPressed: () {
-              setState(() {
-                _editedByContactsPick;
-              });
-            },
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Column(
+            children: <Widget>[
+              FloatingActionButton(
+                mini: true,
+                child: Icon(
+                  Icons.contacts,
+                  color: defaultTheme.onMainColor,
+                  size: 26.0,
+                  semanticLabel: "from the contacts",
+                ),
+                onPressed: () {
+                  setState(() {
+                    _editedByContactsPick;
+                  });
+                },
+              ),
+              Text(
+                language.fromContacts,
+                style: TextStyle(
+                  color: defaultTheme.mainColor,
+                  fontSize: 12.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              )
+            ],
           ),
         ),
         Flexible(

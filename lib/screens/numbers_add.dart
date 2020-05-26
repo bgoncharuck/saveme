@@ -42,7 +42,7 @@ class _SaveMeNumbersAddState extends State<SaveMeNumbersAdd> {
                       child: Text(
                         language.addTheNumberDescription,
                         style: TextStyle(
-                          fontSize: 24,
+                          fontSize: 20,
                         ),
                       ),
                     ),
@@ -50,7 +50,6 @@ class _SaveMeNumbersAddState extends State<SaveMeNumbersAdd> {
                       onEditingComplete: () {
                         Navigator.of(context).pushNamed("/numbers");
                       },
-                      icon: Icons.contacts,
                       isEditable: false,
                       autofocus: true,
                     ),

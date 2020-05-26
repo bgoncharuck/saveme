@@ -13,11 +13,16 @@ class _TimerConfigState extends State<TimerConfig> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 8),
+          padding: const EdgeInsets.only(
+            top: 32,
+            left: 8,
+            right: 1,
+            bottom: 16,
+          ),
           child: Text(
             language.setTheCallingTimerDescription,
             style: TextStyle(
-              fontSize: 20,
+              fontSize: 16,
             ),
           ),
         ),

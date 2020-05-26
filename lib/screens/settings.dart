@@ -30,13 +30,15 @@ class _SaveMeSettingsState extends State<SaveMeSettings> {
             ),
             Expanded(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
-                  ContactNumberInputForm(
-                    onEditingComplete: () {},
-                    icon: Icons.contacts,
-                    isEditable: true,
-                    autofocus: false,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 32),
+                    child: ContactNumberInputForm(
+                      onEditingComplete: () {},
+                      isEditable: true,
+                      autofocus: false,
+                    ),
                   ),
                   TimerConfig(),
                 ],
