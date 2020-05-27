@@ -63,10 +63,25 @@ class DefaultNumberList implements INumberList {
         return false;
       });
 
+  INumber NotFound = null;
+  INumber findByNumber(String numberTextToFind) =>
+      this.numbers.firstWhere((INumber number) {
+        if (number.text == numberTextToFind) return true;
+        return false;
+      }, orElse: () => NotFound);
+
   @override
   void addNumber(INumber number) {
     number.text = number.text.replaceAll(RegExp(r"\s\b|\b\s"), "");
-    this.numbers.add(number);
+    if (this.numbers.isNotEmpty) {
+      INumber toChangeIfNeeded = findByNumber(number.text);
+      if (toChangeIfNeeded != NotFound) {
+        this.mainNumber.isMainNumber = false;
+        toChangeIfNeeded.isMainNumber = true;
+      } else
+        this.numbers.add(number);
+    } else
+      this.numbers.add(number);
     this.updateOnFileSystem;
   }
 }
