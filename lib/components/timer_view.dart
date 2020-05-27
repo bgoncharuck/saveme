@@ -3,21 +3,14 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter/material.dart';
 import 'package:saveme/constants.dart';
 
-class TimerView extends StatefulWidget {
-  @override
-  _TimerViewState createState() => _TimerViewState();
-}
-
-class _TimerViewState extends State<TimerView> {
+class TimerView extends StatelessWidget {
   Future _asyncInitState() async {
     await callTimer.readTimerSettingFromFileSystem;
     callTimer.start();
   }
 
-  @override
-  void initState() {
+  TimerView() {
     _asyncInitState();
-    super.initState();
   }
 
   @override

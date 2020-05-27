@@ -4,12 +4,7 @@ import 'package:saveme/constants.dart';
 import 'package:saveme/components/navigation_button.dart';
 import 'package:saveme/components/timer_setting.dart';
 
-class SaveMeSettings extends StatefulWidget {
-  @override
-  _SaveMeSettingsState createState() => _SaveMeSettingsState();
-}
-
-class _SaveMeSettingsState extends State<SaveMeSettings> {
+class SaveMeSettings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -4,12 +4,7 @@ import 'package:saveme/components/navigation_button.dart';
 import 'package:saveme/components/timer_view.dart';
 import 'package:saveme/constants.dart';
 
-class SaveMeHome extends StatefulWidget {
-  @override
-  State<SaveMeHome> createState() => _SaveMeHomeState();
-}
-
-class _SaveMeHomeState extends State<SaveMeHome> {
+class SaveMeHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

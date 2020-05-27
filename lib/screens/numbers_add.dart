@@ -3,12 +3,7 @@ import 'package:saveme/components/contact_number_input.dart';
 import 'package:saveme/components/navigation_button.dart';
 import 'package:saveme/constants.dart';
 
-class SaveMeNumbersAdd extends StatefulWidget {
-  @override
-  _SaveMeNumbersAddState createState() => _SaveMeNumbersAddState();
-}
-
-class _SaveMeNumbersAddState extends State<SaveMeNumbersAdd> {
+class SaveMeNumbersAdd extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
