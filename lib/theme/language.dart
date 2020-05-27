@@ -14,7 +14,7 @@ abstract class ILanguageSetting {
   String seconds;
   String min;
   String sec;
-  String setTheCallingTimerDescription;
+  List<String> setTheCallingTimerDescription;
   String noCallingPermissionError;
   String loadFilesAccessErrorText;
   String settingsNavigationButton;
@@ -40,8 +40,15 @@ class EnglishLanguage implements ILanguageSetting {
   String seconds = "seconds";
   String min = "min";
   String sec = "sec";
-  String setTheCallingTimerDescription =
-      "Set the Calling timer.\nNext time you run the app, it starts.\n\nThe first call will need to be confirmed.";
+  List<String> setTheCallingTimerDescription = [
+    "Set",
+    "the Calling timer",
+    "Next time",
+    "you run the app, it starts",
+    "The",
+    "first call",
+    "will need to be confirmed"
+  ];
   String loadFilesAccessErrorText =
       "My Lord, you did not grant me access to a storage.\nI can't save or load these config files:\n";
   String noCallingPermissionError =
@@ -62,7 +69,7 @@ class GermanLanguage implements ILanguageSetting {
   String numberAlreadyAdded = "Diese Nummer bereits hinzugefügt";
   String mainPhoneNumberLabel = "Telefonnummer zum Anrufen";
   String labelError = "Error";
-  String stopTheTimerButtonLabel = "Stoppen";
+  String stopTheTimerButtonLabel = "Stopp";
   String stopTheTimerAlertTitle = "Timer stoppen?";
   String stopTheTimerAlertContent = "Bist du in Ordnung?";
   String stopTheTimerAlertActionYes = "Ja";
@@ -71,8 +78,15 @@ class GermanLanguage implements ILanguageSetting {
   String seconds = "Sekunden";
   String min = "min";
   String sec = "sek";
-  String setTheCallingTimerDescription =
-      "Stellen Sie den Anruf-Timer ein.\nWenn Sie die App das nächste Mal ausführen, wird sie gestartet.\n\nDer erste Anruf muss bestätigt werden.";
+  List<String> setTheCallingTimerDescription = [
+    "Stellen",
+    "den Anruf-Timer ein",
+    "Nächstes Mal",
+    "wenn Sie die App ausführen, wird sie gestartet",
+    "Der",
+    "erste Anruf",
+    "muss bestätigt werden"
+  ];
   String loadFilesAccessErrorText =
       "Mein Herr, du hast mir keinen Zugang zu einem Speicher gewährt.\nIch kann diese Konfigurationsdateien nicht speichern oder laden:\n";
   String noCallingPermissionError =
@@ -101,8 +115,15 @@ class UkranianLanguage implements ILanguageSetting {
   String seconds = "секунд";
   String min = "хв";
   String sec = "сек";
-  String setTheCallingTimerDescription =
-      "Встановіть таймер дзвінку.\nВідлік почнеться під час наступного запуску.\n\nПерший дзвінок необхідно буде підтвердити.";
+  List<String> setTheCallingTimerDescription = [
+    "Встановіть",
+    "таймер дзвінку",
+    "Під час наступного запуску",
+    "відлік почнеться",
+    "",
+    "Перший дзвінок",
+    "необхідно буде підтвердити"
+  ];
   String loadFilesAccessErrorText =
       "Господарю, Ви не надали мені прав доступу до файлів.\nЯ не зможу зберегти або завантажити ці файли налаштувань:\n";
   String noCallingPermissionError =
@@ -131,8 +152,15 @@ class RussianLanguage implements ILanguageSetting {
   String seconds = "секунд";
   String min = "мин";
   String sec = "сек";
-  String setTheCallingTimerDescription =
-      "Установите таймер звонка.\nОтчет начнется на следующий запуск\n\nПервый звонок необходимо будет подтвердить.";
+  List<String> setTheCallingTimerDescription = [
+    "Установите",
+    "таймер звонка",
+    "На следующий запуск",
+    "отчет начнется",
+    "",
+    "Первый звонок",
+    "необходимо будет подтвердить"
+  ];
   String loadFilesAccessErrorText =
       "Хозяин, Вы не предоставили мне прав доступа к файлам.\nЯ не смогу сохранить или загрузить эти файлы настроек:\n";
   String noCallingPermissionError =

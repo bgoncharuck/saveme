@@ -19,10 +19,86 @@ class _TimerConfigState extends State<TimerConfig> {
             right: 1,
             bottom: 16,
           ),
-          child: Text(
-            language.setTheCallingTimerDescription,
-            style: TextStyle(
-              fontSize: 16,
+          child: Card(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: <Widget>[
+                      Icon(
+                        Icons.notification_important,
+                        color: defaultTheme.mainColor,
+                        size: 32.0,
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: <Widget>[
+                      RichText(
+                        text: TextSpan(
+                          text: "1. ",
+                          style: TextStyle(fontSize: 16.0),
+                          children: <TextSpan>[
+                            TextSpan(
+                              text:
+                                  "${language.setTheCallingTimerDescription[0]} ",
+                            ),
+                            TextSpan(
+                              text:
+                                  "${language.setTheCallingTimerDescription[1]}.",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ),
+                      RichText(
+                        text: TextSpan(
+                          text: "2. ",
+                          style: TextStyle(fontSize: 16.0),
+                          children: <TextSpan>[
+                            TextSpan(
+                              text:
+                                  "${language.setTheCallingTimerDescription[2]} ",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            TextSpan(
+                              text:
+                                  "${language.setTheCallingTimerDescription[3]}.",
+                            ),
+                          ],
+                        ),
+                      ),
+                      RichText(
+                        text: TextSpan(
+                          text: "3. ",
+                          style: TextStyle(fontSize: 16.0),
+                          children: <TextSpan>[
+                            TextSpan(
+                              text:
+                                  "${language.setTheCallingTimerDescription[4]} ",
+                            ),
+                            TextSpan(
+                              text:
+                                  "${language.setTheCallingTimerDescription[5]} ",
+                              style: TextStyle(
+                                  fontStyle: FontStyle.italic,
+                                  color: defaultTheme.mainColor),
+                            ),
+                            TextSpan(
+                              text:
+                                  "${language.setTheCallingTimerDescription[6]}.",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),
