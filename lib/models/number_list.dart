@@ -73,15 +73,16 @@ class DefaultNumberList implements INumberList {
   @override
   void addNumber(INumber number) {
     number.text = number.text.replaceAll(RegExp(r"\s\b|\b\s"), "");
-    if (this.numbers.isNotEmpty) {
-      INumber toChangeIfNeeded = findByNumber(number.text);
-      if (toChangeIfNeeded != NotFound) {
-        this.mainNumber.isMainNumber = false;
-        toChangeIfNeeded.isMainNumber = true;
-      } else
-        this.numbers.add(number);
-    } else
+    INumber newMain =
+        (this.numbers.isEmpty) ? NotFound : findByNumber(number.text);
+
+    if (newMain == NotFound)
       this.numbers.add(number);
+    else {
+      this.mainNumber.isMainNumber = false;
+      newMain.isMainNumber = true;
+    }
+
     this.updateOnFileSystem;
   }
 }
