@@ -19,6 +19,9 @@ class SaveMeHome extends StatelessWidget {
                   icon: Icons.settings,
                   optionalAction: () {
                     callTimer.stop();
+                    // allow return to timer only after settings completed
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                        '/settings', (Route<dynamic> route) => false);
                   },
                 ),
                 Expanded(
