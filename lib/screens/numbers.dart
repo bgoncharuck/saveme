@@ -3,12 +3,7 @@ import 'package:saveme/components/numbers_list.dart';
 import 'package:saveme/components/navigation_button.dart';
 import 'package:saveme/constants.dart';
 
-class SaveMeNumbers extends StatefulWidget {
-  @override
-  _SaveMeNumbersState createState() => _SaveMeNumbersState();
-}
-
-class _SaveMeNumbersState extends State<SaveMeNumbers> {
+class SaveMeNumbers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,9 +32,7 @@ class _SaveMeNumbersState extends State<SaveMeNumbers> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          setState(() {
-            Navigator.of(context).pushNamed("/numbers/add");
-          });
+          Navigator.of(context).pushNamed("/numbers/add");
         },
         child: Icon(
           Icons.add,
