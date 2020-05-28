@@ -10,6 +10,7 @@ class TimerConfig extends StatefulWidget {
 class _TimerConfigState extends State<TimerConfig> {
   @override
   Widget build(BuildContext context) {
+    callTimer.updateTimerSettingOnFileSystem;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
