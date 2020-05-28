@@ -116,8 +116,6 @@ class _ContactNumberInputFormState extends State<ContactNumberInputForm> {
               onEditingComplete: () {
                 _numberEditingComplete();
                 if (!widget.autofocus) FocusScope.of(context).unfocus();
-                if (numbers.numbers.length == 1)
-                  Navigator.of(context).pushNamed("/settings");
               },
             ),
           ),
