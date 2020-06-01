@@ -1,3 +1,7 @@
 # saveme
-
-If you feel bad, you can use this timer to call your friends for help. If you&#x27;re feeling better, just turn off the timer until it rings. The first time you start app, you need to set the primary number for the call and the amount of time before the call. The application uses GPLv3.
+`The Call Timer which saves lives!`
+<div style="text-align:center" markdown="1">
+<img width="282px" height="501px" src="https://github.com/bgoncharuck/saveme/blob/master/repo_assets/saveme_settings.png" />
+<img width="282px" height="501px" src="https://github.com/bgoncharuck/saveme/blob/master/repo_assets/saveme_numberlist.png" />
+<img width="282px" height="501px" src="https://github.com/bgoncharuck/saveme/blob/master/repo_assets/saveme_home.png" />
+</div>
