@@ -37,10 +37,16 @@ https://www.gnu.org/licenses/gpl-3.0.en.html
 Find it on play market:
 
 # For Developers
-
+### Current "saveme" version: 1.0.0
 The application is written in Dart language with Flutter Framework.
 
 ### Depends on this packages:
+- android_intent
+- permission_handler
+- path_provider
+- contact_picker
+- url_launcher
+- flutter_spinkit
 
 ## What need to be done:
 - iOS support.
