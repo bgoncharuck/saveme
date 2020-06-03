@@ -41,12 +41,14 @@ Find it on play market:
 The application is written in Dart language with Flutter Framework.
 
 ### Depends on this packages:
-- android_intent
-- permission_handler
-- path_provider
-- contact_picker
-- url_launcher
-- flutter_spinkit
+- [**android_intent**](https://pub.dev/packages/android_intent)
+For making direct call.
+- [**permission_handler**](https://pub.dev/packages/permission_handler)
+For 3 permissions.
+- [**path_provider**](https://pub.dev/packages/path_provider) For correct path to save/load files.
+- [*contact_picker*](https://pub.dev/packages/contact_picker) For option to pick a number from contact list.
+- [**url_launcher**](https://pub.dev/packages/url_launcher) For *slight* iOS support.
+- [*flutter_spinkit*](https://pub.dev/packages/flutter_spinkit) For heart animations.
 
 ## What need to be done:
 - iOS support.
@@ -62,3 +64,8 @@ You can make it, sign it and publish on Apple Store freely.
 
 Remember, this app can **save someone life**.
 And it is our duty, to make it work well.
+
+### Any Questions?
+- ukranian.phoenix@gmail.com
+- bogdan.goncharuck@gmail.com
+- telegram.me/danHoncharuk
