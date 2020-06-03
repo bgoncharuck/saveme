@@ -49,6 +49,7 @@ You can make it, sign it and publish on Apple Store freely.
 
 ### If you want change or publish it
 
-Give a link to fork or this repository with GPLv3 License. So others will make it even better.
-> Remember, this app can **save someone life**.
+>Give a link to fork or this repository with GPLv3 License. So others will make it even better.
+
+Remember, this app can **save someone life**.
 And it is our duty, to make it work well.
