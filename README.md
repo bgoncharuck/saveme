@@ -45,10 +45,10 @@ The application is written in Dart language with Flutter Framework.
 ## What need to be done:
 1. iOS support.
 App uses android-intent to make direct call in Android. And I don't know how to correctly implement this function in iOS.
-You can make it, sign it and publish on Apple Store freely, if you want.
+You can make it, sign it and publish on Apple Store freely.
 
 ### If you want change or publish it
 
 Give a link to fork or this repository with GPLv3 License. So others will make it even better.
-Remember, this app can save someone life.
+> Remember, this app can **save someone life**.
 And it is our duty, to make it work well.
