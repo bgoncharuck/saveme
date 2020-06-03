@@ -34,4 +34,21 @@ Also give permission to access contacts if your number is selected from the cont
 The application is released under GNU General Public License v3.
 https://www.gnu.org/licenses/gpl-3.0.en.html
 
+Find it on play market:
+
 # For Developers
+
+The application is written in Dart language with Flutter Framework.
+
+### Depends on this packages:
+
+## What need to be done:
+1. iOS support.
+App uses android-intent to make direct call in Android. And I don't know how to correctly implement this function in iOS.
+You can make it, sign it and publish on Apple Store freely, if you want.
+
+### If you want change or publish it
+
+Give a link to fork or this repository with GPLv3 License. So others will make it even better.
+Remember, this app can save someone life.
+And it is our duty, to make it work well.
