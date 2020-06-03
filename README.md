@@ -43,9 +43,12 @@ The application is written in Dart language with Flutter Framework.
 ### Depends on this packages:
 
 ## What need to be done:
-1. iOS support.
+- iOS support.
 App uses android-intent to make direct call in Android. And I don't know how to correctly implement this function in iOS.
 You can make it, sign it and publish on Apple Store freely.
+- Notifications, which work and close correctly with timer itself. For regular call timer use. So it will work on background.
+- A way to send SMS without 2 additional permissions. For main purpose of saving life. If the phone call was not delivered.
+- Check if call was delivered and call other number from numbers list otherwise.
 
 ### If you want change or publish it
 
