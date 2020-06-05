@@ -13,6 +13,7 @@
 This application can also be used as a regular call timer.
 
 **Feel safe, the timer does not need internet connection.**
+[Privacy Policy](https://bgoncharuck.github.io/saveme/)
 
 How to use:
 1. During the application **first start**, you must select the number from your contact list for the call or enter the number manually.

@@ -1,7 +1,7 @@
 body {
   font-family: Georgia, sans-serif;
   padding-bottom: 5%;
-  background-color: #ffa726;
+  background-color: #fab853;
 }
 
 .content {
@@ -13,11 +13,18 @@ body {
   border-radius: 16px;
   border: 2px solid white;
 }
+ul {
+  list-style-type: none;
+}
 
 .shadow {
   -webkit-box-shadow: 10px 13px 79px -14px rgba(0,0,0,0.75);
   -moz-box-shadow: 10px 13px 79px -14px rgba(0,0,0,0.75);
   box-shadow: 10px 13px 79px -14px rgba(0,0,0,0.75);
+}
+
+.policy_text {
+  text-align: left;
 }
 
 pre {
