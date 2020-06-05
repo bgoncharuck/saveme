@@ -1,4 +1,29 @@
 body {
   font-family: Georgia, sans-serif;
   padding-bottom: 5%;
+  background-color: #ffa726;
+}
+
+.content {
+  marign: 2%;
+  width: 90%;
+  text-align: center;
+  background-color: white;
+  padding: 3%;
+  border-radius: 16px;
+  border: 2px solid white;
+}
+
+.shadow {
+  -webkit-box-shadow: 10px 13px 79px -14px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 13px 79px -14px rgba(0,0,0,0.75);
+  box-shadow: 10px 13px 79px -14px rgba(0,0,0,0.75);
+}
+
+pre {
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
 }
