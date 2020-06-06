@@ -29,7 +29,8 @@ class _ContactNumberInputFormState extends State<ContactNumberInputForm> {
 
   void _addNumber({String contactName = ""}) =>
       numbers.addNumber(Number(_editedNumberController.text,
-          isMain: numbers.noNumberSetted, contactName: contactName));
+          isMain: numbers.noNumberSetted || widget.isEditable,
+          contactName: contactName));
 
   void _numberEditingComplete() {
     if (_numberFormKey.currentState.validate()) {
@@ -103,7 +104,7 @@ class _ContactNumberInputFormState extends State<ContactNumberInputForm> {
                   return language.numberMustBeValid;
                 } else if (!widget.isEditable &&
                     numbers.numberIsAlreadyAddded(number)) {
-                  return language.numberMustBeValid;
+                  return language.numberAlreadyAdded;
                 }
                 return null;
               },

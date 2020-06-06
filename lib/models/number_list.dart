@@ -75,13 +75,15 @@ class DefaultNumberList implements INumberList {
     number.text = number.text.replaceAll(RegExp(r"\s\b|\b\s"), "");
     INumber newMain =
         (this.numbers.isEmpty) ? NotFound : findByNumber(number.text);
+    bool thisNumberExists = newMain != NotFound;
 
-    if (newMain == NotFound)
-      this.numbers.add(number);
-    else {
+    if (number.isMainNumber == true || thisNumberExists)
       this.mainNumber.isMainNumber = false;
+
+    if (!thisNumberExists)
+      this.numbers.add(number);
+    else
       newMain.isMainNumber = true;
-    }
 
     this.updateOnFileSystem;
   }

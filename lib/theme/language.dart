@@ -27,7 +27,7 @@ abstract class ILanguageSetting {
 }
 
 class EnglishLanguage implements ILanguageSetting {
-  String numberMustBeValid = 'Number must to be valid';
+  String numberMustBeValid = "Number must to be valid";
   String numberAlreadyAdded = "You already added this number";
   String mainPhoneNumberLabel = "Main Phone Number To Call";
   String labelError = "Error";
