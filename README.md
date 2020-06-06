@@ -38,7 +38,7 @@ https://www.gnu.org/licenses/gpl-3.0.en.html
 Find it on play market:
 
 # For Developers
-### Current "saveme" version: 1.0.0
+### Current "saveme" version: 1.0.1
 The application is written in Dart language with Flutter Framework.
 
 ### Depends on this packages:
