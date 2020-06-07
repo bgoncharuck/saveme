@@ -58,6 +58,8 @@ You can make it, sign it and publish on Apple Store freely.
 - Notifications, which work and close correctly with timer itself. For regular call timer use. So it will work on background.
 - A way to send SMS without 2 additional permissions. For main purpose of saving life. If the phone call was not delivered.
 - Check if call was delivered and call other number from numbers list otherwise.
+- Ukranian, English, German and Russian languages are done so far.
+You can add other languages in file lib/theme/language.dart by implementing ILanguageSetting interface.
 
 ### If you want change or publish it
 
