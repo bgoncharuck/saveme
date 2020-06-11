@@ -36,7 +36,7 @@ The application is released under GNU General Public License v3.
 https://www.gnu.org/licenses/gpl-3.0.en.html
 
 Find it on play market:
-[open testing](https://play.google.com/apps/testing/com.bgoncharuck.saveme)
+[release](https://play.google.com/store/apps/details?id=com.bgoncharuck.saveme)
 
 # For Developers
 ### Current "saveme" version: 1.0.1
