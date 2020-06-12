@@ -82,15 +82,15 @@ class GermanLanguage implements ILanguageSetting {
     "Stellen",
     "den Anruf-Timer ein",
     "Nächstes Mal",
-    "wenn Sie die App ausführen, wird sie gestartet",
+    "wenn sie die App starten, beginnt der Timer",
     "Der",
     "erste Anruf",
     "muss bestätigt werden"
   ];
   String loadFilesAccessErrorText =
-      "Mein Herr, du hast mir keinen Zugang zu einem Speicher gewährt.\nIch kann diese Konfigurationsdateien nicht speichern oder laden:\n";
+      "Mein Herr, Sie haben keinen Zugang zu dem Speicher gewährt.\nIch kann diese Konfigurationsdateien nicht speichern oder laden:\n";
   String noCallingPermissionError =
-      "Mein Herr, Sie haben mir keinen Zugang zu den Telefonanrufen gewährt.\nAls stolzer Anruf-Timer kann ich ohne diese Erlaubnis nicht arbeiten.";
+      "Mein Herr, Sie haben keinen Zugang zu den Telefonanrufen  gewährt.\nAls stolzer Anruf-Timer kann ich ohne diese Erlaubnis nicht arbeiten.";
   String settingsNavigationButton = "Konfigurieren";
   String numbersNavigationButton = "Zu rufende Nummern";
   String addTheNumberDescription =
@@ -125,9 +125,9 @@ class UkranianLanguage implements ILanguageSetting {
     "необхідно підтвердити"
   ];
   String loadFilesAccessErrorText =
-      "Господарю, Ви не надали мені прав доступу до файлів.\nЯ не зможу зберегти або завантажити ці файли налаштувань:\n";
+      "Мій Володарю, Ви не надали мені прав доступу до файлів.\nЯ не зможу зберегти або завантажити ці файли налаштувань:\n";
   String noCallingPermissionError =
-      "Господарю, Ви не надали мені прав доступу на дзвінки.\nЯ, як таймер дзвінку, не зможу працювати без цього дозволу.";
+      "Мій Володарю, Ви не надали мені прав доступу на дзвінки.\nЯ, як таймер дзвінку, не зможу працювати без цього дозволу.";
   String settingsNavigationButton = "Налаштування";
   String numbersNavigationButton = "Номери Для Дзвінка";
   String addTheNumberDescription =
@@ -176,16 +176,16 @@ class RussianLanguage implements ILanguageSetting {
 }
 
 ILanguageSetting get systemLanguage {
-  String languageCode = Platform.localeName.split('_')[1];
+  String languageCode = Platform.localeName.split('_')[0];
   print("Language code is $languageCode");
   switch (languageCode) {
-    case 'UA':
+    case 'uk':
       return UkranianLanguage();
 
-    case 'DE':
+    case 'de':
       return GermanLanguage();
 
-    case 'RU':
+    case 'ru':
       return RussianLanguage();
 
     default:
