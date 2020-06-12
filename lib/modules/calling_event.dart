@@ -11,6 +11,28 @@ Future asyncCallingEvent(String number) async {
     AndroidIntent intent = AndroidIntent(
       action: "android.intent.action.CALL",
       data: "tel:$number",
+      arguments: {
+        "com.android.phone.force.slot": true,
+        "Cdma_Supp": true,
+        "com.android.phone.extra.slot": 0,
+        //
+        // for weird platforms
+        "extra_asus_dial_use_dualsim": 0,
+        "slot": 0,
+        "simslot": 0,
+        "sim_slot": 0,
+        "subscription": 0,
+        "Subscription": 0,
+        "phone": 0,
+        "com.android.phone.DialingMode": 0,
+        "simSlot": 0,
+        "slot_id": 0,
+        "simId": 0,
+        "simnum": 0,
+        "phone_type": 0,
+        "slotId": 0,
+        "slotIdx": 0,
+      },
       flags: [Flag.FLAG_ACTIVITY_NEW_TASK],
     );
     await intent.launch();
