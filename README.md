@@ -22,7 +22,6 @@ You **can select several numbers** and quickly switch between them in the "numbe
 3. Once the call number is selected and the timer is set, the application is ready to use.
 4. The **next time application starts** - the countdown will start **immediately**, and when it ends a call will take place..
 Only the first call must be confirmed. Therefore, we recommend that you wait and test the first call.
-Also, **if you have two SIM cards**, select the default one in settings from which the calls will be made. Otherwise you will have to confirm the call every time.
 5. The timer can be stopped with the "Stop" button, after which the application will turn off. Also, timer can be paused by going to application settings.
 
 The timer does not guarantee that the person being called will pick up the phone.
@@ -39,7 +38,7 @@ Find it on play market:
 [release](https://play.google.com/store/apps/details?id=com.bgoncharuck.saveme)
 
 # For Developers
-### Current "saveme" version: 1.0.1
+### Current "saveme" version: 1.0.3
 The application is written in Dart language with Flutter Framework.
 
 ### Depends on this packages:
