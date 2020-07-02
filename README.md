@@ -1,3 +1,5 @@
+### Attention: code refactoring is planned. This will not change app behaviour in any way, just will make code better.
+
 # <img width="32px" height="32px" src="repo_assets/icon.png" /> saveme
 `The Call Timer which saves lives!`
 <div style="text-align:center" markdown="1">
