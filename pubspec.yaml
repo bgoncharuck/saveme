@@ -1,7 +1,7 @@
 name: saveme
 description: If you feel bad, you can use this timer to call your friends for help. If you&#x27;re feeling better, just turn off the timer until it rings. The first time you start app, you need to set the primary number for the call and the amount of time before the call. The application uses GPLv3.
 repository: https://github.com/bgoncharuck/saveme/tree/master/lib
-version: 1.0.3+3
+version: 1.0.4+4
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
@@ -9,13 +9,15 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_bloc: ^5.0.1
+  equatable: ^1.2.0
   android_intent: ^0.3.7+2
   cupertino_icons: ^0.1.2
-  path_provider: ^1.6.7
   permission_handler: ^5.0.0+hotfix.5
   contact_picker: ^0.0.2
   flutter_spinkit: ^2.1.0
   url_launcher: ^5.4.10
+  storage_access: ^0.0.2
 
 dev_dependencies:
   flutter_test:

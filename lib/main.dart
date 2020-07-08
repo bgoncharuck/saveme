@@ -1,10 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:saveme/constants.dart';
-import 'package:saveme/screens/loading.dart';
-import 'package:saveme/theme/style.dart';
-import 'package:saveme/routes.dart';
-import 'package:saveme/screens/error_message.dart';
-import 'package:permission_handler/permission_handler.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'bloc/loading_bloc.dart';
+import 'routes.dart';
 
 void main() => runApp(SaveMe());
 
@@ -14,67 +11,23 @@ class SaveMe extends StatefulWidget {
 }
 
 class _SaveMeState extends State<SaveMe> {
-  Widget homeScreen = LoadingScreen();
-  var routeToUse = <String, WidgetBuilder>{};
-  Map<Permission, PermissionStatus> statusOf;
-
-  Future<void> get requestPermissions async => statusOf = await [
-        Permission.phone,
-        Permission.storage,
-        Permission.contacts,
-      ].request();
-
-  Future<Widget> get chooseYourError async {
-    // phone call access
-    if (statusOf[Permission.phone].isGranted == false) {
-      print("ERROR - PermissionsCheck: Phone call access was not granted.");
-      return SaveMeErrorMessage(
-        language.noCallingPermissionError,
-        "",
-      );
-    }
-    print("PermissionsCheck: Phone call access was granted.");
-    // storage access
-    if (statusOf[Permission.storage].isGranted == false) {
-      print("ERROR - PermissionsCheck: Storage access was not granted.");
-      return SaveMeErrorMessage(
-        language.loadFilesAccessErrorText,
-        "$timerSettingSaveFileName $numbersListSaveFileName",
-      );
-    }
-    print("PermissionsCheck: Storage access was granted.");
-    // contacts access, only debug message
-    if (statusOf[Permission.contacts].isGranted)
-      print("PermissionsCheck: Contacts access was granted.");
-    // if all okay
-    return null;
-  }
-
-  Future<void> asyncInitPart() async {
-    await requestPermissions;
-    Widget errors = await chooseYourError;
-    if (errors != null) {
-      setState(() {
-        homeScreen = errors;
-      });
-      return;
-    }
-    print("Route: Default");
-    routeToUse = defaultRoute;
-    homeScreen = await chooseHomeScreenForDefaultRoute;
-    setState(() {});
-  }
+  final loadingBloc = LoadingBloc();
 
   @override
   void initState() {
-    asyncInitPart();
     super.initState();
+    loadingActions(loadingBloc);
   }
 
-  Widget build(BuildContext context) => MaterialApp(
-        theme: saveMeLight,
-        title: 'SaveMe',
-        home: homeScreen,
-        routes: routeToUse,
+  @override
+  Widget build(BuildContext context) => BlocBuilder(
+        bloc: loadingBloc,
+        builder: (BuildContext context, LoadingState state) {
+          if (state is LoadingError) return AppError(state.error, "");
+          if (state is LoadingSuccess) return AppNormal(noNumbers: false);
+          if (state is LoadingNoNumbers) return AppNormal(noNumbers: true);
+
+          return AppLoading();
+        },
       );
 }
