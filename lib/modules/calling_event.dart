@@ -2,8 +2,8 @@ import 'package:android_intent/android_intent.dart';
 import 'package:android_intent/flag.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'dart:io' show Platform;
-
 import 'package:saveme/constants.dart';
 
 Future asyncCallingEvent(String number) async {
@@ -37,8 +37,7 @@ Future asyncCallingEvent(String number) async {
     );
     await intent.launch();
   } else if (Platform.isIOS) {
-    // TODO iOS support for a direct call
-    launch("tel://$number");
+    await FlutterPhoneDirectCaller.callNumber(number);
   }
 }
 
