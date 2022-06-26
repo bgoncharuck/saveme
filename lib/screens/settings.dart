@@ -60,10 +60,8 @@ class SaveMeSettings extends StatelessWidget {
                               },
                               child: Text(
                                 language.startTimerAgainAction,
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    color: defaultTheme.mainColor,
-                                    fontWeight: FontWeight.bold),
+                                style:
+                                    TextStyle(fontSize: 18, color: defaultTheme.mainColor, fontWeight: FontWeight.bold),
                               ),
                             ),
                           ],
@@ -75,7 +73,7 @@ class SaveMeSettings extends StatelessWidget {
           ],
         ),
       ),
-      resizeToAvoidBottomPadding: false,
+      resizeToAvoidBottomInset: false,
     );
   }
 }
